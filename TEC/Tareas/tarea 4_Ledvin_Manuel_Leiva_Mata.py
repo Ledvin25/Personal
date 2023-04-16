@@ -1,16 +1,15 @@
 #Tarea 4 - Ledvin Manuel Leiva Mata
-
 #Ejercicio 1
 
 def factorial(n):
-    
+
     i = 1 #contador
     x = 1
 
     while i <= n:
         x = x * i #x variable a retornar
         i += 1
-    
+
     return x
 
 #Ejericio 2
@@ -28,10 +27,10 @@ def calificacion(grade):
             return "D - Deficiente (Reprobado)"
         else:
             return "F - Muy deficiente (Reprobado)"
-        
+
     else:
         return("ERROR: NOTA DEBE ESTAR ENTRE 0 Y 100") #retorna error en caso de haberlo
-    
+
 #Ejercicio 3
 
 def sumatoria(m,n):
@@ -44,7 +43,7 @@ def sumatoria(m,n):
     sum_n = n*(n+1)/2 # se realiza la sumatoria en n
 
     return int(sum_n - sum_m) # se retorna el valor de la resta el cual es la sumatoria de los rangos solicitados
-    
+
 #Ejercicio 4
 
 def suma_multiplica_digitos(n):
@@ -57,7 +56,7 @@ def suma_multiplica_digitos(n):
         while n > 0:
 
             x = n%10
-            
+
             m = m * x #multiplicacion
             s = s + x #suma
 
@@ -71,7 +70,7 @@ def contar_pares_impares(n):
 
     i = p = 0 #pares e impares
     while n > 0:
-        
+
         x = n%10
 
         if x%2 == 0:
@@ -81,15 +80,15 @@ def contar_pares_impares(n):
         n = n // 10
 
     return p, i
-    
+
 # ejercicio 6
 
 def pares_impares(n):
-    
+
     i = p = p_par = p_impar = 0 #pares e impares y sus potencias.
 
     while n > 0:
-        
+
         x = n%10
 
         if x%2 == 0:
@@ -100,7 +99,7 @@ def pares_impares(n):
             p_impar += 1
 
         n = n // 10
-    
+
     if p_par == 0:
         p = "No hay"
     if p_impar == 0:
@@ -154,17 +153,16 @@ def cuenta_celular():
         elif op == 3:
             estado_Cuenta(total_rec, total_cons)
 
-
 #Ejercicio 8
 
 def encriptar(e, n):
-    
+
     #e encriptador, n numero de entrada
     exit_num = e #variable de salida a retornar
     pow = 1 #pow potencia
 
     while n > 0:
-        
+
         x = n%10 # x variable para el digito
 
         exit_num += ((x + e)%10)*10**pow
@@ -172,7 +170,7 @@ def encriptar(e, n):
 
         n = n//10
 
-    return exit_num 
+    return exit_num
 
 #Ejercicio 9
 
@@ -180,7 +178,7 @@ def analizar_notas_admision():
 
     nota = max_nota = promedio = validas = invalidas = i = 0 # i contador
     min_nota = 800
-    
+
     while nota >= 0:
         nota = int(input("Digite una nota entre 0 y 800: "))
 
@@ -191,7 +189,7 @@ def analizar_notas_admision():
         #nota mas baja
         if nota < min_nota and nota >= 0 :
             min_nota = nota
-            
+
         #notas validas e invalidas y suma promedio
         if nota > 800:
             invalidas += 1
@@ -203,7 +201,6 @@ def analizar_notas_admision():
 
     print("\nNota mas alta: ", max_nota, "\nNota mas baja: ", min_nota, "\nNota promedio: ", promedio, "\nCantidad de notas validas (entre 0 y 800): ", validas, "\nCantidad de notas invalidas (>800)", invalidas)
 
- 
 # Ejercicio 10
 
 def combinatoria_1(n,x):
@@ -241,7 +238,7 @@ def combinatoria_2(n,x):
 # ejercicio 11
 
 def fibonacci(n):
-    
+
     i = 2 #contador
     x = 0 #variable 1
     y = 1 #variable 2
@@ -257,7 +254,7 @@ def fibonacci(n):
 # ejercicio 12
 
 def numero_al_reves(n):
-    
+
     result= 0 #potencia
     pow = -1 #potencia a la -1 para comenzar a sumar los numeros del mas grande hasta el mas pequeño
     n1 = n2 = n
@@ -278,16 +275,16 @@ def numero_al_reves(n):
 #ejercicio 13
 
 def palindromo(n):
-    
+
     if numero_al_reves(n) == n: #evaulacion de palindromo
         return True
     else:
         return False
-    
+
 #ejercicio 14
 
 def imprimir_palindromos(n):
-    if isinstance(n,int) and n >= 1: 
+    if isinstance(n,int) and n >= 1:
 
         i = pal = 0 #inicia contador y variable para palindromos
 
@@ -309,11 +306,11 @@ def es_numero_bonito(n):
     x = y = 0 # x variable de digitos, y variable de digitos
 
     while n1 > 0: # suma digitos del numero ingresado
-        x += n1%10 
+        x += n1%10
         n1 = n1 // 10
-        
+
     while n2 > 0: # suma digitos de la expresion dada
-        y += n2%10 
+        y += n2%10
         n2 = n2 // 10
 
 
@@ -321,7 +318,6 @@ def es_numero_bonito(n):
         return True
     else:
         return False
-    
 
 #ejercicio 16
 
@@ -333,8 +329,8 @@ def lista_numeros_bonitos(n):
             print(y)
             i+=1
         y+=1
-    
-#Ejercicio 17 
+
+#Ejercicio 17
 
 def igualdad(a,b):
 
@@ -380,10 +376,8 @@ def igualdad(a,b):
             # Si d1 no es igual a d2, se establece "igual" como False
             else:
                 igual = False
-    
+
     return igual # Devuelve "igual", que es True si ambos números contienen los mismos dígitos y False si no lo hacen
-
-
 
 # Ejercicio 18
 
@@ -400,11 +394,11 @@ def lista_numeros_perfectos(n):
             if suma_divisores == num:
                 print(num)
                 i += 1
-                
+
 # Ejercicio 19
 
 def base10a258(a,b):
-    
+
     if isinstance(a, int) and isinstance(b, int) and a >= 0 and b >= 0:
         if b == 2 or b == 5 or b == 8:
             result = pow = 0
@@ -424,7 +418,7 @@ def base10a258(a,b):
 def primo(n):
     i = 2
     while i <= n**(1/2):
-        
+
         if n % i == 0:
             return False
         else: i+=1
@@ -433,14 +427,14 @@ def primo(n):
 # Ejercicio 21
 
 def primos_gemelos():
-    
+
     inicio = int(input("Inicio del intervalo: "))
     fin = int(input("Fin del intervalo: "))
 
     print("Primos gemelos: ")
 
     while inicio < fin:
-        
+
         if primo(inicio+2) and primo(inicio) and inicio+2 - inicio == 2:
             print(inicio , " y " , inicio+2)
 
@@ -452,7 +446,7 @@ def buscar_biprimos(a,b):
 
     a1 = biprimos = 0
     i = a
-    
+
     while i <= b:
         fp1 = 2
         fp2 = i // fp1
@@ -469,7 +463,7 @@ def buscar_biprimos(a,b):
 # Ejercicio 23
 
 def factores_primos(n):
-    
+
     i=2
     residuo = n
 
@@ -483,14 +477,14 @@ def factores_primos(n):
 # Ejercicio 24
 
 def agrupar_dígitos(n):
-    
+
     if isinstance(n, int) and n > 0:
 
         d1 = 0
         n1 = n2 = n
         r = i = i2 = i3 = 0
         result = 0
-        
+
         while n1 > 0:
             if not igualdad(n1, result):
                 d1 = n1%10
@@ -544,12 +538,12 @@ def contar_apariciones(a,b):
     #variables necesarias
     a1 = a
     i = pow = 0 #i contador
-    
+
     #longitud de a para crear potencia
     while a1 > 0:
         a1 = a1//10
         pow += 1
-    
+
     #loop para generar resultado
     while b > 0:
         if b%10**pow == a: #solamente el contador si los ultimos digitos a la potencia son iguales a "a"
@@ -557,8 +551,9 @@ def contar_apariciones(a,b):
             i +=1
         else:
             b = b//10 # le quita la unidad al numero para ver si esta esta estorbando al verificar el numero
-    
+
     return i
+
 
 # Ejercicio 27
 
@@ -577,6 +572,7 @@ def numeros_abundantes(a,b):
             print(num)
         num += 1
 
+
 # Ejercicio 28
 
 def determinar_orden(n):
@@ -593,7 +589,7 @@ def determinar_orden(n):
         elif d1 < d2:
             result = 1
 
-        if result != result1 and result1 != 0: 
+        if result != result1 and result1 != 0:
             result = 0
             break
         d2 = d1
@@ -611,11 +607,11 @@ def analizar_tipo_de_cambio():
     n = int(input("Cantidad de tipos de cambio a leer: "))
 
     while i+1 < n:
-        
+
         if i == 0:
             print("Tipo de cambio ", i+1, ":")
             c1 = int(input())
-        
+
         print("Tipo de cambio ", i+2, ":")
         c2 = int(input())
 
@@ -637,14 +633,13 @@ def analizar_tipo_de_cambio():
         s2 = s1
         c1 = c2
 
-    
+
     print("Resultados finales:")
     print("Mayor diferencia: ", max_diff)
     if c2 - max_diff < c2:
         print("Entre los tipos de cambio:", c2, "y", c2 + max_diff)
     else:
         print("Entre los tipos de cambio:", c2 - max_diff, "y", c2)
-
 
 # Ejercicio 30
 
@@ -686,5 +681,3 @@ def reemplazar_numero(a,b,c):
             result = numero_al_reves(result)
         return result
     else: return"Valores invalidos, por favor compruebe e intente de nuevo."
-
-        
