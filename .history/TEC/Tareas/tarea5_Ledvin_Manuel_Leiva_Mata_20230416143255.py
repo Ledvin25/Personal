@@ -185,35 +185,4 @@ def diferencia_simetrica(tuplas):
 
 # Ejercicio 7
 
-def es_altamente_abundante(lista):
-    result = []
-    for element in lista:
-        suma = 0
-        
-        for i in range(int(element)):
-               i +=1
-               if element % i == 0:
-                    suma += i
-        for i in range(int(element)):
-            j = 0
-            suma2 = 0
-            for j in range(i):
-                j+=1
-                if i % j == 0:
-                    suma2 += j
-            if j == i:
-                if suma2 > suma:
-                    prev_result = False
-                    break
-                else:
-                    prev_result = True
-        result.append(prev_result)
-    return result
-
-def fibonacci(numero):
-    result = []
-
-    for i in range(numero):
-        result.append(i)      
-
-fibonacci(5)
+def es_altamente_abundante()

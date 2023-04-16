@@ -214,6 +214,10 @@ def fibonacci(numero):
     result = []
 
     for i in range(numero):
-        result.append(i)      
+        result.append(i)
+
+    
+        
+        
 
 fibonacci(5)
