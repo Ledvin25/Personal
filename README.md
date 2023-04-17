@@ -8,4 +8,4 @@ Contact:
 
 Email: ledvin25@hotmail.com
 Discord: Ledvin25#8571
-Whatsapp: wa.me/+50661725931
+Whatsapp: http://wa.me/50661725931
