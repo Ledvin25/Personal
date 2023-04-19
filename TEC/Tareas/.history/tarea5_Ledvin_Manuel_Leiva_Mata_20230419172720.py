@@ -343,5 +343,3 @@ def leer_matriz(x,y):
         matriz.append(fila)
 
     return matriz
-
-# Ejercicio 14

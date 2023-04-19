@@ -332,16 +332,4 @@ def decimal_a_hexadecimal(lista):
 # Ejercicio 13
 
 def leer_matriz(x,y):
-    
-    matriz = []
-
-    for i in range(x):
-        fila = []
-        for j in range(y):
-            value = input()
-            fila.append(value)
-        matriz.append(fila)
-
-    return matriz
-
-# Ejercicio 14
+    matriz

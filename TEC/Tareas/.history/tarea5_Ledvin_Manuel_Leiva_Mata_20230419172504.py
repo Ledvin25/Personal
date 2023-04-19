@@ -336,12 +336,6 @@ def leer_matriz(x,y):
     matriz = []
 
     for i in range(x):
-        fila = []
-        for j in range(y):
-            value = input()
-            fila.append(value)
-        matriz.append(fila)
+        fila 
 
-    return matriz
-
-# Ejercicio 14
+leer_matriz(3,3)
