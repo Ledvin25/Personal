@@ -329,6 +329,3 @@ def decimal_a_hexadecimal(lista):
 
     return result
 
-# Ejercicio 13
-
-def leer_matriz()

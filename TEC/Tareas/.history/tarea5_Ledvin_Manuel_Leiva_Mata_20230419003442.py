@@ -326,9 +326,4 @@ def decimal_a_hexadecimal(lista):
                 hexa_residuos[i] = str(numero)
         hexa_residuos.reverse()
         result.append(str(''.join(hexa_residuos)))
-
     return result
-
-# Ejercicio 13
-
-def leer_matriz()

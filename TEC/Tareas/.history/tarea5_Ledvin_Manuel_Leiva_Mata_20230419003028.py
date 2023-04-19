@@ -314,7 +314,7 @@ def decimal_a_hexadecimal(lista):
 
     for decimal in lista:
         hexa_residuos = []
-
+        
         while decimal > 0:
             hexa_residuos.append(decimal%16)
             decimal = decimal // 16
@@ -326,9 +326,10 @@ def decimal_a_hexadecimal(lista):
                 hexa_residuos[i] = str(numero)
         hexa_residuos.reverse()
         result.append(str(''.join(hexa_residuos)))
+                
 
-    return result
 
-# Ejercicio 13
 
-def leer_matriz()
+        
+
+decimal_a_hexadecimal([987,10,46789])

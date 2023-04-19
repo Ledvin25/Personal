@@ -276,20 +276,17 @@ def es_palabra_palindromo(word):
 def extrae_numeros(string0):
 
     result = []
-    i = 0
+    string = string0
 
-    while True:
-        string = string0
+    for i,element in enumerate(string):
         
         try:
-            int(string[i])
-            j = len(string)
+            int(element)
+            j = len(string) - 1
 
             while True:
                 try:
-                    numero = float(string[i:])
-                    if (numero % 1) == 0:
-                        numero = int(numero)
+                    numero = int(string[i:])
                     result.append(numero)
                     break
                 except:
@@ -297,38 +294,7 @@ def extrae_numeros(string0):
                     j -= 1
 
         except: 
-            if len(string0) <= 1:
-                return result
-            i += 1
             continue
-        string0 = string0[(j+1):]
-        i = 0
+        string0 = string0[j:]
         
-#Ejercicio 12
-
-def decimal_a_hexadecimal(lista):
-
-    hexa_conversiones = {'10':'A', '11':'B', '12':'C', '13':'D', '14':'E', '15' : 'F'}
-    result = []
-    
-
-    for decimal in lista:
-        hexa_residuos = []
-
-        while decimal > 0:
-            hexa_residuos.append(decimal%16)
-            decimal = decimal // 16
-        
-        for i, numero in enumerate(hexa_residuos):
-            if numero >= 10:
-                hexa_residuos[i] = hexa_conversiones[str(numero)]
-            else:
-                hexa_residuos[i] = str(numero)
-        hexa_residuos.reverse()
-        result.append(str(''.join(hexa_residuos)))
-
-    return result
-
-# Ejercicio 13
-
-def leer_matriz()
+extrae_numeros('xy225p30ab0g8.9io.u1000')

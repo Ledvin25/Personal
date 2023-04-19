@@ -310,10 +310,9 @@ def decimal_a_hexadecimal(lista):
 
     hexa_conversiones = {'10':'A', '11':'B', '12':'C', '13':'D', '14':'E', '15' : 'F'}
     result = []
-    
+    hexa_residuos = []
 
     for decimal in lista:
-        hexa_residuos = []
 
         while decimal > 0:
             hexa_residuos.append(decimal%16)
@@ -322,13 +321,12 @@ def decimal_a_hexadecimal(lista):
         for i, numero in enumerate(hexa_residuos):
             if numero >= 10:
                 hexa_residuos[i] = hexa_conversiones[str(numero)]
-            else:
-                hexa_residuos[i] = str(numero)
-        hexa_residuos.reverse()
-        result.append(str(''.join(hexa_residuos)))
+        
+        result.append(str(''.join(hexa_residuos.re)))
+                
 
-    return result
 
-# Ejercicio 13
 
-def leer_matriz()
+        
+
+decimal_a_hexadecimal([987,10,46789])
