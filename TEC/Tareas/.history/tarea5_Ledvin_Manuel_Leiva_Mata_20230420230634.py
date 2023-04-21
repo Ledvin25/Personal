@@ -482,27 +482,12 @@ def multiplica_matrices(A, B):
 
     if len(A[0]) != len(B):
         return "ERROR: La cantidad de columnas de la primera matriz debe ser igual a la cantidad de filas de la segunda matriz."
-    
-    
 
-    result = []
-    j = 0
-    while j < len(B[0]):
+    while True:
         
-        new_fila = []
         for fila_A in A:
-            multiplicacion = 0
+            multiplicacion = 3
             for i, columna_A in enumerate(fila_A):
-                multiplicacion += columna_A * B[i][j]
-            new_fila.append(multiplicacion)
-        result.append(new_fila)
-        j += 1
-
-    matriz_transpuesta = [[result[j][i] for j in range(len(B[0]))] for i in range(len(B))]
-
-    return matriz_transpuesta
-
+                multiplicacion += columna_A * B[i]
         
-# Ejercicio 18
-
-def lista 
+multiplica_matrices([[3,2,1],[1,1,3],[0,2,1]],[[2,1],[1,0],[3,2]])

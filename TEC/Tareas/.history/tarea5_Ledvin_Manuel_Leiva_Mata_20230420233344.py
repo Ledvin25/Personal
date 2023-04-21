@@ -503,6 +503,4 @@ def multiplica_matrices(A, B):
     return matriz_transpuesta
 
         
-# Ejercicio 18
-
-def lista 
+def 

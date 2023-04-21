@@ -162,7 +162,7 @@ def modificar_disciplina(disciplina, medicion, lista):
         return ''
     
     ''' 
-    La función "modificar_disciplina" modifica la medicion de una disciplina existente en la lista de tuplas "lista". Si la disciplina no existe, devuelve un mensaje de error.
+        La función "modificar_disciplina" modifica la medicion de una disciplina existente en la lista de tuplas "lista". Si la disciplina no existe, devuelve un mensaje de error.
 
     La entrada "disciplina" es un string que representa la disciplina a modificar.
     La entrada "medicion" es un float que representa la nueva medicion de la disciplina a modificar.
@@ -189,11 +189,6 @@ def juegos_de_bola(lista):
                         pares_finales.append(new_tuple)
         return pares_finales
 
-'''
-    Esta función recibe una lista como entrada y devuelve una lista de tuplas que representa todas las posibles combinaciones de elementos en la lista original. 
-    La entrada es una lista.
-    La salida es una lista de tuplas que representa todas las posibles combinaciones de elementos en la lista original.
-'''
 
 # Ejercicio 4
 
@@ -211,7 +206,9 @@ def agrupar(lista):
                         num.append(j)
         lista_final.append(int(''.join(num)))
         
-    return lista_final            
+    return lista_final
+
+            
 
 # Ejercicio 5
 
@@ -482,27 +479,169 @@ def multiplica_matrices(A, B):
 
     if len(A[0]) != len(B):
         return "ERROR: La cantidad de columnas de la primera matriz debe ser igual a la cantidad de filas de la segunda matriz."
-    
-    
-
-    result = []
-    j = 0
-    while j < len(B[0]):
+    else:
         
-        new_fila = []
-        for fila_A in A:
-            multiplicacion = 0
-            for i, columna_A in enumerate(fila_A):
-                multiplicacion += columna_A * B[i][j]
-            new_fila.append(multiplicacion)
-        result.append(new_fila)
-        j += 1
+        a, b, c = len(A), len(A[0]), len(B[0])
+        matriz_resultante = [[0] * c for _ in range(a)]
 
-    matriz_transpuesta = [[result[j][i] for j in range(len(B[0]))] for i in range(len(B))]
+        for i in range(a):
+            for j in range(c):
+                for k in range(b):
+                    matriz_resultante[i][j] += A[i][k] * B[k][j]
 
+        return matriz_resultante
+
+# Ejercicio 18
+def lista_cercanos(matriz):
+    result = []
+    
+    for fila in matriz: 
+        cercano = None
+        distancia = float('inf')
+        
+        for i in range(len(fila) - 1): 
+            diff = abs(fila[i] - fila[-1])
+            
+            if diff < distancia:
+                cercano = fila[i]
+                distancia = diff
+            
+            elif diff == distancia:
+                cercano = min(cercano, fila[i])
+        result.append((fila[-1], cercano))
+    return result
+
+# Ejercicio 19
+def extrae_diagonal(matriz, diagonal):
+    
+    if len(matriz) != len(matriz[0]):
+        return "ERROR: NO ES CUADRADA"
+    
+    
+    if diagonal > len(matriz)-1 or diagonal < -len(matriz)+1:
+        return "ERROR: NO EXISTE LA DIAGONAL"
+    
+    
+    diagonal_values = []
+    if diagonal >= 0:
+        for i in range(len(matriz) - diagonal):
+            diagonal_values.append(matriz[i][i+diagonal])
+    else:
+        for i in range(len(matriz) + diagonal):
+            diagonal_values.append(matriz[i-diagonal][i])
+    
+    return diagonal_values
+
+# Ejercicio 20
+def transpuesta(matriz):
+    
+    filas = len(matriz)
+    columnas = len(matriz[0])
+    
+    
+    matriz_transpuesta = [[0 for j in range(filas)] for i in range(columnas)]
+    
+    
+    for i in range(filas):
+        for j in range(columnas):
+            matriz_transpuesta[j][i] = matriz[i][j]
+    
     return matriz_transpuesta
 
-        
-# Ejercicio 18
+# Ejercicio 21
+def máximos_y_mínimos(matriz):
+    
+    filas = len(matriz)
+    columnas = len(matriz[0])
+    
+    result = []
+    
+    for i in range(filas):
+        for j in range(columnas):
+            
+            if matriz[i][j] == max(matriz[i]):
+                if matriz[i][j] == min([matriz[k][j] for k in range(filas)]):
+                    result.append((i, j))
+    
+    return result
 
-def lista 
+# Ejercicio 22
+def estudiantes_y_materias(calificaciones):
+    lista_estudiantes = []
+    for materia in calificaciones:
+        nombre_materia = materia[0]
+        for estudiante in materia[1:]:
+            carnet, nombre, nota = estudiante
+            estudiante_encontrado = False
+            for est in lista_estudiantes:
+                if est[0] == carnet:
+                    est[2].append((nombre_materia, nota))
+                    estudiante_encontrado = True
+                    break
+            if not estudiante_encontrado:
+                lista_estudiantes.append([carnet, nombre, [(nombre_materia, nota)]])
+    
+    return lista_estudiantes
+
+# Ejercicio 23
+def mcd(numeros):
+    if not isinstance(numeros, list) or not all(isinstance(numero, int) and numero >= 1 for numero in numeros):
+        return "Error: la entrada debe ser una lista de números naturales"
+    # Paso 1: obtener los divisores de cada número
+    divisores = []
+    for n in numeros:
+        divisores_n = []
+        for i in range(1, n+1):
+            if n % i == 0:
+                divisores_n.append(i)
+        divisores.append(divisores_n)
+    print("Paso 1: Divisores de cada número")
+    print(divisores)
+    
+    # Paso 2: obtener los divisores comunes
+    divisores_comunes = []
+    for d in divisores[0]:
+        divisor_encontrado = True
+        for otros_divisores in divisores[1:]:
+            if d not in otros_divisores:
+                divisor_encontrado = False
+                break
+        if divisor_encontrado:
+            divisores_comunes.append(d)
+    print("Paso 2: Divisores en común")
+    print(divisores_comunes)
+    
+    # Paso 3: obtener el máximo común divisor
+    mcd = 1
+    for d in divisores_comunes:
+        es_divisor_de_todos = True
+        for n in numeros:
+            if n % d != 0:
+                es_divisor_de_todos = False
+                break
+        if es_divisor_de_todos and d > mcd:
+            mcd = d
+    print("Paso 3: Máximo común divisor", mcd)
+    return mcd
+
+# Ejercicio 24
+def triangulo_simetrico(matriz, codigo):
+    n = len(matriz)
+    #verificacion de datos de entrada
+    if n != len(matriz[0]):
+        return "La matriz debe ser cuadrada"
+    if codigo not in ["A", "D"]:
+        return "Código de triángulo inválido"
+    
+    triangulo = []
+    #creacion del triangulo A o B depende de la eleccion del usuario
+    for i in range(n):
+        fila = []
+        for j in range(n):
+            if codigo == "A" and j > i:
+                fila.append(matriz[i][j])
+            elif codigo == "D" and j < i:
+                fila.append(matriz[i][j])
+        if fila:
+            triangulo.append(tuple(fila))
+    return tuple(triangulo)

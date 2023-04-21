@@ -1,5 +1,4 @@
 #Tarea 5 - Ledvin Manuel Leiva Mata
-#Coautores - Joseph Arrieta, Alejandro Gutierrez
 
 # para el siguiente codigo se utilizara habitualmente i, j y k como contadores por la convencion ya existente.
 
@@ -15,17 +14,6 @@ def indices_for(x,y):
         if element == x:
             indices_finales.append(i)
     return indices_finales
-
-    """
-    Esta función devuelve los índices de un elemento 'x' en una lista 'y' utilizando un bucle for.
-
-    Entradas:
-    - x: elemento a buscar en la lista
-    - y: lista en la cual buscar el elemento 'x'
-
-    Salidas:
-    - indices_finales: una lista que contiene los índices donde se encontró el elemento 'x' en la lista 'y'
-    """
         
 
 #trozos
@@ -40,17 +28,6 @@ def indices_trozos(x,y):
             return []
         else:
             return resultados
-        
-    """
-    Esta función devuelve los índices de un elemento 'x' en una lista 'y' utilizando la recursividad.
-
-    Entradas:
-    - x: elemento a buscar en la lista
-    - y: lista en la cual buscar el elemento 'x'
-
-    Salidas:
-    - resultados: una lista que contiene los índices donde se encontró el elemento 'x' en la lista 'y'
-    """
 
 #funcion recursiva para encontrar los indices y devolverlo en forma de lista.
 def buscar(x,y,start, final_index):
@@ -83,17 +60,6 @@ def indices_indices(x,y):
                 indices_finales.append(i)
             i+= 1
         return indices_finales
-    
-    """
-    Esta función devuelve los índices de un elemento 'x' en una lista 'y' utilizando un bucle while.
-
-    Entradas:
-    - x: elemento a buscar en la lista
-    - y: lista en la cual buscar el elemento 'x'
-
-    Salidas:
-    - indices_finales: una lista que contiene los índices donde se encontró el elemento 'x' en la lista 'y'
-    """
 
 #Ejercicio 2
 
@@ -105,15 +71,6 @@ def consultar_disciplina(disciplina, lista):
             return element[1]
     return "ERROR: NO SE PUEDE CONSULTAR PORQUE NO EXISTE"
 
-    ''' 
-    La función "consultar_disciplina" busca una disciplina en la lista de tuplas "lista" y devuelve la correspondiente medicion de la disciplina si existe, o un mensaje de error si no existe.
-
-    La entrada "disciplina" es un string que representa la disciplina a buscar.
-    La entrada "lista" es una lista de tuplas, donde cada tupla tiene la disciplina como primer elemento y su correspondiente medicion como segundo elemento.
-
-    La salida es la medicion de la disciplina si existe, o un mensaje de error si no existe.
-    '''
-
 def agregar_disciplina(disciplina, medicion, lista):
     
     if consultar_disciplina(disciplina, lista) == "ERROR: NO SE PUEDE CONSULTAR PORQUE NO EXISTE":
@@ -122,16 +79,6 @@ def agregar_disciplina(disciplina, medicion, lista):
         return ""
     else:
         return "ERROR: NO SE PUEDE AGREGAR PORQUE YA EXISTE"
-    
-    ''' 
-    La función "agregar_disciplina" agrega una disciplina y su medicion a la lista de tuplas "lista" si no existe previamente en la lista. Si la disciplina ya existe, devuelve un mensaje de error.
-
-    La entrada "disciplina" es un string que representa la disciplina a agregar.
-    La entrada "medicion" es un float que representa la medicion de la disciplina a agregar.
-    La entrada "lista" es una lista de tuplas, donde cada tupla tiene la disciplina como primer elemento y su correspondiente medicion como segundo elemento.
-
-    La salida es una cadena vacía si se agregó la disciplina correctamente, o un mensaje de error si la disciplina ya existe en la lista.
-    '''
 
 def eliminar_disciplina(disciplina, lista):
     if consultar_disciplina(disciplina, lista) == "ERROR: NO SE PUEDE CONSULTAR PORQUE NO EXISTE":
@@ -141,15 +88,6 @@ def eliminar_disciplina(disciplina, lista):
             if element[0] == disciplina:
                 lista.remove(element)
         return ''
-    
-    ''' 
-    La función "eliminar_disciplina" elimina una disciplina y su medicion de la lista de tuplas "lista" si existe previamente en la lista. Si la disciplina no existe, devuelve un mensaje de error.
-
-    La entrada "disciplina" es un string que representa la disciplina a eliminar.
-    La entrada "lista" es una lista de tuplas, donde cada tupla tiene la disciplina como primer elemento y su correspondiente medicion como segundo elemento.
-
-    La salida es una cadena vacía si se eliminó la disciplina correctamente, o un mensaje de error si la disciplina no existe en la lista.
-    '''
 
 def modificar_disciplina(disciplina, medicion, lista):
     if consultar_disciplina(disciplina, lista) == "ERROR: NO SE PUEDE CONSULTAR PORQUE NO EXISTE":
@@ -160,16 +98,6 @@ def modificar_disciplina(disciplina, medicion, lista):
                 new_tupla = (element[0], medicion)
                 lista[i] = new_tupla
         return ''
-    
-    ''' 
-    La función "modificar_disciplina" modifica la medicion de una disciplina existente en la lista de tuplas "lista". Si la disciplina no existe, devuelve un mensaje de error.
-
-    La entrada "disciplina" es un string que representa la disciplina a modificar.
-    La entrada "medicion" es un float que representa la nueva medicion de la disciplina a modificar.
-    La entrada "lista" es una lista de tuplas, donde cada tupla tiene la disciplina como primer elemento y su correspondiente medicion como segundo elemento.
-
-    La salida es una cadena vacía si se modificó la medicion correctamente, o un mensaje de error si la disciplina no existe en la lista.
-    '''
     
 # Ejercicio 3
 
@@ -189,11 +117,6 @@ def juegos_de_bola(lista):
                         pares_finales.append(new_tuple)
         return pares_finales
 
-'''
-    Esta función recibe una lista como entrada y devuelve una lista de tuplas que representa todas las posibles combinaciones de elementos en la lista original. 
-    La entrada es una lista.
-    La salida es una lista de tuplas que representa todas las posibles combinaciones de elementos en la lista original.
-'''
 
 # Ejercicio 4
 
@@ -211,7 +134,9 @@ def agrupar(lista):
                         num.append(j)
         lista_final.append(int(''.join(num)))
         
-    return lista_final            
+    return lista_final
+
+            
 
 # Ejercicio 5
 
@@ -421,88 +346,11 @@ def leer_matriz(x,y):
 
 # Ejercicio 14
 
-# A
 def imprimir_matriz(matriz):
     
     for fila in matriz:
-        for columna in fila:
-            print("{:>8}".format(columna), end='')
-        print()
+        for fila in columna:
+            print("{:>5}".format(fila), end='')
 
-# B
-def es_matriz_nula(matriz):
 
-    for fila in matriz:
-        for columna in fila:
-            if columna != 0:
-                return False
-    return True
-
-# Ejercicios 15
-
-def sumar_resta_matrices(A,B,operacion):
-
-    if len(A) != len(B):
-        return 'Las matrices deben tener la misma cantidad de filas'
-    else:
-        if len(A[0]) != len(B[0]):
-            return 'Las matrices deben tener la misma cantidad de columnas'
-        else:
-
-            new_matrix = []
-
-            for fila_A, fila_B in zip(A, B):
-                new_fila = []
-                for columna_A, columna_B in zip(fila_A, fila_B):
-                    if operacion == '+':
-                        result = columna_A + columna_B
-                    elif operacion == '-':
-                        result = columna_A - columna_B
-                    new_fila.append(result)
-                new_matrix.append(new_fila)       
-      
-
-# Ejercicio 16
-
-def triángulo_de_pascal(n):
-    
-    pascal_triangle = [[1]]
-   
-    for i in range(n-1):
-        past_level = pascal_triangle[-1]
-        new_level = [1]
-        for j in range(len(past_level)-1):
-            new_level.append(past_level[j] + past_level[j+1])
-        new_level.append(1)
-        pascal_triangle.append(new_level)
-    return tuple(map(tuple, pascal_triangle))
-
-# Ejercicio 17
-def multiplica_matrices(A, B):
-
-    if len(A[0]) != len(B):
-        return "ERROR: La cantidad de columnas de la primera matriz debe ser igual a la cantidad de filas de la segunda matriz."
-    
-    
-
-    result = []
-    j = 0
-    while j < len(B[0]):
-        
-        new_fila = []
-        for fila_A in A:
-            multiplicacion = 0
-            for i, columna_A in enumerate(fila_A):
-                multiplicacion += columna_A * B[i][j]
-            new_fila.append(multiplicacion)
-        result.append(new_fila)
-        j += 1
-
-    matriz_transpuesta = [[result[j][i] for j in range(len(B[0]))] for i in range(len(B))]
-
-    return matriz_transpuesta
-
-        
-# Ejercicio 18
-
-def lista 
+imprimir_matriz([ [1000, 7, 50], [2, 175, 90], [90, 7, 8] ] )

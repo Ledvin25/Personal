@@ -498,11 +498,11 @@ def multiplica_matrices(A, B):
         result.append(new_fila)
         j += 1
 
-    matriz_transpuesta = [[result[j][i] for j in range(len(B[0]))] for i in range(len(B))]
-
-    return matriz_transpuesta
+    matriz_transpuesta = [[result[] for j in range(len(B[0]))] for i in range(len(B))]
+    '''for i in range(len(B)):
+        for j in range(len(B[0])):
+            matriz_transpuesta[i][j] = result[j][i]'''
 
         
-# Ejercicio 18
-
-def lista 
+        
+multiplica_matrices([[3,2,1],[1,1,3],[0,2,1]],[[2,1],[1,0],[3,2]])

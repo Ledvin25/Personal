@@ -505,4 +505,4 @@ def multiplica_matrices(A, B):
         
 # Ejercicio 18
 
-def lista 
+def
