@@ -507,12 +507,12 @@ def multiplica_matrices(A, B):
 
 def xd(indice):
 
-    matriz = [[0 for j in range(5)] for i in range(5)]
+    matriz = [[0 for j in range(4)] for i in range(4)]
 
     for i in range(len(matriz)):
         for j in range(len(matriz[0])):
             
-            if (i-indice) == j:
-                matriz[i-indice][j+indice] = 1
+            if (i+1) == j:
+                matriz[i+indice][j-indice] = 1
 
-xd(1)
+xd(-1)

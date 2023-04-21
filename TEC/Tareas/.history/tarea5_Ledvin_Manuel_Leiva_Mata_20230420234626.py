@@ -505,14 +505,12 @@ def multiplica_matrices(A, B):
         
 # Ejercicio 18
 
-def xd(indice):
+def xd():
 
-    matriz = [[0 for j in range(5)] for i in range(5)]
+    matriz = [[0 for j in range(4)] for i in range(4)]
 
-    for i in range(len(matriz)):
-        for j in range(len(matriz[0])):
+    for i in range(matriz):
+        for j in range(matriz[0]):
             
-            if (i-indice) == j:
-                matriz[i-indice][j+indice] = 1
-
-xd(1)
+            if i == j:
+                

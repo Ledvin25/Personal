@@ -515,4 +515,4 @@ def xd(indice):
             if (i-indice) == j:
                 matriz[i-indice][j+indice] = 1
 
-xd(1)
+xd(-2)
