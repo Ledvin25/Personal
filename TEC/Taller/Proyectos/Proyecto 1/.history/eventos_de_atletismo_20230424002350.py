@@ -13,7 +13,7 @@ import validate_email # Libreria para validar el correo electronico
 
 # Variables globales
 
-disciplinas = [('Carreras de velocidad', 'T'), ('Saltos', 'M'), ('Lanzamientos', 'M'), ('Carreras de saltos', 'T')]
+disciplinas = [('Carreras de velocidad', 'T'), ('Saltos', 'M'), ('Lanzamientos', 'M')]
 
 pruebas = [('V02', '200 m', 'U20', 'F', 'Carreras de velocidad'), ('S01', '100 m vallas', 'U20', 'F', 'Carreras de saltos'), ('V01', '100 m', 'MAYOR', 'M', 'Carreras de velocidad') ] 
 
@@ -23,7 +23,7 @@ atletas = [ ['3123456789', 'Pedro', 'Pérez', 'Peraza', 'M', 'CRI', '15/10/2000'
 
 eventos = [[25, 'I Campeonato Centroamericano de atletismo', 'CRI', 'Parque La Sabana Costa Rica', '10/01/2023', '12/01/2023']]
 
-marcas_por_evento = [[25, ['V02', ('3123456789', 2, 1302),]]]
+marcas_por_evento = [25, ['V02', ('3123456789', 2, 1302),]]
 
 def menu_principal():
     
@@ -1176,11 +1176,8 @@ def validar_fecha_evento(fecha_inicial, fecha_final):
 
     try:
         # verificar que la fecha final sea mayor a la fecha inicial
-        datetime.datetime.strptime(fecha_inicial, '%d/%m/%Y')
-        datetime.datetime.strptime(fecha_final, '%d/%m/%Y')
-
-        fecha_inicial = datetime.datetime.strptime(fecha_inicial, '%d/%m/%Y').date()
-        fecha_final = datetime.datetime.strptime(fecha_final, '%d/%m/%Y').date()
+        fecha_inicial = datetime.strptime(fecha_inicial, '%d/%m/%Y').date()
+        fecha_final = datetime.strptime(fecha_final, '%d/%m/%Y').date()
 
         if fecha_final > fecha_inicial:
             return True
@@ -1200,9 +1197,6 @@ def agregar_eventos():
     # solicitar identificacion del evento
 
     identificacion = int(input('Ingrese la identificacion del evento: '))
-    if identificacion == 'C' or identificacion == 'c':
-        os.system('cls')
-        registrar_eventos()
     while not validar_identificacion_evento(identificacion):
         os.system('cls')
         print('IDENTIFICACION INVALIDA')
@@ -1251,10 +1245,21 @@ def agregar_eventos():
         opcion = input('\nSeleccion una opcion:\n A. Aceptar\n C. Cancelar\n ')
 
         if opcion == 'A':
-            os.system('cls')
-            print('EVENTO AGREGADO')
-            eventos.append([identificacion, nombre, pais, lugar, fecha_inicial, fecha_final])
-            agregar_eventos()
+
+            # confirmar registro
+
+            opcion = input('\nEsta seguro que desea agregar el evento? (S/N): ')
+
+            if opcion == 'S':
+                os.system('cls')
+                print('EVENTO AGREGADO')
+                eventos.append([identificacion, nombre, pais, lugar, fecha_inicial, fecha_final])
+                agregar_eventos()
+
+            elif opcion == 'N':
+                os.system('cls')
+                print('EVENTO NO AGREGADO')
+                agregar_eventos()
 
         elif opcion == 'C':
             os.system('cls')
@@ -1272,13 +1277,15 @@ def consultar_eventos():
 
     print('EVENTOS DE ATLETISMO \n \nCONSULTAR EVENTOS \n')
 
-    # solicitar identificacion del evento
-    identificacion = int(input('Ingrese la identificacion del evento: '))
+    if len(eventos) == 0: # verificar si no hay eventos registrados
+        print('NO HAY EVENTOS REGISTRADOS')
+        registrar_eventos()
 
-    verify = True
-    
-    while verify:
+    else:
 
+        # solicitar identificacion del evento
+        identificacion = int(input('Ingrese la identificacion del evento: '))
+        
         for elemento in eventos: 
             if identificacion == elemento[0]:
                 print('Identificacion: ', elemento[0])
@@ -1287,9 +1294,7 @@ def consultar_eventos():
                 print('Lugar: ', elemento[3])
                 print('Fecha inicial: ', elemento[4])
                 print('Fecha final: ', elemento[5])
-                verify = False
-                break
-        else:   
+        else:
             if identificacion == 'C' or identificacion == 'c':
                 os.system('cls')
                 registrar_eventos()
@@ -1298,12 +1303,13 @@ def consultar_eventos():
             consultar_eventos()
 
 
-    # opcion aceptar 'A'
-    opcion = input('Seleccion una opcion:\n A. Aceptar\n ')
-    while opcion != 'A':
-        print('OPCION INVALIDA')
+        # opcion aceptar 'A'
         opcion = input('Seleccion una opcion:\n A. Aceptar\n ')
-    consultar_eventos()
+
+        while opcion != 'A':
+            print('OPCION INVALIDA')
+            opcion = input('Seleccion una opcion:\n A. Aceptar\n ')
+        consultar_eventos()
 
 # 4.3 Modificar eventos
 
@@ -1319,18 +1325,20 @@ def modificar_eventos():
 
     verify = True
 
+    # verificar que la identificacion exista
+
+    identificacion = int(input('Ingrese la identificacion del evento: '))
+
     while verify:
         for i, elemento in enumerate(eventos):
             if identificacion == elemento[0]:
                 verify = False
-                break
+        if identificacion == 'C' or identificacion == 'c':
+            os.system('cls')
+            registrar_eventos()
         else:
-            if identificacion == 'C' or identificacion == 'c':
-                os.system('cls')
-                registrar_eventos()
-            else:
-                print('EVENTO NO ESTA REGISTRADO, NO SE PUEDE MODIFICAR')
-                identificacion = int(input('Ingrese la identificacion del evento: '))
+            print('EVENTO NO ESTA REGISTRADO, NO SE PUEDE MODIFICAR')
+            identificacion = int(input('Ingrese la identificacion del evento: '))
 
     # solicitar nombre del evento
 
@@ -1368,7 +1376,7 @@ def modificar_eventos():
 
     # opcion aceptar 'A' o cancelar 'C'
 
-    print('Identificacion: ', elemento[0], '\n Nombre del evento: ', elemento[1], '\nNombre modificado: ', nombre, '\n Pais: ', elemento[2], '\n Pais modificado: ', pais, '\n Lugar: ', elemento[3], '\n Lugar modificado: ', lugar, '\n Fecha inicial: ', elemento[4], '\n Fecha inicial modificada: ', fecha_inicial, '\n Fecha final: ', elemento[5], '\n Fecha final modificada: ', fecha_final, '\n')
+    print('Identificacion: ', eventos[0], '\n Nombre del evento: ', eventos[1], '\nNombre modificado: ', nombre, '\n Pais: ', eventos[2], '\n Pais modificado: ', pais, '\n Lugar: ', eventos[3], '\n Lugar modificado: ', lugar, '\n Fecha inicial: ', eventos[4], '\n Fecha inicial modificada: ', fecha_inicial, '\n Fecha final: ', eventos[5], '\n Fecha final modificada: ', fecha_final, '\n')
 
     while True:
         opcion = input('\nSeleccion una opcion:\n A. Aceptar\n C. Cancelar\n ')
@@ -1401,6 +1409,8 @@ def modificar_eventos():
             os.system('cls')
             print('OPCION INVALIDA')
 
+            opcion = input('\nSeleccion una opcion:\n A. Aceptar\n C. Cancelar\n ')
+
 # 4.4 Eliminar eventos
 
 def eliminar_eventos():
@@ -1409,9 +1419,13 @@ def eliminar_eventos():
 
     print('EVENTOS DE ATLETISMO \n \nELIMINAR EVENTOS \n')
 
+    # solicitar identificacion del evento
+
+    identificacion = int(input('Ingrese la identificacion del evento: '))
+
     verify = True
 
-        # solicitar identificacion del evento
+    # verificar que la identificacion exista
 
     identificacion = int(input('Ingrese la identificacion del evento: '))
 
@@ -1419,18 +1433,16 @@ def eliminar_eventos():
         for i, elemento in enumerate(eventos):
             if identificacion == elemento[0]:
                 verify = False
-                break
+        if identificacion == 'C' or identificacion == 'c':
+            os.system('cls')
+            registrar_eventos()
         else:
-            if identificacion == 'C' or identificacion == 'c':
-                os.system('cls')
-                registrar_eventos()
-            else:
-                print('EVENTO NO ESTA REGISTRADO, NO SE PUEDE ELIMINAR')
-                identificacion = int(input('Ingrese la identificacion del evento: '))
+            print('EVENTO NO ESTA REGISTRADO, NO SE PUEDE ELIMINAR')
+            identificacion = int(input('Ingrese la identificacion del evento: '))
 
     # opcion aceptar 'A' o cancelar 'C'
 
-    print('Identificacion: ', elemento[0], '\n Nombre del evento: ', elemento[1], '\n Pais: ', elemento[2], '\n Lugar: ', elemento[3], '\n Fecha inicial: ', elemento[4], '\n Fecha final: ', elemento[5], '\n')
+    print('Identificacion: ', eventos[0], '\n Nombre del evento: ', eventos[1], '\n Pais: ', eventos[2], '\n Lugar: ', eventos[3], '\n Fecha inicial: ', eventos[4], '\n Fecha final: ', eventos[5], '\n')
 
     while True:
 
@@ -1464,6 +1476,8 @@ def eliminar_eventos():
         else:
             os.system('cls')
             print('OPCION INVALIDA')
+
+            opcion = input('\nSeleccion una opcion:\n A. Aceptar\n C. Cancelar\n ')
 
 # 5 Registrar marcas
 
@@ -1523,18 +1537,16 @@ def agregar_marcas():
             if identificacion_evento == elemento[0]:
                 print(elemento[1])
                 verify = False
-                break
+        if identificacion_evento == 'C' or identificacion_evento == 'c':
+            os.system('cls')
+            registrar_marcas()
         else:
-            if identificacion_evento == 'C' or identificacion_evento == 'c':
-                os.system('cls')
-                registrar_marcas()
-            else:
-                print('EVENTO NO ESTA REGISTRADO, NO SE PUEDE AGREGAR MARCAS')
-                identificacion_evento = int(input('Ingrese la identificacion del evento: '))
+            print('EVENTO NO ESTA REGISTRADO, NO SE PUEDE AGREGAR MARCAS')
+            identificacion_evento = int(input('Ingrese la identificacion del evento: '))
 
     # solicitar codigo de la prueba
 
-    codigo = input('Ingrese el codigo de la prueba: ')
+    codigo = int(input('Ingrese el codigo de la prueba: '))
 
     verify = True
 
@@ -1545,7 +1557,6 @@ def agregar_marcas():
             if codigo == elemento[0]:
                 print(elemento[1])
                 verify = False
-                break
         else:
             print('CODIGO NO ESTA REGISTRADO, NO SE PUEDE AGREGAR MARCAS')
             codigo = int(input('Ingrese el codigo de la prueba: '))
@@ -1563,13 +1574,12 @@ def agregar_marcas():
             if identificacion_atleta == elemento[0]:
                 print(elemento[1])
                 verify = False
-                break
         else:
             print('ATLETA NO ESTA REGISTRADO, NO SE PUEDE AGREGAR MARCAS')
             identificacion_atleta = input('Ingrese la identificacion del atleta: ')
 
     for elemento1 in marcas_por_evento:
-        if identificacion_evento == elemento1[0] and codigo == elemento1[1][0]:
+        if identificacion_evento == elemento1[0] and codigo == elemento1[1]:
             for elemento2 in elemento1[2:]:
                 if identificacion_atleta == elemento2[0]:
                     print('MARCA YA ESTA REGISTRADA, NO SE PUEDE AGREGAR')
@@ -1638,17 +1648,16 @@ def consultar_marcas():
 
     while verify:
 
-        for elemento in marcas_por_evento:
+        for elemento in eventos:
             if identificacion == elemento[0]:
                 verify = False
-                break
         else:
             print('EVENTO NO ESTA REGISTRADO, NO SE PUEDE CONSULTAR MARCAS')
             identificacion = int(input('Ingrese la identificacion del evento: '))
 
     # solicitar codigo de la prueba
 
-    codigo = input('Ingrese el codigo de la prueba: ')
+    codigo = int(input('Ingrese el codigo de la prueba: '))
 
     verify = True
 
@@ -1656,13 +1665,12 @@ def consultar_marcas():
 
     while verify:
 
-        for elemento1 in marcas_por_evento:
+        for elemento1 in elemento:
             if codigo == elemento1[0]:
                 verify = False
-                break
         else:
             print('CODIGO NO ESTA REGISTRADO, NO SE PUEDE CONSULTAR MARCAS')
-            codigo = input('Ingrese el codigo de la prueba: ')
+            codigo = int(input('Ingrese el codigo de la prueba: '))
 
     # solicitar identificacion del atleta
 
@@ -1674,48 +1682,28 @@ def consultar_marcas():
 
     while verify:
 
-        for elemento2 in marcas_por_evento:
+        for elemento2 in elemento1:
             if identificacion_atleta == elemento2[0]:
                 verify = False
-                break
         else:
             print('ATLETA NO ESTA REGISTRADO, NO SE PUEDE CONSULTAR MARCAS')
             identificacion_atleta = input('Ingrese la identificacion del atleta: ')
-
-    # verificar que la marca exista
-
-    verify = True
-
-    while verify:
-        for elemento3 in marcas_por_evento:
-            if identificacion == elemento3[0] and codigo == elemento3[1][0]:
-                for elemento4 in elemento3[1:]:
-                    for elemento5 in elemento4[1:]:
-                        if identificacion_atleta == elemento5[0]:
-                            verify = False
-                            break
-        else:
-            if not verify:
-                break
-            os.system('cls')
-            print('MARCA NO ESTA REGISTRADA, NO SE PUEDE CONSULTAR')
-            consultar_marcas()
 
     # Imprimir consulta
 
     os.system('cls')
     print('EVENTOS DE ATLETISMO \n \nCONSULTAR MARCAS \n')
 
-    print('Identificacion del evento: ', identificacion, '\n Codigo de la prueba: ', codigo, '\n Identificacion del atleta: ', elemento5[0], '\n Dorsal del atleta: ', elemento5[1], '\n Marca del atleta: ', elemento5[2], '\n')
+    print('Identificacion del evento: ', identificacion, '\n Codigo de la prueba: ', codigo, '\n Identificacion del atleta: ', identificacion_atleta, '\n Dorsal del atleta: ', elemento2[1], '\n Marca del atleta: ', elemento2[2], '\n')
 
     # opcion aceptar 'A'
 
     opcion = input('\nSeleccion una opcion:\n A. Aceptar\n ')
 
     while opcion != 'A':
+        os.system('cls')
         print('OPCION INVALIDA')
         opcion = input('\nSeleccion una opcion:\n A. Aceptar\n ')
-        consultar_marcas()
 
 # 5.3 Modificar marcas
 
@@ -1738,14 +1726,13 @@ def modificar_marcas():
         for elemento in marcas_por_evento:
             if identificacion == elemento[0]:
                 verify = False
-                break
         else:
             print('EVENTO NO ESTA REGISTRADO, NO SE PUEDE MODIFICAR')
             identificacion = int(input('Ingrese la identificacion del evento: '))
 
     # solicitar codigo de la prueba
 
-    codigo = input('Ingrese el codigo de la prueba: ')
+    codigo = int(input('Ingrese el codigo de la prueba: '))
 
     verify = True
 
@@ -1753,13 +1740,12 @@ def modificar_marcas():
 
     while verify:
 
-        for i, elemento1 in enumerate(elemento[1:]):
+        for elemento1 in elemento:
             if codigo == elemento1[0]:
                 verify = False
-                break
         else:
             print('CODIGO NO ESTA REGISTRADO, NO SE PUEDE MODIFICAR')
-            codigo = input('Ingrese el codigo de la prueba: ')
+            codigo = int(input('Ingrese el codigo de la prueba: '))
 
     # solicitar identificacion del atleta
 
@@ -1771,10 +1757,9 @@ def modificar_marcas():
 
     while verify:
 
-        for elemento2 in elemento1[1:]:
+        for elemento2 in elemento1:
             if identificacion_atleta == elemento2[0]:
                 verify = False
-                break
         else:
             print('ATLETA NO ESTA REGISTRADO, NO SE PUEDE MODIFICAR')
             identificacion_atleta = input('Ingrese la identificacion del atleta: ')
@@ -1787,19 +1772,16 @@ def modificar_marcas():
 
     #verificar que el dorsal no este asignado
 
-    for elemento3 in elemento1[1:]:
+    for elemento3 in elemento1:
         if dorsal == elemento3[1]:
             print('DORSAL YA ESTA ASIGNADO, NO SE PUEDE MODIFICAR')
             modificar_marcas()
 
     # verificar el tipo de medicion
 
-    for elemento3 in pruebas:
-        if codigo == elemento3[0]:
-            for elemento4 in disciplinas:
-                if elemento4[0] == elemento3[4]:
-                    tipo_medicion = elemento4[1]
-                    break
+    for elemento3 in elemento1:
+        if identificacion_atleta == elemento3[0]:
+            tipo_medicion = elemento3[3]
 
     # solicitar nueva marca
 
@@ -1819,12 +1801,13 @@ def modificar_marcas():
     while True:
         opcion = input('\nSeleccion una opcion:\n A. Aceptar\n C. Cancelar\n ')
         if opcion == 'A':
-            marcas_por_evento[i] = [codigo, ([identificacion_atleta, dorsal, marca])]
+            elemento3[1] = dorsal
+            elemento3[2] = marca
             print('DATOS MODIFICADOS')
-            modificar_marcas()
+            break
         elif opcion == 'C':
             print('DATOS NO MODIFICADOS')
-            modificar_marcas()
+            break
         else:
             os.system('cls')
             print('OPCION INVALIDA')
@@ -1850,14 +1833,13 @@ def eliminar_marcas():
         for elemento in marcas_por_evento:
             if identificacion == elemento[0]:
                 verify = False
-                break
         else:
             print('EVENTO NO ESTA REGISTRADO, NO SE PUEDE ELIMINAR')
             identificacion = int(input('Ingrese la identificacion del evento: '))
 
     # solicitar codigo de la prueba
 
-    codigo = input('Ingrese el codigo de la prueba: ')
+    codigo = int(input('Ingrese el codigo de la prueba: '))
 
     verify = True
 
@@ -1865,12 +1847,12 @@ def eliminar_marcas():
 
     while verify:
 
-        for elemento1 in elemento[1:]:
+        for elemento1 in elemento:
             if codigo == elemento1[0]:
                 verify = False
         else:
             print('CODIGO NO ESTA REGISTRADO, NO SE PUEDE ELIMINAR')
-            codigo = input('Ingrese el codigo de la prueba: ')
+            codigo = int(input('Ingrese el codigo de la prueba: '))
 
     # solicitar identificacion del atleta
 
@@ -1897,34 +1879,37 @@ def eliminar_marcas():
 
     # opcion aceptar 'A' o cancelar 'C'
 
-    while True:
-        opcion = input('\nSeleccion una opcion:\n A. Aceptar\n C. Cancelar\n ')
-        if opcion == 'A':
-            #confirmacion de eliminacion
-            confirmacion = input('Esta seguro que desea eliminar la marca del atleta? S/N: ')
+    opcion = input('\nSeleccion una opcion:\n A. Aceptar\n C. Cancelar\n ')
 
-            if confirmacion == 'S':
+    if opcion == 'A':
 
-                # eliminar datos
+        # confirmacion de eliminacion
 
-                marcas_por_evento.remove(elemento2)
+        confirmacion = input('Esta seguro que desea eliminar la marca del atleta? S/N: ')
 
-            elif confirmacion == 'N':
-                os.system('cls')
-                print('ELIMINACION CANCELADA')
-                eliminar_marcas()
+        if confirmacion == 'S':
 
-            else:
-                os.system('cls')
-                print('OPCION INVALIDA')
-                eliminar_marcas()
+            # eliminar datos
 
-        elif opcion == 'C':
-            print('DATOS NO ELIMINADOS')
-            break
+            marcas_por_evento.remove(elemento2)
+
+        elif confirmacion == 'N':
+            os.system('cls')
+            print('ELIMINACION CANCELADA')
+            eliminar_marcas()
+
         else:
             os.system('cls')
             print('OPCION INVALIDA')
+            eliminar_marcas()
+
+    elif opcion == 'C':
+        os.system('cls')
+        eliminar_marcas()
+
+    else:
+        os.system('cls')
+        eliminar_marcas() 
 
 # 6 Analisis de datos
 
@@ -1942,4 +1927,4 @@ def acerca_de():
     print(' Nombre: Eventos de atletismo \n Version: 1.0 \n Autor: Ledvin Manuel Leiva Mata \n Fecha: 2022-04-17 \n')
 
 
-menu_principal()
+#menu_principal()

@@ -1638,7 +1638,7 @@ def consultar_marcas():
 
     while verify:
 
-        for elemento in marcas_por_evento:
+        for elemento in eventos:
             if identificacion == elemento[0]:
                 verify = False
                 break
@@ -1656,7 +1656,7 @@ def consultar_marcas():
 
     while verify:
 
-        for elemento1 in marcas_por_evento:
+        for elemento1 in pruebas:
             if codigo == elemento1[0]:
                 verify = False
                 break
@@ -1674,7 +1674,7 @@ def consultar_marcas():
 
     while verify:
 
-        for elemento2 in marcas_por_evento:
+        for elemento2 in atletas:
             if identificacion_atleta == elemento2[0]:
                 verify = False
                 break
@@ -1753,7 +1753,7 @@ def modificar_marcas():
 
     while verify:
 
-        for i, elemento1 in enumerate(elemento[1:]):
+        for elemento1 in elemento[1:]:
             if codigo == elemento1[0]:
                 verify = False
                 break
@@ -1771,10 +1771,9 @@ def modificar_marcas():
 
     while verify:
 
-        for elemento2 in elemento1[1:]:
+        for elemento2 in elemento1[]:
             if identificacion_atleta == elemento2[0]:
                 verify = False
-                break
         else:
             print('ATLETA NO ESTA REGISTRADO, NO SE PUEDE MODIFICAR')
             identificacion_atleta = input('Ingrese la identificacion del atleta: ')
@@ -1787,19 +1786,16 @@ def modificar_marcas():
 
     #verificar que el dorsal no este asignado
 
-    for elemento3 in elemento1[1:]:
+    for elemento3 in elemento1:
         if dorsal == elemento3[1]:
             print('DORSAL YA ESTA ASIGNADO, NO SE PUEDE MODIFICAR')
             modificar_marcas()
 
     # verificar el tipo de medicion
 
-    for elemento3 in pruebas:
-        if codigo == elemento3[0]:
-            for elemento4 in disciplinas:
-                if elemento4[0] == elemento3[4]:
-                    tipo_medicion = elemento4[1]
-                    break
+    for elemento3 in elemento1:
+        if identificacion_atleta == elemento3[0]:
+            tipo_medicion = elemento3[3]
 
     # solicitar nueva marca
 
@@ -1819,12 +1815,13 @@ def modificar_marcas():
     while True:
         opcion = input('\nSeleccion una opcion:\n A. Aceptar\n C. Cancelar\n ')
         if opcion == 'A':
-            marcas_por_evento[i] = [codigo, ([identificacion_atleta, dorsal, marca])]
+            elemento3[1] = dorsal
+            elemento3[2] = marca
             print('DATOS MODIFICADOS')
-            modificar_marcas()
+            break
         elif opcion == 'C':
             print('DATOS NO MODIFICADOS')
-            modificar_marcas()
+            break
         else:
             os.system('cls')
             print('OPCION INVALIDA')
@@ -1850,14 +1847,13 @@ def eliminar_marcas():
         for elemento in marcas_por_evento:
             if identificacion == elemento[0]:
                 verify = False
-                break
         else:
             print('EVENTO NO ESTA REGISTRADO, NO SE PUEDE ELIMINAR')
             identificacion = int(input('Ingrese la identificacion del evento: '))
 
     # solicitar codigo de la prueba
 
-    codigo = input('Ingrese el codigo de la prueba: ')
+    codigo = int(input('Ingrese el codigo de la prueba: '))
 
     verify = True
 
@@ -1865,12 +1861,12 @@ def eliminar_marcas():
 
     while verify:
 
-        for elemento1 in elemento[1:]:
+        for elemento1 in elemento:
             if codigo == elemento1[0]:
                 verify = False
         else:
             print('CODIGO NO ESTA REGISTRADO, NO SE PUEDE ELIMINAR')
-            codigo = input('Ingrese el codigo de la prueba: ')
+            codigo = int(input('Ingrese el codigo de la prueba: '))
 
     # solicitar identificacion del atleta
 

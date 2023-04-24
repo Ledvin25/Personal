@@ -1638,7 +1638,7 @@ def consultar_marcas():
 
     while verify:
 
-        for elemento in marcas_por_evento:
+        for elemento in eventos:
             if identificacion == elemento[0]:
                 verify = False
                 break
@@ -1656,7 +1656,7 @@ def consultar_marcas():
 
     while verify:
 
-        for elemento1 in marcas_por_evento:
+        for elemento1 in pruebas:
             if codigo == elemento1[0]:
                 verify = False
                 break
@@ -1674,7 +1674,7 @@ def consultar_marcas():
 
     while verify:
 
-        for elemento2 in marcas_por_evento:
+        for elemento2 in atletas:
             if identificacion_atleta == elemento2[0]:
                 verify = False
                 break
