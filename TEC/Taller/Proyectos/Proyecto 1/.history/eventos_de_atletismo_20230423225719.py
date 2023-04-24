@@ -1620,8 +1620,6 @@ def consultar_marcas():
 
 def modificar_marcas():
 
-    global marcas_por_evento
-
     print('EVENTOS DE ATLETISMO \n \nMODIFICAR MARCAS \n')
 
     # solicitar identificacion del evento
@@ -1731,7 +1729,7 @@ def modificar_marcas():
 
 def eliminar_marcas():
 
-    global marcas_por_evento
+    
 
     print('EVENTOS DE ATLETISMO \n \nELIMINAR MARCAS \n')
 
@@ -1806,25 +1804,12 @@ def eliminar_marcas():
 
             # eliminar datos
 
-            marcas_por_evento.remove(elemento2)
+            for elemento2 in elemento1:
+                if identificacion_atleta == elemento2[0]:
+                    elemento2[1] = ''
+                    elemento2[2] = ''
 
-        elif confirmacion == 'N':
-            os.system('cls')
-            print('ELIMINACION CANCELADA')
-            eliminar_marcas()
 
-        else:
-            os.system('cls')
-            print('OPCION INVALIDA')
-            eliminar_marcas()
-
-    elif opcion == 'C':
-        os.system('cls')
-        eliminar_marcas()
-
-    else:
-        os.system('cls')
-        eliminar_marcas() 
 
 # 6 Analisis de datos
 

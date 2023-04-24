@@ -1813,18 +1813,7 @@ def eliminar_marcas():
             print('ELIMINACION CANCELADA')
             eliminar_marcas()
 
-        else:
-            os.system('cls')
-            print('OPCION INVALIDA')
-            eliminar_marcas()
 
-    elif opcion == 'C':
-        os.system('cls')
-        eliminar_marcas()
-
-    else:
-        os.system('cls')
-        eliminar_marcas() 
 
 # 6 Analisis de datos
 

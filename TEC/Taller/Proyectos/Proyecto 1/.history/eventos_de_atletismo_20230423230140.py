@@ -1809,22 +1809,11 @@ def eliminar_marcas():
             marcas_por_evento.remove(elemento2)
 
         elif confirmacion == 'N':
+            
             os.system('cls')
-            print('ELIMINACION CANCELADA')
             eliminar_marcas()
 
-        else:
-            os.system('cls')
-            print('OPCION INVALIDA')
-            eliminar_marcas()
 
-    elif opcion == 'C':
-        os.system('cls')
-        eliminar_marcas()
-
-    else:
-        os.system('cls')
-        eliminar_marcas() 
 
 # 6 Analisis de datos
 

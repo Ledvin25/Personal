@@ -1822,9 +1822,7 @@ def eliminar_marcas():
         os.system('cls')
         eliminar_marcas()
 
-    else:
-        os.system('cls')
-        eliminar_marcas() 
+
 
 # 6 Analisis de datos
 
