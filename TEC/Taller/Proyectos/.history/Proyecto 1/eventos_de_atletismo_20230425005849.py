@@ -2143,9 +2143,7 @@ def marcas_por_evento_datos():
                             if prueba[0] == elemento1[0]:
                                 pdf.drawString(70, 360, "Prueba: " + prueba[0])
                                 pdf.drawString(200, 360, prueba[1])
-                                pdf.drawString(350, 360, "Categoria " + prueba[2])
-                                pdf.drawString(450, 360, "Sexo " + prueba[3])
-
+                                pdf.drawString(70, 380, "Categoria " + prueba[2])
 
                                 for elemento2 in elemento1[1:]:
                                     for atleta in atletas:

@@ -2096,7 +2096,7 @@ def marcas_por_evento_datos():
 
     print('Seleccion una opcion:\n 1. Evento especifico\n 2. Marcas de todos los eventos\n 3. Marcas de todos los eventos dentro de un rango\n ')
 
-    opcion = 1#int(input('Ingrese una opcion: '))
+    opcion = int(input('Ingrese una opcion: '))
 
     # Evento especifico
 
@@ -2104,7 +2104,7 @@ def marcas_por_evento_datos():
             
             # solicitar identificacion del evento
     
-            identificacion = 25#int(input('Ingrese la identificacion del evento: '))
+            identificacion = int(input('Ingrese la identificacion del evento: '))
     
             verify = True
     
@@ -2120,46 +2120,33 @@ def marcas_por_evento_datos():
                     print('EVENTO NO ESTA REGISTRADO, NO SE PUEDE MOSTRAR')
                     identificacion = int(input('Ingrese la identificacion del evento: '))
     
-            # Crear un lienzo
-            pdf = canvas.Canvas("C:/Users/led_2/Desktop/mi_pdf.pdf")
-
-            # Agregar texto
-            pdf.drawString(70, 300, "APLICACION EVENTOS DE ATLETISMO")
-            pdf.drawString(70, 320, "MARCAS POR EVENTO")
-            pdf.drawString(70, 340, "Evento: " + str(identificacion))
-
-            # Nombre del evento
-            for elemento in eventos:
-                if elemento[0] == identificacion:
-                    pdf.drawString(200, 340,elemento[1])
-                    break
-            
-            # Nombre de la prueba
-            for elemento in marcas_por_evento:
-                if elemento[0] == identificacion:
-                    for elemento1 in elemento[1:]:
-
-                        for prueba in pruebas:
-                            if prueba[0] == elemento1[0]:
-                                pdf.drawString(70, 360, "Prueba: " + prueba[0])
-                                pdf.drawString(200, 360, prueba[1])
-                                pdf.drawString(350, 360, "Categoria " + prueba[2])
-                                pdf.drawString(450, 360, "Sexo " + prueba[3])
-
-
-                                for elemento2 in elemento1[1:]:
-                                    for atleta in atletas:
-                                        if atleta[0] == elemento2[0]:
-                                            pdf.drawString(70, 380, "Nombre del atleta: " + atleta[1])
-                                            pdf.drawString(200, 380, atleta[1])
-                                            break
-            
-            
+            # Imprimir datos
     
-                # Guardar el PDF
-                pdf.save()
+            os.system('cls')
+            print('EVENTOS DE ATLETISMO \n \nANALISIS DE DATOS \n \nMARCAS POR EVENTO \n')
+            print('Identificacion del evento: ', identificacion, '\n')
+    
+            for elemento1 in elemento[1:]:
+                print('Codigo de la prueba: ', elemento1[0], '\n')
+    
+                for elemento2 in elemento1[1:]:
+                    print('Identificacion del atleta: ', elemento2[0], '\n Dorsal del atleta: ', elemento2[1], '\n Marca del atleta: ', dar_formato_marca(elemento2[2], tipo_medicion), '\n')
+                    
 
-marcas_por_evento_datos()
+
+            input('Presione ENTER para continuar...')
+            os.system('cls')
+            analisis_datos()
+
+    # Crear un lienzo
+    pdf = canvas.Canvas("C:/Users/led_2/Desktop/mi_pdf.pdf")
+
+    # Agregar texto
+    pdf.drawString(100, 750, "Hola, mundo.")
+
+    # Guardar el PDF
+    pdf.save()
+
 # 6.2 Marcas por atleta
 
 # 6.3 Mejores marcas por prueba

@@ -2096,7 +2096,7 @@ def marcas_por_evento_datos():
 
     print('Seleccion una opcion:\n 1. Evento especifico\n 2. Marcas de todos los eventos\n 3. Marcas de todos los eventos dentro de un rango\n ')
 
-    opcion = 1#int(input('Ingrese una opcion: '))
+    opcion = int(input('Ingrese una opcion: '))
 
     # Evento especifico
 
@@ -2104,7 +2104,7 @@ def marcas_por_evento_datos():
             
             # solicitar identificacion del evento
     
-            identificacion = 25#int(input('Ingrese la identificacion del evento: '))
+            identificacion = int(input('Ingrese la identificacion del evento: '))
     
             verify = True
     
@@ -2124,42 +2124,67 @@ def marcas_por_evento_datos():
             pdf = canvas.Canvas("C:/Users/led_2/Desktop/mi_pdf.pdf")
 
             # Agregar texto
-            pdf.drawString(70, 300, "APLICACION EVENTOS DE ATLETISMO")
-            pdf.drawString(70, 320, "MARCAS POR EVENTO")
-            pdf.drawString(70, 340, "Evento: " + str(identificacion))
-
-            # Nombre del evento
-            for elemento in eventos:
-                if elemento[0] == identificacion:
-                    pdf.drawString(200, 340,elemento[1])
-                    break
-            
-            # Nombre de la prueba
             for elemento in marcas_por_evento:
-                if elemento[0] == identificacion:
+                if identificacion == elemento[0]:
+                    pdf.drawString(70, 300, "APLICACION EVENTOS DE ATLETISMO")
+                    pdf.drawString(70, 320, "MARCAS POR EVENTO")
+                    pdf.drawString(70, 340, "Evento: " + str(identificacion))
+
+                    # Nombre del evento
+                    for elemento1 in eventos:
+                        if elemento1[0] == identificacion:
+                            pdf.drawString(200, 340,elemento1[1])
+                            break
+                    
+                    # Nombre de la prueba
+
                     for elemento1 in elemento[1:]:
+                        pdf.drawString(70, 360, "Prueba: " + str(elemento1[0]))
+                        for elemento2 in pruebas:
+                            if elemento2[0] == elemento1[0]:
+                                pdf.drawString(200, 360, elemento2[1])
+                                break
 
-                        for prueba in pruebas:
-                            if prueba[0] == elemento1[0]:
-                                pdf.drawString(70, 360, "Prueba: " + prueba[0])
-                                pdf.drawString(200, 360, prueba[1])
-                                pdf.drawString(350, 360, "Categoria " + prueba[2])
-                                pdf.drawString(450, 360, "Sexo " + prueba[3])
+                        # Nombre del atleta
 
+                        for elemento2 in elemento1[1:]:
+                            pdf.drawString(70, 380, "Atleta: " + str(elemento2[0]))
+                            for elemento3 in atletas:
+                                if elemento3[0] == elemento2[0]:
+                                    pdf.drawString(200, 380, elemento3[1])
+                                    break
 
-                                for elemento2 in elemento1[1:]:
-                                    for atleta in atletas:
-                                        if atleta[0] == elemento2[0]:
-                                            pdf.drawString(70, 380, "Nombre del atleta: " + atleta[1])
-                                            pdf.drawString(200, 380, atleta[1])
+                            # Dorsal del atleta
+
+                            pdf.drawString(70, 400, "Dorsal: " + str(elemento2[1]))
+
+                            # Marca del atleta
+
+                            pdf.drawString(70, 420, "Marca: " + str(elemento2[2]))
+
+                            # Tipo de medicion
+
+                            for elemento3 in pruebas:
+                                if elemento3[0] == elemento1[0]:
+                                    for elemento4 in disciplinas:
+                                        if elemento4[0] == elemento3[4]:
+                                            pdf.drawString(70, 440, "Tipo de medicion: " + elemento4[1])
                                             break
-            
-            
-    
-                # Guardar el PDF
-                pdf.save()
 
-marcas_por_evento_datos()
+                            # Salto de linea
+
+                            pdf.drawString(70, 460, "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                    
+                    
+            
+
+    
+
+    
+
+    # Guardar el PDF
+    pdf.save()
+
 # 6.2 Marcas por atleta
 
 # 6.3 Mejores marcas por prueba
