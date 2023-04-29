@@ -8,7 +8,7 @@ import sys # Libreria para salir del programa
 import pycountry # Libreria para validar el pais
 import datetime # Libreria para validar la fecha de nacimiento
 import dns.resolver # Libreria para validar el correo electronico
-from validate_email import validate_email # Libreria para validar el correo electronico
+import validate_email # Libreria para validar el correo electronico
 import smtplib # Libreria para enviar correos electronicos
 from reportlab.pdfgen import canvas # Libreria para generar el PD
 from email import encoders # Libreria para enviar correos electronicos
@@ -17,6 +17,8 @@ from email.mime.multipart import MIMEMultipart # Libreria para enviar correos el
 from email.mime.text import MIMEText # Libreria para enviar correos electronicos
 from email.mime.application import MIMEApplication # Libreria para enviar correos electronicos
 
+
+# Menu principal
 
 # Variables globales
 
@@ -30,13 +32,12 @@ pruebas = [('V02', '200 m', 'U20', 'M', 'Carreras de velocidad'), ('S01', '100 m
 
 categorias = ('U12', 'U13', 'U14', 'U15', 'U16', 'U17', 'U18', 'U20', 'MAYOR','MASTER')
 
-atletas = [ ['3123456789', 'Pedro', 'Pérez', 'Peraza', 'M', 'CRI', '15/10/2000', 'amataled125@gmail.com', '55556789' ], ['3023456789', 'Juan', 'Pérez', 'Peraza', 'M', 'CRI', '15/10/2000', 'led_25.ok@hotmail.es', '55556789' ], ['2023071280', 'Ledvin', 'Leiva', 'Mata', 'M', 'CRI', '25/12/2004', 'ledvin25@hotmail.com', '55556789' ]]
+atletas = [ ['3123456789', 'Pedro', 'Pérez', 'Peraza', 'M', 'CRI', '15/10/2000', 'amataled25@gmail.com', '55556789' ], ['3023456789', 'Juan', 'Pérez', 'Peraza', 'M', 'CRI', '15/10/2000', 'led_25.ok@hotmail.es', '55556789' ], ['2023071280', 'Ledvin', 'Leiva', 'Mata', 'M', 'CRI', '25/12/2004', 'ledvin25@hotmail.com', '55556789' ]]
 
 eventos = [[25, 'I Campeonato Centroamericano de atletismo', 'CRI', 'Parque La Sabana Costa Rica', '10/01/2023', '12/01/2023'], [28, 'I Campeonato Caribeño de atletismo', 'GUA', 'Guatemala', '10/02/2023', '12/03/2023'], [41, 'I Campeonato Sudamericano de atletismo', 'COL', 'Bogota', '08/01/2023', '12/05/2023']]
 
 marcas_por_evento = [[25, ['V02', ('3123456789', 2, 1302),('3023456789', 23, 1201), ('2023071280', 25, 901)], ['S01', ('3123456789', 2, 1510), ('3023456789', 25, 1215)]], [28, ['S01', ], ['V02']], [29, ['V02'], ['S01']], [41, ['V02'], ['S01']]]
 
-# Menu principal
 def menu_principal():
 
     # Menu principal
@@ -794,28 +795,7 @@ def validar_fecha_nacimiento(fecha_nacimiento):
 
 # validar correo electronico
 
-def validar_correo_electronico(correo_electronico):
 
-    # validar que el correo sea unico
-
-    for correo in atletas:
-        if correo_electronico == correo[7]:
-            return False
-
-    isvalid=validate_email(correo_electronico) # Verificar que el correo electronico exista
-
-    if isvalid:
-        resolver = dns.resolver.Resolver() # Resolver el dominio del correo electronico
-        domain = correo_electronico.split('@')[1]
-
-        try:
-            mx_records = resolver.query(domain, 'MX') # Verificar que el dominio del correo electronico exista
-            if len(mx_records) > 0:
-                return True
-            else:
-                return False
-        except:
-            return False
 
 # validar telefono
 
@@ -2776,6 +2756,7 @@ def marcas_por_atleta():
     elif opcion == 0:
         marcas_por_atleta()
 
+marcas_por_atleta()
 
 # 6.3 Mejores marcas por prueba: Las mejores marcas por cada prueba para los eventos que esten dentro de un rangos de fechas
 

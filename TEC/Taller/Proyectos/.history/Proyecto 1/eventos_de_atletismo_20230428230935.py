@@ -18,6 +18,8 @@ from email.mime.text import MIMEText # Libreria para enviar correos electronicos
 from email.mime.application import MIMEApplication # Libreria para enviar correos electronicos
 
 
+
+
 # Variables globales
 
 ruta_base = os.path.expanduser('~')  # obtiene la ruta base del usuario
@@ -2776,6 +2778,7 @@ def marcas_por_atleta():
     elif opcion == 0:
         marcas_por_atleta()
 
+marcas_por_atleta()
 
 # 6.3 Mejores marcas por prueba: Las mejores marcas por cada prueba para los eventos que esten dentro de un rangos de fechas
 

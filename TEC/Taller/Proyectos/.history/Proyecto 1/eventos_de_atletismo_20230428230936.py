@@ -2776,6 +2776,7 @@ def marcas_por_atleta():
     elif opcion == 0:
         marcas_por_atleta()
 
+marcas_por_atleta()
 
 # 6.3 Mejores marcas por prueba: Las mejores marcas por cada prueba para los eventos que esten dentro de un rangos de fechas
 

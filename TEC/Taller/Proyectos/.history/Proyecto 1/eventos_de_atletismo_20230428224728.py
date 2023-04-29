@@ -8,7 +8,7 @@ import sys # Libreria para salir del programa
 import pycountry # Libreria para validar el pais
 import datetime # Libreria para validar la fecha de nacimiento
 import dns.resolver # Libreria para validar el correo electronico
-from validate_email import validate_email # Libreria para validar el correo electronico
+import validate_email # Libreria para validar el correo electronico
 import smtplib # Libreria para enviar correos electronicos
 from reportlab.pdfgen import canvas # Libreria para generar el PD
 from email import encoders # Libreria para enviar correos electronicos
@@ -17,6 +17,8 @@ from email.mime.multipart import MIMEMultipart # Libreria para enviar correos el
 from email.mime.text import MIMEText # Libreria para enviar correos electronicos
 from email.mime.application import MIMEApplication # Libreria para enviar correos electronicos
 
+
+# Menu principal
 
 # Variables globales
 
@@ -36,7 +38,6 @@ eventos = [[25, 'I Campeonato Centroamericano de atletismo', 'CRI', 'Parque La S
 
 marcas_por_evento = [[25, ['V02', ('3123456789', 2, 1302),('3023456789', 23, 1201), ('2023071280', 25, 901)], ['S01', ('3123456789', 2, 1510), ('3023456789', 25, 1215)]], [28, ['S01', ], ['V02']], [29, ['V02'], ['S01']], [41, ['V02'], ['S01']]]
 
-# Menu principal
 def menu_principal():
 
     # Menu principal
@@ -816,6 +817,8 @@ def validar_correo_electronico(correo_electronico):
                 return False
         except:
             return False
+        
+validar_correo_electronico('amataled25@gmail.com')
 
 # validar telefono
 
@@ -2776,6 +2779,7 @@ def marcas_por_atleta():
     elif opcion == 0:
         marcas_por_atleta()
 
+marcas_por_atleta()
 
 # 6.3 Mejores marcas por prueba: Las mejores marcas por cada prueba para los eventos que esten dentro de un rangos de fechas
 
