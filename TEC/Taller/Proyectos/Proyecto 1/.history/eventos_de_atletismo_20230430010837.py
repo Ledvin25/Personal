@@ -2155,8 +2155,7 @@ def new_marcas_por_evento():
             lista_pre.append(lista_pre_prueba)
             lista_pre_prueba = []
 
-    if len(lista_final) == 0:
-        lista_final.append(lista_pre)
+    lista_final.append(lista_pre)
 
     return lista_final
 

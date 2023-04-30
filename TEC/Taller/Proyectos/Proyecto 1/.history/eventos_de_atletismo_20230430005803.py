@@ -34,7 +34,7 @@ atletas = [['2023071280', 'Ledvin Manuel', 'Leiva', 'Mata', 'M', 'CRC', '25/12/2
 
 eventos = [[25, 'I Campeonato Centroamericano de atletismo', 'CRI', 'Parque La Sabana Costa Rica', '10/01/2023', '12/01/2023']]
 
-marcas_por_evento = [[25,['V01',('2023071280', 2, 2023)]]]
+marcas_por_evento = []
 
 # Menu principal
 def menu_principal():
@@ -2155,9 +2155,6 @@ def new_marcas_por_evento():
             lista_pre.append(lista_pre_prueba)
             lista_pre_prueba = []
 
-    if len(lista_final) == 0:
-        lista_final.append(lista_pre)
-
     return lista_final
 
 # sacar tipo de medicion
@@ -2797,7 +2794,7 @@ def marcas_por_atleta():
         for atleta in atletas:
             enviar_correo_atleta(atleta[0])
         print('Todos los correos han sido enviados exitosamente')
-        marcas_por_atleta()
+        analisis_datos()
 
     # salir
 

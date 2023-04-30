@@ -34,7 +34,7 @@ atletas = [['2023071280', 'Ledvin Manuel', 'Leiva', 'Mata', 'M', 'CRC', '25/12/2
 
 eventos = [[25, 'I Campeonato Centroamericano de atletismo', 'CRI', 'Parque La Sabana Costa Rica', '10/01/2023', '12/01/2023']]
 
-marcas_por_evento = [[25,['V01',('2023071280', 2, 2023)]]]
+marcas_por_evento = []
 
 # Menu principal
 def menu_principal():
@@ -1646,7 +1646,6 @@ def agregar_marcas():
     if identificacion_evento == 'C' or identificacion_evento == 'c':
                 os.system('cls')
                 registrar_marcas()
-    identificacion_evento = int(identificacion_evento)
 
     verify = True
 
@@ -1656,15 +1655,15 @@ def agregar_marcas():
         if identificacion_evento == 'C' or identificacion_evento == 'c':
                 os.system('cls')
                 registrar_marcas()
-        identificacion_evento = int(identificacion_evento)
         for elemento in eventos:
             if identificacion_evento == elemento[0]:
                 print(elemento[1])
                 verify = False
                 break
         else:
-            print('EVENTO NO ESTA REGISTRADO, NO SE PUEDE AGREGAR MARCAS')
-            identificacion_evento = input('Ingrese la identificacion del evento: ')
+            
+                print('EVENTO NO ESTA REGISTRADO, NO SE PUEDE AGREGAR MARCAS')
+                identificacion_evento = int(input('Ingrese la identificacion del evento: '))
 
     # solicitar codigo de la prueba
 
@@ -1748,7 +1747,6 @@ def agregar_marcas():
         if len(marcas_por_evento) == 0:
             marcas_por_evento.append([identificacion_evento, [codigo]])
             elemento5 = marcas_por_evento[-1]
-            elemento5 = elemento5[-1]
             verify = False
         if verify:
             elemento5.append([codigo])
@@ -1772,6 +1770,8 @@ def agregar_marcas():
         else:
             os.system('cls')
             print('OPCION INVALIDA')
+
+agregar_marcas()
 
 # 5.2 Consultar marcas
 
@@ -2155,9 +2155,6 @@ def new_marcas_por_evento():
             lista_pre.append(lista_pre_prueba)
             lista_pre_prueba = []
 
-    if len(lista_final) == 0:
-        lista_final.append(lista_pre)
-
     return lista_final
 
 # sacar tipo de medicion
@@ -2482,7 +2479,6 @@ def marcas_por_evento_datos():
 
             # Guardar el PDF
             pdf.save()
-            print('PDF CREADO CON EXITO')
             marcas_por_evento_datos()
 
     # Marcas de todos los eventos dentro de un rango de fechas
@@ -2558,7 +2554,6 @@ def marcas_por_evento_datos():
         # Guardar el PDF
 
         pdf.save()
-        print('PDF CREADO CON EXITO')
         marcas_por_evento_datos()
 
     # Salir
@@ -2683,7 +2678,6 @@ def marcas_por_atleta():
 
             # Guardar el PDF
             pdf.save()
-            print('PDF CREADO CON EXITO')
             marcas_por_atleta()
 
     # Marcas de todos los atletas
@@ -2787,7 +2781,6 @@ def marcas_por_atleta():
 
         # Guardar el PDF
         pdf.save()
-        print('PDF CREADO CON EXITO')
         marcas_por_atleta()
 
     # enviar por correo todas las marcas a sus respectivos atletas

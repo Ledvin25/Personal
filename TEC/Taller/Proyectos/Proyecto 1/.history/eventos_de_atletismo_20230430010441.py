@@ -2155,9 +2155,6 @@ def new_marcas_por_evento():
             lista_pre.append(lista_pre_prueba)
             lista_pre_prueba = []
 
-    if len(lista_final) == 0:
-        lista_final.append(lista_pre)
-
     return lista_final
 
 # sacar tipo de medicion
@@ -2208,7 +2205,7 @@ def validar_rango_fechas(fecha1, fecha2, fecha3):
 
 def ordernar_marcas():
 
-    marcas = new_marcas_por_evento()
+2    marcas = new_marcas_por_evento()
 
     # crear lista de atletas y marcas
 
