@@ -804,9 +804,6 @@ def validar_correo_electronico(correo_electronico):
         
     domain = correo_electronico.split('@')[1] # Obtener el dominio del correo electronico
 
-    if domain == 'hotmail.com' or domain == 'yahoo.com' or domain == 'outlook.com' or domain == 'outlook.es' or domain == 'yahoo.es' or domain == 'hotmail.es': 
-        return True # si el dominio pertenece a outlook devolver true automaticamente, ya que el EULA no permite comprobar su existencia.
-
     isvalid=validate_email(correo_electronico) # Verificar que el correo electronico exista
 
     if isvalid:
@@ -2778,7 +2775,7 @@ def marcas_por_atleta():
     # salir
 
     elif opcion == 0:
-        analisis_datos()
+        marcas_por_atleta()
 
 
 # 6.3 Mejores marcas por prueba: Las mejores marcas por cada prueba para los eventos que esten dentro de un rangos de fechas
@@ -2855,9 +2852,6 @@ def mejores_marcas_por_prueba():
     # Guardar el PDF
 
     pdf.save()
-    os.system('cls')
-    print('El archivo se ha guardado exitosamente en el escritorio')
-    analisis_datos()
 
 # 7 Ayuda
 

@@ -22,7 +22,7 @@ from email.mime.application import MIMEApplication # Libreria para enviar correo
 
 ruta_base = os.path.expanduser('~')  # obtiene la ruta base del usuario
 ruta_escritorio = os.path.join(ruta_base, 'Desktop') # concatena con la carpeta del escritorio
-ruta_escritorio = ruta_escritorio.replace("\\", "/") # reemplaza las diagonales invertidas por diagonales normales
+ruta_escritorio = ruta_escritorio.replace("\\", "/") 
 
 disciplinas = [('Carreras de velocidad', 'T'), ('Saltos', 'M'), ('Lanzamientos', 'M'), ('Carreras de saltos', 'M'), ('Carreras de lanzamientos', 'T'), ('Carreras de obstaculos', 'T'), ('Carreras de relevos', 'T'), ('Marcha', 'T'), ('Decatlon', 'T'), ('Heptatlon', 'T'), ('Pentatlon', 'T'), ('Carreras de medio fondo', 'T'), ('Carreras de fondo', 'T'), ('Carreras de vallas')]
 
@@ -801,16 +801,12 @@ def validar_correo_electronico(correo_electronico):
     for correo in atletas:
         if correo_electronico == correo[7]:
             return False
-        
-    domain = correo_electronico.split('@')[1] # Obtener el dominio del correo electronico
-
-    if domain == 'hotmail.com' or domain == 'yahoo.com' or domain == 'outlook.com' or domain == 'outlook.es' or domain == 'yahoo.es' or domain == 'hotmail.es': 
-        return True # si el dominio pertenece a outlook devolver true automaticamente, ya que el EULA no permite comprobar su existencia.
 
     isvalid=validate_email(correo_electronico) # Verificar que el correo electronico exista
 
     if isvalid:
         resolver = dns.resolver.Resolver() # Resolver el dominio del correo electronico
+        domain = correo_electronico.split('@')[1]
 
         try:
             mx_records = resolver.query(domain, 'MX') # Verificar que el dominio del correo electronico exista
@@ -2778,7 +2774,7 @@ def marcas_por_atleta():
     # salir
 
     elif opcion == 0:
-        analisis_datos()
+        marcas_por_atleta()
 
 
 # 6.3 Mejores marcas por prueba: Las mejores marcas por cada prueba para los eventos que esten dentro de un rangos de fechas
@@ -2855,9 +2851,6 @@ def mejores_marcas_por_prueba():
     # Guardar el PDF
 
     pdf.save()
-    os.system('cls')
-    print('El archivo se ha guardado exitosamente en el escritorio')
-    analisis_datos()
 
 # 7 Ayuda
 

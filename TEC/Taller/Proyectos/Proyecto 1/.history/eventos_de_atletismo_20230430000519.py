@@ -2855,7 +2855,6 @@ def mejores_marcas_por_prueba():
     # Guardar el PDF
 
     pdf.save()
-    os.system('cls')
     print('El archivo se ha guardado exitosamente en el escritorio')
     analisis_datos()
 

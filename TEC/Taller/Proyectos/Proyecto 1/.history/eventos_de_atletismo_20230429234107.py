@@ -2778,7 +2778,7 @@ def marcas_por_atleta():
     # salir
 
     elif opcion == 0:
-        analisis_datos()
+        marcas_por_atleta()
 
 
 # 6.3 Mejores marcas por prueba: Las mejores marcas por cada prueba para los eventos que esten dentro de un rangos de fechas
@@ -2855,9 +2855,6 @@ def mejores_marcas_por_prueba():
     # Guardar el PDF
 
     pdf.save()
-    os.system('cls')
-    print('El archivo se ha guardado exitosamente en el escritorio')
-    analisis_datos()
 
 # 7 Ayuda
 
