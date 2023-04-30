@@ -566,7 +566,7 @@ def modificar_pruebas():
     
 
     while not validar_nombre(nombre):
-        if nombre == '':
+        if nombre == ' ':
             nombre = elemento[1]
             break
         print('El nombre debe ser un string de 3 a 30 caracteres')
@@ -1045,7 +1045,7 @@ def modificar_atletas():
 
     fecha_nacimiento = input('Ingrese la fecha de nacimiento del atleta "dd/mm/aaaa" modificado: ')
     while not validar_fecha_nacimiento(fecha_nacimiento):
-        if fecha_nacimiento == '':
+        if fecha_nacimiento == ' ':
             fecha_nacimiento = elemento[6]
         print('FECHA DE NACIMIENTO INVALIDA')
         fecha_nacimiento = input('Ingrese la fecha de nacimiento del atleta "dd/mm/aaaa" modificado: ')
@@ -1054,7 +1054,7 @@ def modificar_atletas():
 
     correo_electronico = input('Ingrese el correo electronico del atleta modificado: ')
     while not validar_correo_electronico(correo_electronico):
-        if correo_electronico == '':
+        if correo_electronico == ' ':
             correo_electronico = elemento[7]
         print('CORREO ELECTRONICO INVALIDO')
         correo_electronico = input('Ingrese el correo electronico del atleta modificado: ')
@@ -1063,7 +1063,7 @@ def modificar_atletas():
 
     telefono = input('Ingrese el telefono del atleta modificado: ')
     while not validar_telefono(telefono):
-        if telefono == '':
+        if telefono == ' ':
             telefono = elemento[8]
         print('TELEFONO INVALIDO')
         telefono = input('Ingrese el telefono del atleta modificado: ')

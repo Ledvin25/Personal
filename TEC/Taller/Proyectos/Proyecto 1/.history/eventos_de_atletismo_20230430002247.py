@@ -536,7 +536,7 @@ def modificar_pruebas():
         for i, elemento in enumerate(pruebas):
             if codigo == elemento[0]:
                 codigo = input('Ingrese el nuevo codigo de la prueba: ')
-                if codigo == '':
+                if codigo == ' ':
                     codigo = elemento[0]
                 while not validar_codigo(codigo):
                     codigo = input('Ingrese el nuevo codigo de la prueba: ')
@@ -566,7 +566,7 @@ def modificar_pruebas():
     
 
     while not validar_nombre(nombre):
-        if nombre == '':
+        if nombre == ' ':
             nombre = elemento[1]
             break
         print('El nombre debe ser un string de 3 a 30 caracteres')

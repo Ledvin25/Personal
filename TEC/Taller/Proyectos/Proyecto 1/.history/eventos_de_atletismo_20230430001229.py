@@ -161,7 +161,7 @@ def agregar_disciplinas():
     # Opcion de cancelar 'C' y salir al menu anterior y de aceptar 'A'
 
     while True:
-        opcion = input('Seleccion una opcion "A" para aceptar o "C" para cancelar: ')
+        opcion = input('Seleccion una opcion "A" para aceptar o "C" para can: ')
         if opcion == 'A' or opcion == 'a':
             disciplinas.append(temp)
             os.system('cls')
@@ -259,7 +259,7 @@ def modificar_disciplinas():
     print('Forma de medir modificada: ', forma_medir, '\n')
 
     while True:
-        opcion = input('Seleccion una opcion "A" para aceptar o "C" para cancelar: ')
+        opcion = input('Seleccion una opcion: ')
         if opcion == 'A' or opcion == 'a':
             disciplinas[i] = (nombre, forma_medir)
             os.system('cls')
@@ -464,7 +464,7 @@ def agregar_pruebas():
     # opcion de cancelar 'C' y de aceptar 'A'
 
     while True:
-        opcion = input('Seleccion una opcion "A" para aceptar o "C" para cancelar: ')
+        opcion = input('Seleccion una opcion: ')
         if opcion == 'A' or opcion == 'a':
             pruebas.append((codigo, nombre, categoria, sexo, disciplina))
             os.system('cls')
@@ -492,7 +492,6 @@ def consultar_pruebas():
 
     for elemento in pruebas:
         if codigo == elemento[0]:
-            os.system('cls')
             print('Codigo de la prueba: ', elemento[0], '\nNombre de la prueba: ', elemento[1], '\nCategoria: ', elemento[2], '\nSexo (F/M): ', elemento[3], '\nNombre de la disciplina: ', elemento[4], '\n')
             consultar_pruebas()
 
@@ -566,7 +565,7 @@ def modificar_pruebas():
     
 
     while not validar_nombre(nombre):
-        if nombre == '':
+        if nombre == ' ':
             nombre = elemento[1]
             break
         print('El nombre debe ser un string de 3 a 30 caracteres')
@@ -1001,23 +1000,23 @@ def modificar_atletas():
 
     nombre = input('Ingrese el nombre del atleta modificado modificado: ')
     while not validar_nombre(nombre):
-        if nombre == '':
+        if nombre == ' ':
             nombre = elemento[1] 
         print('NOMBRE INVALIDO')
-        nombre = input('Ingrese el nombre del atleta modificado: ')
+        nombre = input('Ingrese el nombre del atleta : ')
 
     # solicitar apellidos del atleta
 
     apellido1 = input('Ingrese el primer apellido del atleta modificado: ')
     while not validar_apellido(apellido1):
-        if apellido1 == '':
+        if apellido1 == ' ':
             apellido1 = elemento[2]
         print('PRIMER APELLIDO INVALIDO')
         apellido1 = input('Ingrese el primer apellido del atleta modificado: ')
     
     apellido2 = input('Ingrese el segundo apellido del atleta modificado: ')
     while not validar_apellido(apellido2):
-        if apellido2 == '':
+        if apellido2 == ' ':
             apellido2 = elemento[3]
         print('SEGUNDO APELLIDO INVALIDO')
         apellido2 = input('Ingrese el segundo apellido del atleta modificado: ')
@@ -1026,7 +1025,7 @@ def modificar_atletas():
 
     sexo = input('Ingrese el sexo del atleta (M/F) modificado: ')
     while sexo != 'M' and sexo != 'F':
-        if sexo == '':
+        if sexo == ' ':
             sexo = elemento[4]
         print('SEXO INVALIDO')
         sexo = input('Ingrese el sexo del atleta (M/F) modificado: ')
@@ -1036,7 +1035,7 @@ def modificar_atletas():
     pais = input('Ingrese el pais que representa el atleta "Codigo de 3 caracteres" modificado: ')
 
     while not validar_pais(pais):
-        if pais == '':
+        if pais == ' ':
             pais = elemento[5]
         print('CODIGO DE PAIS INVALIDO')
         pais = input('Ingrese el pais que representa el atleta "Codigo de 3 caracteres" modificado: ')
@@ -1045,7 +1044,7 @@ def modificar_atletas():
 
     fecha_nacimiento = input('Ingrese la fecha de nacimiento del atleta "dd/mm/aaaa" modificado: ')
     while not validar_fecha_nacimiento(fecha_nacimiento):
-        if fecha_nacimiento == '':
+        if fecha_nacimiento == ' ':
             fecha_nacimiento = elemento[6]
         print('FECHA DE NACIMIENTO INVALIDA')
         fecha_nacimiento = input('Ingrese la fecha de nacimiento del atleta "dd/mm/aaaa" modificado: ')
@@ -1054,7 +1053,7 @@ def modificar_atletas():
 
     correo_electronico = input('Ingrese el correo electronico del atleta modificado: ')
     while not validar_correo_electronico(correo_electronico):
-        if correo_electronico == '':
+        if correo_electronico == ' ':
             correo_electronico = elemento[7]
         print('CORREO ELECTRONICO INVALIDO')
         correo_electronico = input('Ingrese el correo electronico del atleta modificado: ')
@@ -1063,7 +1062,7 @@ def modificar_atletas():
 
     telefono = input('Ingrese el telefono del atleta modificado: ')
     while not validar_telefono(telefono):
-        if telefono == '':
+        if telefono == ' ':
             telefono = elemento[8]
         print('TELEFONO INVALIDO')
         telefono = input('Ingrese el telefono del atleta modificado: ')

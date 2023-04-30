@@ -566,7 +566,7 @@ def modificar_pruebas():
     
 
     while not validar_nombre(nombre):
-        if nombre == '':
+        if nombre == ' ':
             nombre = elemento[1]
             break
         print('El nombre debe ser un string de 3 a 30 caracteres')
@@ -1063,7 +1063,7 @@ def modificar_atletas():
 
     telefono = input('Ingrese el telefono del atleta modificado: ')
     while not validar_telefono(telefono):
-        if telefono == '':
+        if telefono == ' ':
             telefono = elemento[8]
         print('TELEFONO INVALIDO')
         telefono = input('Ingrese el telefono del atleta modificado: ')
