@@ -551,7 +551,7 @@ def modificar_pruebas():
     # validar que no tiene un evento asociado a traves de las marcas por evento
 
     for evento_asociado in marcas_por_evento:
-        for elemento2 in evento_asociado[1:]:
+        for elemento2 in elemento[1:]:
             if past_code == elemento2[0]:
                 os.system('cls')
                 print('LA PRUEBA NO SE PUEDE MOFICIAR PORQUE TIENE UN EVENTO ASOCIADO \n')
@@ -2855,9 +2855,7 @@ def mejores_marcas_por_prueba():
 # 7 Ayuda
 
 def ayuda():
-    ruta_actual = os.path.dirname(os.path.abspath(__file__)) + '/Manual de Usuario.pdf' # ruta del archivo
-    ruta_actual = ruta_actual.replace("\\", "/") # reemplazar las diagonales invertidas por diagonales normales
-    os.startfile(ruta_actual)  # abrir el archivo con la aplicación predeterminada
+    print('Ayuda')
 
 # 8 Acerca de
 

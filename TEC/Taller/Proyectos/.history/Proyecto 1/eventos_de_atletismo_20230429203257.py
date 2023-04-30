@@ -2855,9 +2855,8 @@ def mejores_marcas_por_prueba():
 # 7 Ayuda
 
 def ayuda():
-    ruta_actual = os.path.dirname(os.path.abspath(__file__)) + '/Manual de Usuario.pdf' # ruta del archivo
-    ruta_actual = ruta_actual.replace("\\", "/") # reemplazar las diagonales invertidas por diagonales normales
-    os.startfile(ruta_actual)  # abrir el archivo con la aplicación predeterminada
+    ruta_actual = os.path.dirname(os.path.abspath(__file__))
+    open(')
 
 # 8 Acerca de
 
