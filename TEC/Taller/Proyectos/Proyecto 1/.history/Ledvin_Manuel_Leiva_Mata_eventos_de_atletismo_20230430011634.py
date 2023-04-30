@@ -24,13 +24,13 @@ ruta_base = os.path.expanduser('~')  # obtiene la ruta base del usuario
 ruta_escritorio = os.path.join(ruta_base, 'Desktop') # concatena con la carpeta del escritorio
 ruta_escritorio = ruta_escritorio.replace("\\", "/") # reemplaza las diagonales invertidas por diagonales normales
 
-disciplinas = [('Carreras', 'T')]
+disciplinas = []
 
-pruebas = [('V01', '100m', 'U20', 'M', 'Carreras')] 
+pruebas = [] 
 
 categorias = ('U12', 'U13', 'U14', 'U15', 'U16', 'U17', 'U18', 'U20', 'MAYOR','MASTER')
 
-atletas = [['2023071280', 'Ledvin Manuel', 'Leiva', 'Mata', 'M', 'CRC', '25/12/2004', 'ledvin25@hotmail.com', 88552349]]
+atletas = []
 
 eventos = [[25, 'I Campeonato Centroamericano de atletismo', 'CRI', 'Parque La Sabana Costa Rica', '10/01/2023', '12/01/2023']]
 
@@ -2886,7 +2886,7 @@ def mejores_marcas_por_prueba():
 # 7 Ayuda
 
 def ayuda():
-    ruta_actual = os.path.dirname(os.path.abspath(__file__)) + '/Manual de Usuario.pdf' # ruta del archivo
+    ruta_actual = os.path.dirname(os.path.abspath(__file__)) + '/Ledvin_Manuel_Leiva_Mata_manual_de_usuario_eventos_de_atletismo.pdf' # ruta del archivo
     ruta_actual = ruta_actual.replace("\\", "/") # reemplazar las diagonales invertidas por diagonales normales
     os.startfile(ruta_actual)  # abrir el archivo con la aplicación predeterminada
     menu_principal()
