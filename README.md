@@ -1,8 +1,9 @@
-## Hi there 👋, I'm Ledvin!
+### Hi there, I'm Ledvin 👋
 
-I'm a full stack software developer with a C1 English level, currently studying Software Engineering at ITCR. I have 8 years of experience programming in languages such as C#, C++, SQL, and HTML. Additionally, I have 9 years of experience using Adobe Photoshop, Premier, and After Effects.
+🚀 I'm a Full Stack Developer with 8+ years of experience in software development and 9+ years of experience with Adobe Photoshop, Adobe Premier, and Adobe After Effects. 
 
-📫 You can reach me at: ledvin25@hotmail.com
+💼 I'm also a founder of MyTourCR (https://github.com/MyTourCR), a project aimed at promoting tourism in Costa Rica.
 
-🔗 Connect with me: [Discord](https://discord.com/users/Ledvin25#8571) | [WhatsApp](http://wa.me/+50661725931)
+📫 You can reach me at ledvin25@hotmail.com or on Discord at Ledvin25#8571. You can also message me on WhatsApp at http://wa.me/+50661725931.
 
+🔭 I’m currently working on various web and app development projects, as well as enhancing my skills in software engineering and mathematics.
