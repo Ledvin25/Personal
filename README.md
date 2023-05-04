@@ -1,13 +1,8 @@
-# Personal Ledvin's Repository
+## Hi there 👋, I'm Ledvin!
 
-## This is the place where I upload my proyects and college works. 
+I'm a full stack software developer with a C1 English level, currently studying Software Engineering at ITCR. I have 8 years of experience programming in languages such as C#, C++, SQL, and HTML. Additionally, I have 9 years of experience using Adobe Photoshop, Premier, and After Effects.
 
-### Any doubt or suggestion let me know it by a pull request or by my contact ways. 
+📫 You can reach me at: ledvin25@hotmail.com
 
-Contact: 
+🔗 Connect with me: [Discord](https://discord.com/users/Ledvin25#8571) | [WhatsApp](http://wa.me/+50661725931)
 
-Email: ledvin25@hotmail.com
-
-Discord: Ledvin25#8571
-
-Whatsapp: http://wa.me/50661725931
