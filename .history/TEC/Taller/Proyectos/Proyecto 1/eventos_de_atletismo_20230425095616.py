@@ -1,6 +1,6 @@
 # Made by: Ledvin Manuel Leiva Mata
 # 2023071280
-# Date: 14:21:00 hora de inicio
+# Date: 2021-09-15 14:21:00 hora de inicio
 
 # Importamos las librerias necesarias
 import os # Libreria para limpiar la consola
