@@ -1,13 +1,11 @@
-# Personal Ledvin's Repository
+### Hi there, I'm Ledvin 👋
 
-## This is the place where I upload my proyects and college works. 
+---
 
-### Any doubt or suggestion let me know it by a pull request or by my contact ways. 
+🚀 I'm a Full Stack Developer with 8+ years of experience in software development and 9+ years of experience with Adobe Photoshop, Adobe Premier, and Adobe After Effects. 
 
-Contact: 
+💼 I'm also a founder of MyTourCR (https://github.com/MyTourCR), a project aimed at promoting tourism in Costa Rica.
 
-Email: ledvin25@hotmail.com
+🔭 I’m currently working on various web and app development projects, as well as enhancing my skills in software engineering and mathematics.
 
-Discord: Ledvin25#8571
-
-Whatsapp: http://wa.me/50661725931
+📫 You can reach me at ledvin25@hotmail.com or on Discord at Ledvin25#8571. You can also message me on WhatsApp at http://wa.me/+50661725931.
