@@ -1,9 +1,7 @@
 # Tarea 6 - Ledvin Manuel Leiva Mata
 
 def lugares_de_votacion():
-    # Diccionario
-    
-    lugares_de_votacion = { 
+    { 
         1234567: ["José", "Cartago Escuela Buenaventura", 2000],
         3456712: ["Carmen", "Turrialba Colegio Central", 1700],
         1234444: ["Alberto", "Cartago Colegio SLG", 3002],
@@ -83,15 +81,10 @@ def lugares_de_votacion():
 
         # Despliega todos los datos del diccionario clasificados por mesa de votación y dentro de cada mesa en orden alfabético.
 
+        for mesa in sorted(lugares_de_votacion.values()):
+            print(mesa)
 
-        # Crear lista de mesas
-        mesas = set([value[2] for value in lugares_de_votacion.values()])
-        
-        for mesa in sorted(mesas):
-            print("MESA ", mesa, " NOMBRE")
-
-
-    # Menu
+        # Menu
 
     opcion = 5#int(input("Ingrese una opcion: "))
 

@@ -1,9 +1,7 @@
 # Tarea 6 - Ledvin Manuel Leiva Mata
 
 def lugares_de_votacion():
-    # Diccionario
-    
-    lugares_de_votacion = { 
+    { 
         1234567: ["José", "Cartago Escuela Buenaventura", 2000],
         3456712: ["Carmen", "Turrialba Colegio Central", 1700],
         1234444: ["Alberto", "Cartago Colegio SLG", 3002],
@@ -12,6 +10,25 @@ def lugares_de_votacion():
         5555555: ["Ana", "Turrialba Colegio Central", 1700],
         1234565: ["Ali", "Cartago Colegio SLG", 3002] 
         }
+
+    # Menu
+
+    opcion = int(input("Ingrese una opcion: "))
+
+    match opcion:
+        case 1:
+            agregar()
+        case 2:
+            consultar()
+        case 3:
+            actualizar()
+        case 4:
+            eliminar()    
+        case 5:
+            informe()
+        case 0:
+            print("Adios")
+
     # Funciones
 
     def agregar():
@@ -45,7 +62,7 @@ def lugares_de_votacion():
             lugar = lugares_de_votacion[cedula][1]
             mesa = lugares_de_votacion[cedula][2]
             print(f"Nombre: {nombre}\nLugar: {lugar}\nMesa: {mesa}")
-            input("Presione enter para continuar")
+            input("Presione enter para continuar")´
             consultar()
 
     def actualizar():
@@ -83,31 +100,7 @@ def lugares_de_votacion():
 
         # Despliega todos los datos del diccionario clasificados por mesa de votación y dentro de cada mesa en orden alfabético.
 
-
-        # Crear lista de mesas
-        mesas = set([value[2] for value in lugares_de_votacion.values()])
-        
-        for mesa in sorted(mesas):
-            print("MESA ", mesa, " NOMBRE")
+        for mesa in sorted(lugares_de_votacion.values()):
+            print(mesa)
 
 
-    # Menu
-
-    opcion = 5#int(input("Ingrese una opcion: "))
-
-    match opcion:
-        case 1:
-            agregar()
-        case 2:
-            consultar()
-        case 3:
-            actualizar()
-        case 4:
-            eliminar()    
-        case 5:
-            informe()
-        case 0:
-            print("Adios")
-
-
-lugares_de_votacion()

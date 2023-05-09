@@ -83,13 +83,8 @@ def lugares_de_votacion():
 
         # Despliega todos los datos del diccionario clasificados por mesa de votación y dentro de cada mesa en orden alfabético.
 
-
-        # Crear lista de mesas
-        mesas = set([value[2] for value in lugares_de_votacion.values()])
-        
-        for mesa in sorted(mesas):
-            print("MESA ", mesa, " NOMBRE")
-
+        for mesa in lugares_de_votacion:
+            
 
     # Menu
 

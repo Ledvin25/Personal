@@ -85,10 +85,11 @@ def lugares_de_votacion():
 
 
         # Crear lista de mesas
-        mesas = set([value[2] for value in lugares_de_votacion.values()])
-        
-        for mesa in sorted(mesas):
-            print("MESA ", mesa, " NOMBRE")
+
+        mesas = []
+
+        for key in lugares_de_votacion:
+            mesa = lugares_de_votacion[key][2
 
 
     # Menu
