@@ -94,14 +94,13 @@ def lugares_de_votacion():
             for cedula, value in sorted(lugares_de_votacion.items(), reverse=True): # reverse=True para ordenar de alfabeticamente
                 if value[2] == mesa:
                     print("{:<10} {:<10}".format(cedula, value[0]))
-            print("\n"*2)
-        menu()
-
+            print("\n")
+            
 
     # Menu
 
     def menu():
-        print("1. Agregar elementos\n2. Consultar elementos\n3. Actualizar elementos\n4. Eliminar elementos\n5. Informe de electores\n0. Salir")
+        print("1. Agregar cédula\n2. Consultar cédula\n3. Actualizar cédula\n4. Eliminar cédula\n5. Informe\n0. Salir")
         opcion = int(input("Ingrese una opcion: "))
 
         match opcion:
@@ -140,7 +139,4 @@ def compactar(lista):
     return diccionario
                     
 
-# Ejercicio 3
-
-def seleccionar_proveedores():
-    
+lugares_de_votacion()
