@@ -140,7 +140,3 @@ def compactar(lista):
     return diccionario
                     
 
-# Ejercicio 3
-
-def seleccionar_proveedores():
-    

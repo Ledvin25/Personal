@@ -95,7 +95,7 @@ def lugares_de_votacion():
                 if value[2] == mesa:
                     print("{:<10} {:<10}".format(cedula, value[0]))
             print("\n"*2)
-        menu()
+            menu()
 
 
     # Menu
@@ -140,7 +140,4 @@ def compactar(lista):
     return diccionario
                     
 
-# Ejercicio 3
-
-def seleccionar_proveedores():
-    
+lugares_de_votacion()

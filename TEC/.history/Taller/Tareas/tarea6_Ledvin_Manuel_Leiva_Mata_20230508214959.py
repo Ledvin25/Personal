@@ -30,7 +30,7 @@ def lugares_de_votacion():
             mesa = int(input("Ingrese el número de mesa: "))
             lugares_de_votacion[cedula] = [nombre, lugar, mesa]
             print("Cédula agregada")
-            menu()
+            agregar()
 
     def consultar():
         
@@ -47,7 +47,7 @@ def lugares_de_votacion():
             mesa = lugares_de_votacion[cedula][2]
             print(f"Nombre: {nombre}\nLugar: {lugar}\nMesa: {mesa}")
             input("Presione enter para continuar")
-            menu()
+            consultar()
 
     def actualizar():
         
@@ -64,7 +64,7 @@ def lugares_de_votacion():
             mesa = int(input("Ingrese el nuevo número de mesa: "))
             lugares_de_votacion[cedula] = [nombre, lugar, mesa]
             print("Cédula actualizada")
-            menu()
+            actualizar()
 
     def eliminar():
 
@@ -78,7 +78,7 @@ def lugares_de_votacion():
         else:
             del lugares_de_votacion[cedula]
             print("Cédula eliminada")
-            menu()
+            eliminar()
 
     def informe():
 
@@ -94,31 +94,25 @@ def lugares_de_votacion():
             for cedula, value in sorted(lugares_de_votacion.items(), reverse=True): # reverse=True para ordenar de alfabeticamente
                 if value[2] == mesa:
                     print("{:<10} {:<10}".format(cedula, value[0]))
-            print("\n"*2)
-        menu()
-
+            print("\n")
 
     # Menu
 
-    def menu():
-        print("1. Agregar elementos\n2. Consultar elementos\n3. Actualizar elementos\n4. Eliminar elementos\n5. Informe de electores\n0. Salir")
-        opcion = int(input("Ingrese una opcion: "))
+    opcion = 5#int(input("Ingrese una opcion: "))
 
-        match opcion:
-            case 1:
-                agregar()
-            case 2:
-                consultar()
-            case 3:
-                actualizar()
-            case 4:
-                eliminar()    
-            case 5:
-                informe()
-            case 0:
-                print("Adios")
-
-    menu()
+    match opcion:
+        case 1:
+            agregar()
+        case 2:
+            consultar()
+        case 3:
+            actualizar()
+        case 4:
+            eliminar()    
+        case 5:
+            informe()
+        case 0:
+            print("Adios")
 
 
 # Ejercicio 2
@@ -127,20 +121,6 @@ def compactar(lista):
 
     diccionario = {}
 
-    for numero in lista:
-        if numero not in diccionario:
-            for i, numero2 in enumerate(lista):
-                if numero2 not in diccionario: # si el numero no esta en el diccionario se agrega el numero como key con su indice
-                    if numero == numero2:
-                        diccionario[numero] = (i,)
-                else: # si el numero ya esta en el diccionario se agrega solo el indice
-                    if numero == numero2:
-                        diccionario[numero] += (i,)
+    for numero,i in lista:
 
-    return diccionario
-                    
-
-# Ejercicio 3
-
-def seleccionar_proveedores():
-    
+compactar([ 8, 8, 8, 75, 2, 2, 2, 2, 8, 1, 1, 100, 1, 2, 75, 75 ])

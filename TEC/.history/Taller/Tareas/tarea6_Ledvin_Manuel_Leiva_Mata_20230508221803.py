@@ -142,5 +142,4 @@ def compactar(lista):
 
 # Ejercicio 3
 
-def seleccionar_proveedores():
-    
+def seleccionar 
