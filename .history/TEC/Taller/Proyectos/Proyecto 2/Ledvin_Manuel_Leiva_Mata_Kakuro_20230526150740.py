@@ -458,7 +458,7 @@ def play():
                         # Actualizar posiciones
                         for j in range(i+1, len(top10file[category])):
                             top10file[category][j][0] = j+1
-                        break
+                    break
 
             # guardar cambios
             with open('TEC/Taller/Proyectos/Proyecto 2/kakuro2023top10.dat', 'wb') as file:

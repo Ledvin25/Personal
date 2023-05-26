@@ -447,18 +447,19 @@ def play():
 
         with open('TEC/Taller/Proyectos/Proyecto 2/kakuro2023top10.dat', 'rb') as file:
             top10file = pickle.load(file)
+
             # Asignar nueva posicion si esta esta dentro del top 10
 
-            if playerName.get() != "" and elapsed_time != 0 and state == 'win':
-                for i, position in enumerate(top10file[category]):
-                    if elapsed_time < position[2]:
-                        top10file[category].insert(i, [position[0],playerName.get(), elapsed_time])
-                        top10file[category].pop()
-                        
-                        # Actualizar posiciones
-                        for j in range(i+1, len(top10file[category])):
-                            top10file[category][j][0] = j+1
-                        break
+        if playerName.get() != "" and elapsed_time != 0 and state == "win":
+            for i, position in enumerate(top10file[category]):
+                if elapsed_time < position[2]:
+                    top10file[category].insert(i, [position[0],playerName.get(), elapsed_time])
+                    top10file[category].pop()
+                    
+                    # Actualizar posiciones
+                    for j in range(i+1, len(top10file[category])):
+                        top10file[category][j][0] = j+1
+                break
 
             # guardar cambios
             with open('TEC/Taller/Proyectos/Proyecto 2/kakuro2023top10.dat', 'wb') as file:
@@ -795,7 +796,8 @@ def play():
             for i in range(9):
                 for j in range(9):
                     try:
-                        if casillas[(i,j)]['bg'] == 'white' or casillas[(i,j)]['bg'] == 'yellow':
+                        print(casillas[(i,j)]['bg'])
+                        if casillas[(i,j)]['bg'] == 'white':
                             win = False
                     except:
                         pass

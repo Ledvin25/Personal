@@ -63,25 +63,18 @@ def play():
         if len(partidas[category]) == len(numerosMostrados):
             numerosMostrados = []
 
-        test = True
+        # Escoger nivel aleatorio
+        nivelRandom = random.randrange(0, len(partidas[category]))
 
-        if not test:
-            # Escoger nivel aleatorio
+        # No se repitan los niveles
+        while nivelRandom in numerosMostrados:
             nivelRandom = random.randrange(0, len(partidas[category]))
+            
+        # Agregar nivel a la lista de niveles mostrados
+        numerosMostrados.append(nivelRandom)
 
-            # No se repitan los niveles
-            while nivelRandom in numerosMostrados:
-                nivelRandom = random.randrange(0, len(partidas[category]))
-                
-            # Agregar nivel a la lista de niveles mostrados
-            numerosMostrados.append(nivelRandom)
-
-            # Escoger nivel
-            nivel_Casillas = partidas[category][nivelRandom]
-
-        if test:
-            nivel_Casillas = partidas[category][3]
-            test = False
+        # Escoger nivel
+        nivel_Casillas = partidas[category][nivelRandom]
 
     escogerNivel()
 
@@ -437,7 +430,7 @@ def play():
 
     # top 10
 
-    def top10(state):
+    def top10():
 
         global running
 
@@ -447,18 +440,19 @@ def play():
 
         with open('TEC/Taller/Proyectos/Proyecto 2/kakuro2023top10.dat', 'rb') as file:
             top10file = pickle.load(file)
+
             # Asignar nueva posicion si esta esta dentro del top 10
 
-            if playerName.get() != "" and elapsed_time != 0 and state == 'win':
-                for i, position in enumerate(top10file[category]):
-                    if elapsed_time < position[2]:
-                        top10file[category].insert(i, [position[0],playerName.get(), elapsed_time])
-                        top10file[category].pop()
-                        
-                        # Actualizar posiciones
-                        for j in range(i+1, len(top10file[category])):
-                            top10file[category][j][0] = j+1
-                        break
+        if playerName.get() != "" and elapsed_time != 0:
+            for i, position in enumerate(top10file[category]):
+                if elapsed_time < position[2]:
+                    top10file[category].insert(i, [position[0],playerName.get(), elapsed_time])
+                    top10file[category].pop()
+                    
+                    # Actualizar posiciones
+                    for j in range(i+1, len(top10file[category])):
+                        top10file[category][j][0] = j+1
+                break
 
             # guardar cambios
             with open('TEC/Taller/Proyectos/Proyecto 2/kakuro2023top10.dat', 'wb') as file:
@@ -790,18 +784,18 @@ def play():
                                 casillas[(casilla[2],i)].config(bg="white", fg="black")
             
             # Comprobar si se ha ganado el juego
-            win = True
+            win = False
 
             for i in range(9):
                 for j in range(9):
-                    try:
-                        if casillas[(i,j)]['bg'] == 'white' or casillas[(i,j)]['bg'] == 'yellow':
-                            win = False
-                    except:
-                        pass
+                    if casillas[(i,j)]['bg'] == 'green':
+                        win = True
+                    else:
+                        win = False
+                        break
 
             if win:
-                top10('win')
+                
                         
 
     # Jugada no valida
@@ -936,7 +930,7 @@ def play():
 
     # Top 10, guardar juego y cargar juego
 
-    top10btn = tk.Button(playWindow, text="TOP 10", width=15, height=2, font=("Eras Demi ITC", 12), background='#FFFF00', command=lambda: top10('show'))
+    top10btn = tk.Button(playWindow, text="TOP 10", width=15, height=2, font=("Eras Demi ITC", 12), background='#FFFF00', command=top10)
     top10btn.grid(row=1, column=3, padx=30, pady=(690,0))
     guardarJuego = tk.Button(playWindow, text="GUARDAR JUEGO", width=15, height=2, font=("Eras Demi ITC", 12), background='#ED7D31', command=saveGame)
     guardarJuego.grid(row=2, column=3, padx=30, pady=0)

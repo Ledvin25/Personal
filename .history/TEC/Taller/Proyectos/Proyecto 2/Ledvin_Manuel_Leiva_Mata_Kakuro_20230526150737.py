@@ -447,6 +447,7 @@ def play():
 
         with open('TEC/Taller/Proyectos/Proyecto 2/kakuro2023top10.dat', 'rb') as file:
             top10file = pickle.load(file)
+
             # Asignar nueva posicion si esta esta dentro del top 10
 
             if playerName.get() != "" and elapsed_time != 0 and state == 'win':
@@ -458,7 +459,7 @@ def play():
                         # Actualizar posiciones
                         for j in range(i+1, len(top10file[category])):
                             top10file[category][j][0] = j+1
-                        break
+                    break
 
             # guardar cambios
             with open('TEC/Taller/Proyectos/Proyecto 2/kakuro2023top10.dat', 'wb') as file:
