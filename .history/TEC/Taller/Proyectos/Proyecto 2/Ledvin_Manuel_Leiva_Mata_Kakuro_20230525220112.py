@@ -15,7 +15,6 @@ import os
 
 nivel_Casillas = ()
 iDificulty = 1
-partidas = {}
 
 # Jugar ------------------------------------------------------------------------------------------------------------------------------
 def play():
@@ -372,6 +371,8 @@ def play():
             horas_save = saved[3]
             nivel_Casillas = saved[4]
 
+            # Escoger nivel
+            escogerNivel()
             # Cargar tablero
             cargarTablero()
 

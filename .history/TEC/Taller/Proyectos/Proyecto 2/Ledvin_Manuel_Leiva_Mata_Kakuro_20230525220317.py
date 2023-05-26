@@ -331,6 +331,7 @@ def play():
         global nivel_Casillas
         global elapsed_time
         global running
+        global partidas
 
         # Verificar si hay un juego guardado
 
