@@ -1,4 +1,8 @@
 import pickle
+import os
+
+ruta_actual = os.path.dirname(os.path.abspath(__file__)) # ruta del archivo
+ruta_actual = ruta_actual.replace("\\", "/") # reemplazar las diagonales invertidas por diagonales normales
 
 partidas = {
     'FÁCIL': (

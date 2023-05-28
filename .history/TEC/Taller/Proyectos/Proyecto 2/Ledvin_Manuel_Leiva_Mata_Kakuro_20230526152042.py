@@ -9,11 +9,6 @@ import pickle
 import random
 import os
 
-# Ruta actual
-
-ruta_actual = os.path.dirname(os.path.abspath(__file__)) # ruta del archivo
-ruta_actual = ruta_actual.replace("\\", "/") # reemplazar las diagonales invertidas por diagonales normales
-
 # Funciones para el menu principal ------------------------------------------------------------------------------------------------------------------------------:
 
 # Niveles
@@ -21,8 +16,6 @@ ruta_actual = ruta_actual.replace("\\", "/") # reemplazar las diagonales inverti
 nivel_Casillas = ()
 iDificulty = 0
 partidas = {}
-test = True
-
 
 # Jugar ------------------------------------------------------------------------------------------------------------------------------
 def play():
@@ -32,11 +25,10 @@ def play():
     global segundos
     global minutos
     global horas
-    global test
 
     # Comprobar que exista archivo de top10
 
-    if not os.path.exists(ruta_actual + "//kakuro2023top10.dat"):
+    if not os.path.exists("TEC/Taller/Proyectos/Proyecto 2/kakuro2023top10.dat"):
         
         top10 = {
             'FÁCIL': [
@@ -54,7 +46,7 @@ def play():
         }
 
 
-        file = open(ruta_actual + "//kakuro2023top10.dat", "wb")
+        file = open("TEC/Taller/Proyectos/Proyecto 2/kakuro2023top10.dat", "wb")
 
         pickle.dump(top10, file)
 
@@ -85,7 +77,6 @@ def play():
         global casillas
         global nivel_Casillas
         global category
-        global test
 
         numerosMostrados = []
 
@@ -97,6 +88,8 @@ def play():
 
         if len(partidas[category]) == len(numerosMostrados):
             numerosMostrados = []
+
+        test = True
 
         if not test:
             # Escoger nivel aleatorio
@@ -256,7 +249,6 @@ def play():
 
         global running
         global casillas
-        global test
 
         if running:
             deleteJuego()
@@ -276,8 +268,6 @@ def play():
             segundos.config(text='')
             minutos.config(text='')
             horas.config(text='')
-
-            test = False
             
         else:
             Error1 = tk.Tk()
@@ -334,7 +324,7 @@ def play():
 
         # guardar datos
 
-        with open(ruta_actual + '/kakuro2023juegoactual.dat', 'wb') as file:
+        with open('TEC/Taller/Proyectos/Proyecto 2/kakuro2023juegoactual.dat', 'wb') as file:
             pickle.dump(saved, file)
 
         # cerrar
@@ -400,7 +390,7 @@ def play():
 
         # Verificar si hay un juego guardado
 
-        if not os.path.isfile(ruta_actual + '/kakuro2023juegoactual.dat'):
+        if not os.path.isfile('TEC/Taller/Proyectos/Proyecto 2/kakuro2023juegoactual.dat'):
 
             Error1 = tk.Tk()
             Error1.title("ERROR")
@@ -424,7 +414,7 @@ def play():
             casillas = {}
 
             # abrir archivo
-            with open(ruta_actual + '/kakuro2023juegoactual.dat', 'rb') as file:
+            with open('TEC/Taller/Proyectos/Proyecto 2/kakuro2023juegoactual.dat', 'rb') as file:
                 saved = pickle.load(file)
             
             # cerrar archivo
@@ -481,7 +471,7 @@ def play():
 
         # abrir archivo
 
-        with open(ruta_actual + '/kakuro2023top10.dat', 'rb') as file:
+        with open('TEC/Taller/Proyectos/Proyecto 2/kakuro2023top10.dat', 'rb') as file:
             top10file = pickle.load(file)
             # Asignar nueva posicion si esta esta dentro del top 10
 
@@ -497,7 +487,7 @@ def play():
                         break
 
             # guardar cambios
-            with open(ruta_actual + '/kakuro2023top10.dat', 'wb') as file:
+            with open('TEC/Taller/Proyectos/Proyecto 2/kakuro2023top10.dat', 'wb') as file:
                 pickle.dump(top10file, file)
                 file.close()
 
@@ -1042,7 +1032,7 @@ def settings():
         global nivel_Casillas
         global partidas
 
-        with open(ruta_actual + '/kakuro2023partidas.dat', 'rb') as file:
+        with open('TEC/Taller/Proyectos/Proyecto 2/kakuro2023partidas.dat', 'rb') as file:
             partidas = pickle.load(file)
         
     # Ventana de error
@@ -1162,9 +1152,7 @@ def settings():
 
 # Ayuda ------------------------------------------------------------------------------------------------------------------------------
 def help():
-    ruta_actual = os.path.dirname(os.path.abspath(__file__)) + '/Ledvin_Manuel_Leiva_Mata_manual_de_usuario_kakuro.pdf' # ruta del archivo
-    ruta_actual = ruta_actual.replace("\\", "/") # reemplazar las diagonales invertidas por diagonales normales
-    os.startfile(ruta_actual)  # abrir el archivo con la aplicación predeterminada
+    print("Ayuda")
 
 # Acerca de ------------------------------------------------------------------------------------------------------------------------------
 def about():
