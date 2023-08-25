@@ -2,7 +2,7 @@
 
 ---
 
-🚀 I'm a Full Stack Developer with 8+ years of experience in software development and 9+ years of experience with Adobe Photoshop, Adobe Premier, and Adobe After Effects. 
+🚀 I'm a Full Stack Developer with 8+ years of experience in software development and 9+ years of experience with video and photo editing. 
 
 💼 I'm also a founder of MyTourCR (https://github.com/MyTourCR), a project aimed at promoting tourism in Costa Rica.
 
