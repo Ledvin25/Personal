@@ -9,8 +9,9 @@ addNews(string key_words); // Agrega una noticia y la ordena por prioridad
    // addData(data);
    // checkPriority(Y);
 
-deleteNews(string key_words); // Elimina una noticia
+deleteNews(string key_words); // Elimina una noticia 
    // deleteData(data);
+   // checkPriority(Y);
 
 showTop5(); // Muestra las 5 noticias con mayor prioridad
    // displayData(pos);

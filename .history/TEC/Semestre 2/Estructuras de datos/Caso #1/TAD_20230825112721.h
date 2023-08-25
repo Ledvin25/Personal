@@ -1,0 +1,1 @@
+void add(string info );

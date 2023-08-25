@@ -1,0 +1,2 @@
+void add(info data);
+
