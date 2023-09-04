@@ -1,4 +1,41 @@
+#include <iostream>
+#include "TAD.h"
 
+void addNews()
+{
+   string data;
+   cout << "Ingrese la noticia: ";
+   cin >> data;
+   Nodo nodo(data);
+   nodo.addNodo(&nodo);
+}
+
+void ShowAll(Nodo &nodo)
+{
+   while (nodo.getNext() != NULL)
+   {
+      cout << nodo.getData() << endl;
+      nodo = nodo.getNext();
+   }
+}
+
+showTop5(Nodo &nodo)
+{
+   int i = 0;
+   while (nodo.getNext() != NULL && i < 5)
+   {
+      cout << nodo.getData() << endl;
+      nodo = nodo.getNext();
+      i++;
+   }
+}
+
+
+
+
+
+
+/*
 changePriority(int pos, int Y); // Cambia la prioridad de la noticia
    // moveToPosition(new_pos);
 
@@ -23,3 +60,5 @@ searchWord(string key_words); // Busca una o varias noticias que contengan las p
 
 deleteWords(string key_words); // Elimina noticias que contengan una o varias palabras escodigas
    // deleteNews(key_words);
+
+*/

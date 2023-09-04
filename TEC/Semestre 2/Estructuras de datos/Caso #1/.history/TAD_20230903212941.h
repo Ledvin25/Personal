@@ -53,12 +53,7 @@ Class Nodo
             }
         }
         
-        // obtener dato
-
-        string getData()
-        {
-            return this->data;
-        }
+        // obtener 
 
         // Mover al siguiente nodo
 

@@ -1,8 +1,3 @@
-#include <iostream>
-#include <string>
-
-using namespace std;
-
 Class Nodo
 {
     private:
@@ -13,7 +8,7 @@ Class Nodo
         
         // Constructor
 
-        Nodo(string data)
+        Nodo(info data)
         {
             this->data = data;
             this->next = NULL;
@@ -53,11 +48,21 @@ Class Nodo
             }
         }
         
-        // obtener dato
+        // Mostrar nodo
 
-        string getData()
+        void displayNodo(int pos)
         {
-            return this->data;
+            if(this->next != NULL)
+            {
+                if(pos == 0)
+                {
+                    cout << this->data << endl;
+                }
+                else
+                {
+                    this->next->displayNodo(pos-1);
+                }
+            }
         }
 
         // Mover al siguiente nodo
@@ -80,20 +85,17 @@ Class Nodo
             }
         }
 
-        // Buscar nodo
-
-        void searchNodo(int pos)
-        {
-            if(this->next != NULL)
-            {
-                if(pos == 0)
-                {
-                    return this->data;
-                }
-                else
-                {
-                    this->next->searchNodo(pos-1);
-                }
-            }
-        }
 };
+
+
+/*addData(info data, int pos); // Agrega un dato en la posicion pos
+
+deleteData(int pos); // Elimina un dato en la posicion pos
+
+displayData(int pos); // Muestra un dato en la posicion pos
+
+getNext(); // Mueve el puntero a la siguiente posicion
+
+getPrev(); // Mueve el puntero a la posicion anterior
+
+moveToPosition(int new_pos, info data); // Se mueve la noticia a la posicion new_pos*/

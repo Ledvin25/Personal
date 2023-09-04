@@ -1,7 +1,4 @@
-#include <iostream>
 #include <string>
-
-using namespace std;
 
 Class Nodo
 {
@@ -15,7 +12,7 @@ Class Nodo
 
         Nodo(string data)
         {
-            this->data = data;
+            this->data = string;
             this->next = NULL;
             this->prev = NULL;
         }
@@ -53,11 +50,21 @@ Class Nodo
             }
         }
         
-        // obtener dato
+        // Mostrar nodo
 
-        string getData()
+        void displayNodo(int pos)
         {
-            return this->data;
+            if(this->next != NULL)
+            {
+                if(pos == 0)
+                {
+                    cout << this->data << endl;
+                }
+                else
+                {
+                    this->next->displayNodo(pos-1);
+                }
+            }
         }
 
         // Mover al siguiente nodo
