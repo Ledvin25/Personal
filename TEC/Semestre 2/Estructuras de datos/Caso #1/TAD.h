@@ -3,15 +3,15 @@
 
 using namespace std;
 
-Class Nodo
+class Nodo
 {
     private:
         string data;
         Nodo *next;
         Nodo *prev;
     public:
-        
-        // Constructor
+
+    // Constructor
 
         Nodo(string data)
         {
@@ -19,8 +19,7 @@ Class Nodo
             this->next = NULL;
             this->prev = NULL;
         }
-
-        // Agregar nodo
+    // Agregar nodo
 
         void addNodo(Nodo *nodo)
         {
@@ -35,7 +34,8 @@ Class Nodo
             }
         }
 
-        // Eliminar nodo
+    
+    // Eliminar nodo
 
         void deleteNodo(int pos)
         {
@@ -53,47 +53,53 @@ Class Nodo
             }
         }
         
-        // obtener dato
+    // Obtener dato
 
         string getData()
         {
-            return this->data;
+                return this->data;
         }
 
-        // Mover al siguiente nodo
+    // Obtener siguiente
 
-        void getNext()
+        Nodo *getNext()
         {
-            if(this->next != NULL)
+            return this->next;
+        }
+
+    // Obtener anterior
+
+        Nodo *getPrev()
+        {
+            return this->prev;
+        }
+
+    // Fijar siguiente
+
+        void setNext(Nodo *next)
+        {
+            this->next = next;
+        }
+    
+    // Fijar anterior
+
+        void setPrev(Nodo *prev)
+        {
+            this->prev = prev;
+        }
+
+    // Contar nodos
+
+        int countNodos()
+        {
+            if(this->next == NULL)
             {
-                this->next->displayNodo(pos-1);
+                return 1;
+            }
+            else
+            {
+                return 1 + this->next->countNodos();
             }
         }
+};   
 
-        // Mover al nodo anterior
-
-        void getPrev()
-        {
-            if(this->prev != NULL)
-            {
-                this->prev->displayNodo(pos-1);
-            }
-        }
-
-        // Buscar nodo
-
-        void searchNodo(int pos)
-        {
-            if(this->next != NULL)
-            {
-                if(pos == 0)
-                {
-                    return this->data;
-                }
-                else
-                {
-                    this->next->searchNodo(pos-1);
-                }
-            }
-        }
-};
