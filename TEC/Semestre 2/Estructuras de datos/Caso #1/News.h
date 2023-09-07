@@ -3,6 +3,7 @@
 #include "TAD.h"
 #include <sstream>
 #include <vector>
+#include "news.cpp"
 
 using namespace std;
 
@@ -91,6 +92,18 @@ void changePriority(Nodo *nodo, int pos, int Y)
 
     insertNews(nodo, copy, Y);
 
+}
+
+void apiNews(Nodo *nodo)
+{
+    Newsapi newsapi;
+
+    vector<News *> allrecords = newsapi.getRecords();
+
+    for (int i = 0; i < allrecords.size(); i++)
+    {
+        addNews(nodo, allrecords.at(i)->getTitle());
+    }
 }
 
 void showAll(Nodo *nodo)

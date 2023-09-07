@@ -3,8 +3,7 @@
 #include <sstream>
 #include <vector>
 #include "news.h"
-#include "json.hpp"
-
+#include 
 
 using namespace std;
 
@@ -15,13 +14,13 @@ int main()
     cout << "NOTICIAS SIN RELEVANCIA ESPECIFICA" << endl << endl;
 
     Nodo *nodo = new Nodo("nuevas vacunas contra virus de la gripe esperanza para un invierno saludable");
-    
+    addNews(nodo, "descubrimiento cientifico el agua en marte abre nuevas preguntas");
     addNews(nodo, "tecnologia 5g llega a mas ciudades mayor velocidad en internet movil");
     addNews(nodo, "reciclaje de plasticos un paso crucial para un futuro sostenible");
     addNews(nodo, "astronomos observan un nuevo planeta potencialmente habitable");
     addNews(nodo, "avance medico terapia genica ofrece esperanza a pacientes con enfermedades raras");
 
-    
+    showAll(nodo);
 
     // Agregar noticias con relevancia especifica
 
@@ -59,15 +58,7 @@ int main()
 
     deleteNews(nodo);
 
-    showAll(nodo);  
-
-    // Agregar noticias desde API
-
-    cout << endl << "AGREGAR NOTICIAS DESDE API" << endl << endl;  
-
-    apiNews(nodo);
-
-    showTop5(nodo);
+    showAll(nodo);    
 
 }
 
