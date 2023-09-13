@@ -1,2 +1,0 @@
-# Ledvin Manuel Leiva Mata
-# 
