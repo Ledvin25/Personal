@@ -11,17 +11,18 @@ public class NearbyStop {
 
     public NearbyStop() {
         frame = new JFrame("Selección de Parada");
-        frame.setSize(200, 300);
+        frame.setSize(300, 550);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
         // Panel para organizar componentes en el centro de la ventana
         JPanel panel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
+        panel.setBackground(Color.decode("#bdffa1")); // Cambio de color de fondo
         panel.setBorder(BorderFactory.createEmptyBorder(100, 50, 100, 50)); // Añadir espacio alrededor
 
         // Etiqueta de selección de parada
-        JLabel stopLabel = new JLabel("Selecciona la Parada:");
+        JLabel stopLabel = new JLabel("Seleccione la parada:");
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(0, 0, 10, 0); // Espacio inferior
@@ -29,18 +30,20 @@ public class NearbyStop {
 
         // ComboBox para seleccionar la parada
         stopComboBox = new JComboBox<>(new String[]{"Stop1", "Stop2", "Stop3", "Stop4", "Stop5"});
+        stopComboBox.setPreferredSize(new Dimension(120, 30)); // Tamaño del ComboBox
+        stopComboBox.setBackground(Color.decode("#ff887d")); // Cambio de color del ComboBox
+        stopComboBox.setForeground(Color.BLACK); // Cambio de color del texto del ComboBox
         gbc.gridy = 1;
-        gbc.ipadx = 50; // Ancho del ComboBox
-        gbc.ipady = 20; // Alto del ComboBox
         gbc.insets = new Insets(0, 0, 10, 0); // Espacio inferior
         panel.add(stopComboBox, gbc);
 
         // Botón para confirmar la selección
         JButton seleccionarButton = new JButton("Seleccionar");
         seleccionarButton.setPreferredSize(new Dimension(120, 30)); // Tamaño del botón
+        seleccionarButton.setBackground(Color.decode("#ff6b6b")); // Cambio de color de fondo del botón
+        seleccionarButton.setForeground(Color.WHITE); // Cambio de color del texto del botón
+        seleccionarButton.setBorder(BorderFactory.createLineBorder(Color.BLACK)); // Borde negro
         gbc.gridy = 2;
-        gbc.ipadx = 0; // Restablecer el ancho del ComboBox
-        gbc.ipady = 0; // Restablecer el alto del ComboBox
         gbc.insets = new Insets(10, 0, 0, 0); // Espacio superior
         panel.add(seleccionarButton, gbc);
 
