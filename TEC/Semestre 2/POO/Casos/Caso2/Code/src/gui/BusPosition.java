@@ -55,7 +55,7 @@ public class BusPosition {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Lógica para mostrar la acción del botón "Bus Anterior" en la consola
-                consoleTextArea.append("El bus ha llegado a la Parada1.\n");
+                consoleTextArea.append("Accion\n");
             }
         });
 
@@ -63,7 +63,7 @@ public class BusPosition {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Lógica para mostrar la acción del botón "Obtener Info" en la consola
-                consoleTextArea.append("Faltan 2 minutos y 15 segundos para que llegue a su parada.\n");
+                consoleTextArea.append("Accion\n");
             }
         });
 
@@ -71,7 +71,7 @@ public class BusPosition {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Lógica para mostrar la acción del botón "Bus Siguiente" en la consola
-                consoleTextArea.append("El bus ha llegado a su parada.\n");
+                consoleTextArea.append("Accion\n");
             }
         });
     }
