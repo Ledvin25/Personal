@@ -1,8 +1,11 @@
 package Lyric;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LyricByGender {
     
-    class SalsaGenerator extends LyricGenerator {
+    public class SalsaGenerator extends LyricGenerator {
         
         @Override
         public String lyricGenerator(String[] frases) {
@@ -11,7 +14,7 @@ public class LyricByGender {
         
     }
 
-    class BachataGenerator extends LyricGenerator {
+    public class BachataGenerator extends LyricGenerator {
         
         @Override
         public String lyricGenerator(String[] frases) {
@@ -20,7 +23,7 @@ public class LyricByGender {
         
     }
 
-    class MerengueGenerator extends LyricGenerator {
+    public class MerengueGenerator extends LyricGenerator {
         
         @Override
         public String lyricGenerator(String[] frases) {
@@ -30,4 +33,22 @@ public class LyricByGender {
     }
 
     // Y asi con todos los generadores de letras por genero, no se me ocurre como hacerlo en una sola clase
+
+    // Fusionar generos 
+
+    public class GeneroFusionado extends LyricGenerator {
+        private List<LyricGenerator> generosSeleccionados = new ArrayList<>();
+    
+        public void agregarGenero(LyricGenerator genero) {
+            generosSeleccionados.add(genero);
+        }
+    
+        @Override
+        public String lyricGenerator(String[] frases) {
+            for (LyricGenerator genero : generosSeleccionados) {
+                // Genera letras para cada género seleccionado
+            }
+            return "Letra fusionada"; // Aqui iria toda la implementacion
+        }
+    }
 }
