@@ -3,7 +3,7 @@ package model;
 public class Stop 
 {
     private String name;
-    private double distance; // Distancia a la siguiente parada en la ruta
+    private double distance; // Distancia a la siguiente parada en la ruta en metros
     private boolean terminal; // Indica si la parada es terminal o no
 
     public Stop(String name, double distance, boolean terminal) {

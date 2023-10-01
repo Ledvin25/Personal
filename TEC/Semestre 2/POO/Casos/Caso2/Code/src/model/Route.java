@@ -25,6 +25,6 @@ public class Route {
         for (int i = 0; i < stops.size() - 1; i++) {
             totalDistance += stops.get(i).getDistance();
         }
-        return totalDistance;
+        return totalDistance; // en metros
     }
 }
