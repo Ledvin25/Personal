@@ -14,30 +14,37 @@ public class App {
     // --------------------------------------------- Attributes ---------------------------------------------
 
     private Stop stop;
+    private Simulation simulation;
 
 
     // --------------------------------------------- Constructor ---------------------------------------------
 
-    public App(Stop stop) 
+    public App(Stop stop, Simulation simulation) 
     {
         this.stop = stop;
+        this.simulation = simulation;
     }
 
     // --------------------------------------------- Methods ---------------------------------------------
 
-    public String[] findNearbyBuses(BusLine busLine)
+    public List<Bus> getBusesByStop()
     {
+        // Lista de las lineas que hay en simulation
+        List<BusLine> busLines = simulation.getBusLines();
 
         // Lista para guardar las rutas que pasan por la parada
         List<Route> routes = new ArrayList<Route>();
 
-        for (Route route : busLine.getRoutes())
+        for (BusLine busLine : busLines)
         {
-            for (Stop stop : route.getStops())
+            for (Route route : busLine.getRoutes())
             {
-                if (stop.equals(this.stop))
+                for (Stop stop : route.getStops())
                 {
-                    routes.add(route);
+                    if (stop.equals(this.stop))
+                    {
+                        routes.add(route);
+                    }
                 }
             }
         }
@@ -45,50 +52,62 @@ public class App {
         // Lista para guardar los buses que pasan por la parada
         List<Bus> buses = new ArrayList<Bus>();
 
-        for(Bus bus : busLine.getBuses())
+        for (BusLine busLine : busLines)
         {
-            for(Route route : routes)
+            for(Bus bus : busLine.getBuses())
             {
-                if(bus.getCurrentRoute().equals(route))
+                for(Route route : routes)
                 {
-                    buses.add(bus);
+                    if(bus.getCurrentRoute().equals(route))
+                    {
+                        buses.add(bus);
+                    }
                 }
             }
         }
 
-        // Lista para guardar las placas de los buses que pasan por la parada
-        List<String> licensePlates = new ArrayList<String>();
-        
+        return buses;
+    }
+
+    // Obtener el bus siguiente
+    public Bus getNextBus()
+    {
+        List<Bus> buses = getBusesByStop();
+
         for(Bus bus : buses)
         {
-            licensePlates.add(Integer.toString(bus.getLicensePlate()));
+            if(bus.getDistanceToStop(stop) <= 200)
+            {
+                return bus;
+            }
         }
 
-        // Retornar la lista de placas de los buses que pasan por la parada
-        return licensePlates.toArray(new String[0]);
-    }
-
-    // Obtener el proximo bus
-    public String getNextBus()
-    {
-        return null;
-    }
-
-    // Obtener el bus anterior
-    public String getPrevBus()
-    {
         return null;
     }
 
     // Obtener el tiempo de espera
-    public String getBusInfo(Bus bus)
+    public String getBusInfo()
     {
-        return null;
+        Bus bus = getNextBus();
+
+        // Encontrar la ruta del bus
+        Route route = bus.getCurrentRoute();
+
+        // Sacar la tarifa de la ruta
+        float fare = route.getFare();
+
+        // Retornar el tiempo la placa y la tarifa
+
+        return "Placa: " + bus.getLicensePlate() + " Tarifa: " + fare;
     }
 
     // Obtener el tiempo restante
     public String getTimeRemaining(Bus bus)
     {
-        return null;
+        // Calcular el tiempo restante para que llegue el bus
+        double timeRemaining = bus.getDistanceToStop(stop) / bus.getSpeed();
+
+        // Retornar el tiempo restante
+        return "Tiempo restante: " + timeRemaining;
     }
 }

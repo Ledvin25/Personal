@@ -20,8 +20,8 @@ public class testBusLine {
 
         // Crear 2 rutas
 
-        Route route1 = new Route(1);
-        Route route2 = new Route(2);
+        Route route1 = new Route(1, 620);
+        Route route2 = new Route(2, 620);
 
         route1.addStop(stop1);
         route1.addStop(stop2);

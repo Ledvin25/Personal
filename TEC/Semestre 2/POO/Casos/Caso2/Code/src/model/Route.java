@@ -7,10 +7,12 @@ public class Route {
 
     private List<Stop> stops;
     private int route_id;
+    private float fare;
 
-    public Route(int route_id) {
+    public Route(int route_id, float fare) {
         this.stops = new ArrayList<>();
         this.route_id = route_id;
+        this.fare = fare;
     }
 
     // Constructor sin parametros
@@ -25,6 +27,10 @@ public class Route {
         this.route_id = route_id;
     }
 
+    public void setFare(float fare) {
+        this.fare = fare;
+    }
+
     // -------------------------------------  Getters  ------------------------------------- //
 
     public List<Stop> getStops() {
@@ -33,6 +39,10 @@ public class Route {
 
     public int getRoute() {
         return route_id;
+    }
+
+    public float getFare() {
+        return fare;
     }
 
     // -------------------------------------  Otros  ------------------------------------- //
