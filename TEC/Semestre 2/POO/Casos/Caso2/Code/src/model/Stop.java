@@ -12,12 +12,27 @@ public class Stop
         this.terminal = false;
     }
 
-    // set terminal
+    // Constructor sin parametros
+
+    public Stop() {
+        this.terminal = false;
+    }
+
+    // -------------------------------------  Setters  ------------------------------------- //
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPosition(double position) {
+        this.position = position;
+    }
+
     public void setTerminal(boolean terminal) {
         this.terminal = terminal;
     }
 
-    // getters
+    // -------------------------------------  Getters  ------------------------------------- //
 
     public String getName() {
         return name;
@@ -27,7 +42,6 @@ public class Stop
         return position;
     }
 
-    // Método para comprobar si la parada es terminal o no
     public boolean isTerminal() {
         return terminal;
     }

@@ -20,25 +20,51 @@ public class BusLine {
         this.routes = new ArrayList<>();
     }
 
-    // Set and get startTime
+    // Constructor sin parametros
 
-    public LocalTime getStartTime() {
-        return startTime;
+    public BusLine() {
+        this.buses = new ArrayList<>();
+        this.routes = new ArrayList<>();
     }
+
+    // -------------------------------------  Setters  ------------------------------------- //
 
     public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    // Set and get endTime
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setBuses(List<Bus> buses) {
+        this.buses = buses;
+    }
+
+    public void setRoutes(List<Route> routes) {
+        this.routes = routes;
+    }
+    
+
+    // -------------------------------------  Getters  ------------------------------------- //
+
+    public LocalTime getStartTime() {
+        return startTime;
+    }
 
     public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
+    public List<Bus> getBuses() {
+        return buses;
     }
+
+    public List<Route> getRoutes() {
+        return routes;
+    }
+
+    // -------------------------------------  Methods  ------------------------------------- //
 
     // changeBusRoute
     public void changeBusRoute(int licensePlate, int route_id) {

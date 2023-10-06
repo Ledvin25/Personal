@@ -1,0 +1,143 @@
+{
+  "empresas_de_buses": [
+    {
+      "nombre": "LUMACA",
+      "hora de inicio": "05:00",
+      "hora de fin": "22:00",
+      "buses": [
+        { "placa": "LU-001", "capacidad": 40 },
+        { "placa": "LU-002", "capacidad": 30 },
+        { "placa": "LU-003", "capacidad": 50 },
+        { "placa": "LU-004", "capacidad": 40 },
+        { "placa": "LU-005", "capacidad": 30 },
+        { "placa": "LU-006", "capacidad": 50 }
+      ],
+      "rutas": [
+        {
+          "nombre": "Cartago - San Jose",
+          "tarifa": 685,
+          "id" : 501,
+          "paradas": [
+            { "nombre": "Terminal Cartago", "posicion": 0.0, "terminal": true },
+            { "nombre": "Terminal San Jose", "posicion": 22000.0, "terminal": true }
+          ]
+        },
+        {
+          "nombre": "Cartago - Pista - San Pedro - San Jose",
+          "id" : 502,
+          "tarifa": 685,
+          "paradas": [
+            { "nombre": "Terminal Cartago", "posicion": 0, "terminal": true },
+            { "nombre": "Carniceria La Chaira, Cartago", "posicion": 1500, "terminal": false },
+            { "nombre": "Contiguo A Abastecedor La Palmera, Fatima, Cartago", "posicion": 3000, "terminal": false },
+            { "nombre": "Recope Plantel Ochomogo, Autopista Florencio Del Castillo Cartago", "posicion": 5000, "terminal": false },
+            { "nombre": "Contiguo A Entrada Barrio El Fierro, Autopista Florencio Del Castillo La Union", "posicion": 8000, "terminal": false },
+            { "nombre": "Iglesia Catolica De San Rafael, La Union", "posicion": 10000, "terminal": false },
+            { "nombre": "Contiguo A Subestacion Del Ice Tres Rios, La Union", "posicion": 12300, "terminal": false },
+            { "nombre": "Plaza Cronos Curridabat", "posicion": 16000, "terminal": false },
+            { "nombre": "Farmacia Fischel Pinares, Curridabat", "posicion": 16500, "terminal": false },
+            { "nombre": "San Jose Indoor Club, Curridabat", "posicion": 17000, "terminal": false },
+            { "nombre": "Plaza Freses, Curridabat", "posicion": 17300, "terminal": false },
+            { "nombre": "Plaza Del Sol, Curridabat", "posicion": 17500, "terminal": false },
+            { "nombre": "Veterinaria Munoz & Nanne, Montes De Oca", "posicion": 17900, "terminal": false },
+            { "nombre": "Contiguo A Funeraria Montesacro, Dent Montes De Oca", "posicion": 18300, "terminal": false },
+            { "nombre": "Costado Norte Parque Nacional, San Jose", "posicion": 19500, "terminal": false },
+            { "nombre": "Costado Sur Parque Morazan, San Jose", "posicion": 21500, "terminal": false },
+            { "nombre": "Terminal Lumaca San Jose", "posicion": 22500, "terminal": true }
+          ]
+        },
+        {
+          "nombre": "Cartago - Pista - Zapote - San Jose",
+          "id" : 503,
+          "tarifa": 685,
+          "paradas": [
+            { "nombre": "Terminal Cartago", "posicion": 0, "terminal": true },
+            { "nombre": "Carniceria La Chaira, Cartago", "posicion": 1500, "terminal": false },
+            { "nombre": "Contiguo A Abastecedor La Palmera, Fatima, Cartago", "posicion": 3000, "terminal": false },
+            { "nombre": "Ina Sede Regional Fatima, Cartago", "posicion": 4500, "terminal": false },
+            { "nombre": "Colegio San Nicolas, Taras Cartago", "posicion": 5500, "terminal": false },
+            { "nombre": "Centro Comercial Paseo Del Sol, Taras Cartago", "posicion": 6500, "terminal": false },
+            { "nombre": "Centro De Carnes Aguilar, Taras Cartago", "posicion": 7500, "terminal": false },
+            { "nombre": "Super Baterias, Taras Cartago", "posicion": 8500, "terminal": false },
+            { "nombre": "Bar & Rest. La Ultima Copa, Taras Cartago", "posicion": 9500, "terminal": false },
+            { "nombre": "Cuesta Del Ochomogo, Autopista Florencio Del Castillo Cartago", "posicion": 11500, "terminal": false },
+            { "nombre": "Recope Plantel Ochomogo, Autopista Florencio Del Castillo Cartago", "posicion": 13500, "terminal": false },
+            { "nombre": "Contiguo A Soda El Trailero, Autopista Florencio Del Castillo Cartago", "posicion": 15000, "terminal": false },
+            { "nombre": "Planta Protecto Ochomogo, Autopista Florencio Del Castillo Cartago", "posicion": 16500, "terminal": false },
+            { "nombre": "Puente Peatonal Terramall, Autopista Florencio Del Castillo La Union", "posicion": 17500, "terminal": false },
+            { "nombre": "Contiguo A Iglesia Catolica San Diego, Autopista Florencio Del Castillo La Union", "posicion": 18500, "terminal": false },
+            { "nombre": "Centro Comercial Pinares Place, Autopista Florencio Del Castillo Curridabat", "posicion": 20000, "terminal": false },
+            { "nombre": "Registro Nacional, Curridabat", "posicion": 21000, "terminal": false },
+            { "nombre": "Centro Comercial El Castillo, Zapote San Jose", "posicion": 21500, "terminal": false },
+            { "nombre": "Liceo Rodrigo Facio, Zapote San Jose", "posicion": 21700, "terminal": false },
+            { "nombre": "Fundatec Zapote, San Jose", "posicion": 21900, "terminal": false },
+            { "nombre": "Instalaciones Colegio De Abogados, Montealegre San Jose", "posicion": 22000, "terminal": false },
+            { "nombre": "Parque Montealegre, San Jose", "posicion": 22200, "terminal": false },
+            { "nombre": "Cercanias A Clinica Dr. Carlos Duran, Gonzalez Viquez San Jose", "posicion": 22400, "terminal": false },
+            { "nombre": "Frente A Agencia Banco Popular Plaza Gonzalez Viquez, San Jose", "posicion": 22600, "terminal": false },
+            { "nombre": "Costado Norte Parque Nacional, San Jose", "posicion": 22800, "terminal": false },
+            { "nombre": "Costado Sur Parque Morazan, San Jose", "posicion": 23000, "terminal": false },
+            { "nombre": "Terminal Lumaca San Jose", "posicion": 23500, "terminal": true }
+          ]
+        }
+      ]
+    },
+    {
+      "nombre": "COOPEPAR",
+      "hora de inicio": "05:00",
+      "hora de fin": "22:00",
+      "buses": [
+        { "placa": "CO-001", "capacidad": 40 },
+        { "placa": "CO-002", "capacidad": 30 },
+        { "placa": "CO-003", "capacidad": 50 },
+        { "placa": "CO-004", "capacidad": 40 },
+        { "placa": "CO-005", "capacidad": 30 },
+        { "placa": "CO-006", "capacidad": 50 }
+      ],
+      "rutas": [
+        {
+          "nombre": "Paraiso - San Jose",
+          "tarifa": 502,
+          "id" : 3,
+          "paradas": [
+            { "nombre": "Estadio Municipal Quincho Barquero, Santa Lucia Paraiso", "posicion": 0, "terminal": true },
+            { "nombre": "Antiguo Rest. Casa Vieja, Paraiso", "posicion": 800, "terminal": false },
+            { "nombre": "Megasuper Plaza Paraiso", "posicion": 1500, "terminal": false },
+            { "nombre": "Frente A Rest. Nila, Caballo Blanco Cartago", "posicion": 4000, "terminal": false },
+            { "nombre": "Frente A Iglesia Caballo Blanco, Cartago", "posicion": 6000, "terminal": false },
+            { "nombre": "Cercanias Ampm Los Angeles, Cartago", "posicion": 8000, "terminal": false },
+            { "nombre": "Frente A Escuela Wiston Churchill, Los Angeles Cartago", "posicion": 10000, "terminal": false },
+            { "nombre": "Costador Sur Plaza Mayor", "posicion": 12000, "terminal": false },
+            { "nombre": "Metrocentro Cartago", "posicion": 14000, "terminal": false },
+            { "nombre": "Frente A Paseo Metropoli, Radial Cartago", "posicion": 16000, "terminal": false },
+            { "nombre": "Bar & Rest. La Isla De La Lima, Autopista Florencio Del Castillo Cartago", "posicion": 18000, "terminal": false },
+            { "nombre": "Candelaria Monterrey, Autopista Florencio Del Castillo Cartago", "posicion": 20000, "terminal": false },
+            { "nombre": "Cuesta Del Ochomogo, Autopista Florencio Del Castillo Cartago", "posicion": 22000, "terminal": false },
+            { "nombre": "Recope Plantel Ochomogo, Autopista Florencio Del Castillo Cartago", "posicion": 24000, "terminal": false },
+            { "nombre": "Contiguo A Soda El Trailero, Autopista Florencio Del Castillo Cartago", "posicion": 26000, "terminal": false },
+            { "nombre": "Contiguo A Entrada Barrio El Fierro, Autopista Florencio Del Castillo La Union", "posicion": 28000, "terminal": false },
+            { "nombre": "Contiguo A Ebais San Rafael, Autopista Florencio Del Castillo La Union", "posicion": 30000, "terminal": false },
+            { "nombre": "Puente Peatonal Tres Rios, Autopista Florencio Del Castillo La Union", "posicion": 32000, "terminal": false },
+            { "nombre": "Contiguo A Subestacion Del Ice Tres Rios, La Union", "posicion": 34000, "terminal": false },
+            { "nombre": "Centro Comercial Pinares Place, Autopista Florencio Del Castillo Curridabat", "posicion": 36000, "terminal": false },
+            { "nombre": "Registro Nacional, Curridabat", "posicion": 38000, "terminal": false },
+            { "nombre": "Servicentro La Antigua Galera, Curridabat", "posicion": 40000, "terminal": false },
+            { "nombre": "Oficinas Bac Credomatic Curridabat", "posicion": 42000, "terminal": false },
+            { "nombre": "Frente A Taco Bell Curridabat", "posicion": 44000, "terminal": false },
+            { "nombre": "Frente A Bar & Rest. Kabana Classic, Curridabat", "posicion": 46000, "terminal": false },
+            { "nombre": "San Jose Indoor Club, Curridabat", "posicion": 48000, "terminal": false },
+            { "nombre": "Plaza Freses, Curridabat", "posicion": 50000, "terminal": false },
+            { "nombre": "Plaza Del Sol, Curridabat", "posicion": 52000, "terminal": false },
+            { "nombre": "Veterinaria Munoz & Nanne, Montes De Oca", "posicion": 54000, "terminal": false },
+            { "nombre": "Contiguo A Agencia Bac San Pedro, Montes De Oca", "posicion": 56000, "terminal": false },
+            { "nombre": "Costado Sur Iglesia Catolica De San Pedro Montes De Oca", "posicion": 58000, "terminal": false },
+            { "nombre": "Contiguo A Funeraria Montesacro, Dent Montes De Oca", "posicion": 60000, "terminal": false },
+            { "nombre": "Costado Norte Parque Nacional, San Jose", "posicion": 62000, "terminal": true },
+            { "nombre": "Costado Sur Parque Morazan, San Jose", "posicion": 64000, "terminal": true },
+            { "nombre": "Terminal San Jose, Cercanias A Mercado Coca Cola (Terminal)", "posicion": 66000, "terminal": true }
+          ]
+        }
+      ]
+    }
+  ]
+}

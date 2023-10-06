@@ -28,50 +28,96 @@ public class Bus {
         this.capacity = capacity;;
     }
 
-    // Método para obtener la ruta actual
-    public Route getCurrentRoute() {
-        return currentRoute;
+    // Constructor sin parametros
+
+    public Bus() {
     }
 
-    // Método para establecer la ruta actual
-    public void setCurrentRoute(Route currentRoute) {
-        this.currentRoute = currentRoute;
-    }
+    // -------------------------------------  Setters  ------------------------------------- // 
 
-    // Método para obtener la placa del bus
-    public int getLicensePlate() {
-        return licensePlate;
-    }
-
-    // Método para establecer la placa del bus
     public void setLicensePlate(int licensePlate) {
         this.licensePlate = licensePlate;
     }
 
-    // Método para obtener la velocidad actual
-    public double getSpeed() {
-        return speed;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
 
-    // Método para obtener la posición actual
-    public double getPosition() {
-        return position;
+    public void setPosition(double position) {
+        this.position = position;
     }
 
-    // Método para obtener la capacidad
+    public void setCurrentRoute(Route currentRoute) {
+        this.currentRoute = currentRoute;
+    }
+
+    public void setEscala_tiempo(int escala_tiempo) {
+        this.escala_tiempo = escala_tiempo;
+    }
+
+    public void setTargetSpeed(double targetSpeed) {
+        this.targetSpeed = targetSpeed;
+    }
+
+    public void setMaxSpeedVariation(double maxSpeedVariation) {
+        this.maxSpeedVariation = maxSpeedVariation;
+    }
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    public void setStop_index(int stop_index) {
+        this.stop_index = stop_index;
+    }
+
+    public void setSpeedTimer(Timer speedTimer) {
+        this.speedTimer = speedTimer;
+    }
+
+    // -------------------------------------  Getters  ------------------------------------- //
+
+    public int getLicensePlate() {
+        return licensePlate;
+    }
+
     public int getCapacity() {
         return capacity;
     }
 
-    // Método para obtener la escala de tiempo
+    public double getPosition() {
+        return position;
+    }
+
+    public Route getCurrentRoute() {
+        return currentRoute;
+    }
+
     public int getEscala_tiempo() {
         return escala_tiempo;
     }
 
-    // Método para establecer la escala de tiempo
-    public void setEscala_tiempo(int escala_tiempo) {
-        this.escala_tiempo = escala_tiempo;
+    public double getTargetSpeed() {
+        return targetSpeed;
     }
+
+    public double getMaxSpeedVariation() {
+        return maxSpeedVariation;
+    }
+
+    public double getSpeed() {
+        return speed;
+    }
+
+    public int getStop_index() {
+        return stop_index;
+    }
+
+    public Timer getSpeedTimer() {
+        return speedTimer;
+    }
+
+    // -------------------------------------  Metodos  ------------------------------------- //
 
     // Iniciar viaje
     public void startTrip() {
