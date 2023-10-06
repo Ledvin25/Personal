@@ -108,6 +108,6 @@ public class App {
         double timeRemaining = bus.getDistanceToStop(stop) / bus.getSpeed();
 
         // Retornar el tiempo restante
-        return "Tiempo restante: " + timeRemaining;
+        return "Tiempo restante: " + timeRemaining + " minutos";
     }
 }
