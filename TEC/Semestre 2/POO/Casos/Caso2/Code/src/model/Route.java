@@ -76,13 +76,8 @@ public class Route {
     // Método para calcular la distancia total de la ruta
     public double calculateTotalDistance() {
 
-        double distance = 0.0d;
+        double distance = stops.get(stops.size() - 1).getPosition();
 
-        for (int i = 0; i < stops.size() - 1; i++) {
-
-            distance += stops.get(i).getPosition();
-
-        }
         return distance;
     }
 

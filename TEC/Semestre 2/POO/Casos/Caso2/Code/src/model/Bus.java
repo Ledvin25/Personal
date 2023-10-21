@@ -4,13 +4,16 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Bus {
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+public class Bus extends Thread{
 
     // Atibutos base
     private int licensePlate; // Placa del bus
     private int capacity; // Capacidad de pasajeros
     private double position; // Posición en la ruta en metros
     private Route currentRoute; // Ruta actual
+    private boolean isRunning; // Indicador de si el bus está en movimiento
     private int escala_tiempo = 1; // Escala de tiempo de simulación (por defecto, 1 segundo en el programa = 1 segundo en la vida real)
 
     // Atributos para el control de velocidad
@@ -20,12 +23,16 @@ public class Bus {
     private int stop_index = 1; // Índice de la parada actual
 
     // Temporizador para el control de velocidad
-    private Timer speedTimer = new Timer();
+    @JsonIgnore
+    private Timer speedTimer;
 
     // Constructor
     public Bus(int licensePlate, int capacity) {
         this.licensePlate = licensePlate;
-        this.capacity = capacity;;
+        this.capacity = capacity;
+        this.position = 0.0d;
+        this.currentRoute = null;
+        this.isRunning = false;
     }
 
     // Constructor sin parametros
@@ -93,6 +100,10 @@ public class Bus {
         return currentRoute;
     }
 
+    public boolean isRunning() {
+        return isRunning;
+    }
+
     public int getEscala_tiempo() {
         return escala_tiempo;
     }
@@ -121,12 +132,17 @@ public class Bus {
 
     // Iniciar viaje
     public void startTrip() {
+        isRunning = true; // Indicar que el bus está en movimiento
+
+        speedTimer = new Timer();
+        
         // Iniciar el temporizador para aumentar la velocidad gradualmente
-        speedTimer.scheduleAtFixedRate(new SpeedChangeTask(), 0, 1000 / escala_tiempo); // Cada 1 segundo (en la vida real) dividido por la escala de tiempo
+        speedTimer.scheduleAtFixedRate(new BusMove(), 0, 1000 / escala_tiempo); // Cada 1 segundo (en la vida real) dividido por la escala de tiempo
     }
 
     // Finalizar viaje
     public void endTrip() {
+        isRunning = false; // Indicar que el bus está detenido
         // Cancelar el temporizador al finalizar el viaje
         speedTimer.cancel();
     }
@@ -145,8 +161,31 @@ public class Bus {
         return 0.0d;
     }
 
-    // SpeedChangeTask
-    private class SpeedChangeTask extends TimerTask {
+    // Devolver el bus a la terminal
+
+    @Override
+    public void run()
+    {
+        double time = currentRoute.calculateTotalDistance()/(22.2222); // Calcular tiempo de viaje de vuelta
+
+        isRunning = true; // Indicar que el bus está en movimiento
+
+        // Esperar a que el bus llegue a la terminal
+        try {
+            Thread.sleep((long) (time * 1000/escala_tiempo));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        // Devolver el bus a la terminal
+        position = 0;
+        stop_index = 1;
+
+        isRunning = false; // Indicar que el bus está detenido
+    }
+
+    // BusMove
+    private class BusMove extends TimerTask {
         private int elapsedTime = 0; // Tiempo transcurrido en segundos
         private boolean parada = false; // Indicador de pausa
 
@@ -186,13 +225,13 @@ public class Bus {
                         endTrip();
 
                         try {
-                            Thread.sleep(3000 / escala_tiempo); // Espera 5 segundos (en la vida real) divididos por la escala de tiempo
+                            Thread.sleep(3000); // Espera 3 segundos (en la vida real) divididos por la escala de tiempo
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
 
                         speedTimer = new Timer(); // Crea un nuevo temporizador para reanudar
-                        speedTimer.scheduleAtFixedRate(new SpeedChangeTask(), 0, 1000 / escala_tiempo); // Cada 1 segundo (en la vida real) dividido por la escala de tiempo
+                        speedTimer.scheduleAtFixedRate(new BusMove(), 0, 1000 / escala_tiempo); // Cada 1 segundo (en la vida real) dividido por la escala de tiempo
                         
                         // Aumentar el índice de la parada actual
                         stop_index++;

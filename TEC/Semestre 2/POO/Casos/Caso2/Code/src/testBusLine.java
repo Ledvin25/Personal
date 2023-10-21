@@ -1,14 +1,34 @@
-package model;
-import java.time.LocalTime;
 
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.SwingUtilities;
+
+import data.*;
+import model.Bus;
+import model.BusLine;
+import model.Route;
+import model.Stop;
+import simulation.Simulation;
+import gui.*;
 public class testBusLine {
     
     // main
 
     public static void main(String[] args) {
         
-        BusLine busLine = new BusLine(LocalTime.of(6, 0), LocalTime.of(22, 0));
+        // Lista de busLine
 
+        List<Stop> stops = new ArrayList<>();
+        
+        BusLine busLine = new BusLine(LocalTime.of(6, 0), LocalTime.of(6, 10));
+
+        // Agregar busLine a la lista de busLine
+
+        Simulation simulation = new Simulation();
+
+        simulation.addBusLine(busLine);
 
         // Crear 6 paradas con nombres mas reales y dos terminales
 
@@ -17,6 +37,11 @@ public class testBusLine {
         Stop stop3 = new Stop("Parada 2", 700.0d);
         Stop stop4 = new Stop("Terminal Sur", 1000.0d);
         stop4.setTerminal(true);
+
+        stops.add(stop1);
+        stops.add(stop2);
+        stops.add(stop3);
+        stops.add(stop4);
 
         // Crear 2 rutas
 
@@ -60,19 +85,24 @@ public class testBusLine {
 
         //System.out.println("Bus : " + bus1.getCurrentRoute().getStopsName());
 
-        bus1.startTrip();
-        bus2.startTrip();
+        // Iniciar la simulacion
 
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        //simulation.startSimulation(10);
 
-        bus3.startTrip();
+        StopController controller = new StopControllerImpl(simulation);
+
+        // Crear la interfaz grafica
+
+        NearbyStop nearbyStop = new NearbyStop(controller);
+
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                nearbyStop.setVisible(true);
+            }
+        });
 
 
-    
     }
 
 

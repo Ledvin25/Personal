@@ -1,5 +1,7 @@
 package gui;
 
-public class StopController {
+public interface StopController {
+    
+    public String[] getStopList();
     
 }
