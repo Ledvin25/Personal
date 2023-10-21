@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UserWindow {
+public class UserWindow extends JFrame{
     private JFrame frame;
     private JComboBox<String> lineComboBox;
     private JButton selectLineButton;
@@ -13,7 +13,7 @@ public class UserWindow {
     private JButton changeStopButton;
     private JButton busTrackingButton;
 
-    public UserWindow() {
+    public UserWindow(UserWindowController userWindowController) {
         // Crear la ventana principal
         frame = new JFrame("Ventana de Usuario");
         frame.setSize(500, 500);
@@ -28,7 +28,7 @@ public class UserWindow {
 
         // Crear el panel superior para la selección de línea y el botón de selección
         JPanel topPanel = new JPanel(new FlowLayout());
-        JComboBox<String> stopComboBox = new JComboBox<>(new String[]{"Linea1", "Linea2", "Linea3", "Linea4", "Linea5"});
+        JComboBox<String> stopComboBox = new JComboBox<>(userWindowController.getAllRoutes());
         stopComboBox.setPreferredSize(new Dimension(200, 30));
         stopComboBox.setBackground(Color.decode("#ff887d"));
         topPanel.add(stopComboBox);
@@ -84,15 +84,5 @@ public class UserWindow {
                 busInfoLabel.setText("Proximo bus: , Tarifa: , Tiempo restante: ");
             }
         });*/
-    }
-
-    public static void main(String[] args) {
-        // Crear la ventana de usuario
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new UserWindow();
-            }
-        });
     }
 }

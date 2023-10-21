@@ -61,5 +61,22 @@ public class StopControllerImpl implements StopController {
 
             return stops; // Devolver el arreglo de Strings
     }
+
+    // Get selected stop
+
+    @Override
+    public String getSelectedStop(String stopName) {
+
+        // Crear controlador de UserWindow
+
+        UserWindowController userWindowController = new UserWindowControllerImpl(simulation, stopName);
+
+        // Abrir la ventana UserWindow 
+        UserWindow userWindow = new UserWindow(userWindowController);
+        userWindow.setVisible(true);
+
+        return null;
+
+    }
     
 }

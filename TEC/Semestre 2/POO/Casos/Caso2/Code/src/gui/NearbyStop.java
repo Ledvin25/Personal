@@ -51,6 +51,21 @@ public class NearbyStop extends JFrame{
         gbc.insets = new Insets(10, 0, 0, 0); // Espacio superior
         panel.add(seleccionarButton, gbc);
 
+        // Agregar un manejador de eventos al botón "Seleccionar"
+        seleccionarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Obtener la parada seleccionada del ComboBox
+                String selectedStop = (String) stopComboBox.getSelectedItem();
+
+                // Llamar a la función del controlador
+                stopController.getSelectedStop(selectedStop);
+
+                // Cerrar la ventana actual
+                dispose();
+            }
+        });
+
         frame.add(panel, BorderLayout.CENTER);
         frame.setVisible(true);
     }
