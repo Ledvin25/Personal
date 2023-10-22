@@ -161,6 +161,21 @@ public class Bus extends Thread{
         return 0.0d;
     }
 
+    // Get time to next stop in minutes
+
+    public double getTimeToStop(Stop stop) {
+        for(int i = 0; i < currentRoute.getStops().size(); i++)
+        {
+            if(currentRoute.getStops().get(i).getName().equals(stop.getName()))
+            {
+                // Retornar el tiempo en minutos
+                return (currentRoute.getStops().get(i).getPosition() - position)/(16.667);
+            }
+        }
+
+        return 0.0d;
+    }
+
     // Devolver el bus a la terminal
 
     @Override

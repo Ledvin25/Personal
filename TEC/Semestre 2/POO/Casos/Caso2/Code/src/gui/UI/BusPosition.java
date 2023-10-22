@@ -1,6 +1,9 @@
-package gui;
+package gui.UI;
 
 import javax.swing.*;
+
+import gui.Controllers.BusPositionController;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +15,7 @@ public class BusPosition {
     private JButton getInfoButton;
     private JButton nextBusButton;
 
-    public BusPosition() {
+    public BusPosition(BusPositionController busPositionController) {
         // Crear la ventana principal
         frame = new JFrame("Bus Position");
         frame.setSize(500, 400);
@@ -72,16 +75,6 @@ public class BusPosition {
             public void actionPerformed(ActionEvent e) {
                 // Lógica para mostrar la acción del botón "Bus Siguiente" en la consola
                 consoleTextArea.append("Accion\n");
-            }
-        });
-    }
-
-    public static void main(String[] args) {
-        // Crear la ventana de la consola de posición del autobús
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new BusPosition();
             }
         });
     }

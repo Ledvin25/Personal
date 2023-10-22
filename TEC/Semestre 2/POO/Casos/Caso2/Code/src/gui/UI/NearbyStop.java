@@ -1,7 +1,8 @@
-package gui;
+package gui.UI;
 
 import javax.swing.*;
 
+import gui.Controllers.StopController;
 import model.Stop;
 
 import java.awt.*;
@@ -61,8 +62,10 @@ public class NearbyStop extends JFrame{
                 // Llamar a la función del controlador
                 stopController.getSelectedStop(selectedStop);
 
-                // Cerrar la ventana actual
-                dispose();
+                // Cerrar la ventana
+
+                frame.setVisible(false);
+                frame.dispose();
             }
         });
 

@@ -1,4 +1,4 @@
-package gui;
+package gui.Controllers;
 
 public class SCController {
     

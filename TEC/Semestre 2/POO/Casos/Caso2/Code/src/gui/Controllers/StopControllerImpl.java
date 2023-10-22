@@ -1,8 +1,10 @@
-package gui;
+package gui.Controllers;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import gui.UI.NearbyStop;
+import gui.UI.UserWindow;
 import model.BusLine;
 import model.Route;
 import model.Stop;
@@ -18,6 +20,7 @@ public class StopControllerImpl implements StopController {
         this.simulation = simulation;
     }
 
+    @Override
     public void setNearbyStop(NearbyStop nearbyStop) {
         this.nearbyStop = nearbyStop;
     }
@@ -65,7 +68,7 @@ public class StopControllerImpl implements StopController {
     // Get selected stop
 
     @Override
-    public String getSelectedStop(String stopName) {
+    public void getSelectedStop(String stopName) {
 
         // Crear controlador de UserWindow
 
@@ -73,9 +76,7 @@ public class StopControllerImpl implements StopController {
 
         // Abrir la ventana UserWindow 
         UserWindow userWindow = new UserWindow(userWindowController);
-        userWindow.setVisible(true);
 
-        return null;
 
     }
     

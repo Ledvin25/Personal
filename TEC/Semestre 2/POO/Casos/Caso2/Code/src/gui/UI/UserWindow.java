@@ -1,6 +1,10 @@
-package gui;
+package gui.UI;
 
 import javax.swing.*;
+
+import gui.Controllers.StopControllerImpl;
+import gui.Controllers.UserWindowController;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +13,9 @@ public class UserWindow extends JFrame{
     private JFrame frame;
     private JComboBox<String> lineComboBox;
     private JButton selectLineButton;
-    private JLabel busInfoLabel;
+    private JLabel nextBusLabel;
+    private JLabel fareLabel;
+    private JLabel timeLeftLabel;
     private JButton changeStopButton;
     private JButton busTrackingButton;
 
@@ -42,12 +48,12 @@ public class UserWindow extends JFrame{
         // Crear el panel central para la información del bus
         JPanel centerPanel = new JPanel(new GridLayout(0, 1));
         centerPanel.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 50)); // Agregar margen de 50px a los lados izquierdo y derecho
-        busInfoLabel = new JLabel("Proximo bus:");
-        centerPanel.add(busInfoLabel);
-        busInfoLabel = new JLabel("Tarifa:");
-        centerPanel.add(busInfoLabel);
-        busInfoLabel = new JLabel("Tiempo restante:");
-        centerPanel.add(busInfoLabel);
+        nextBusLabel = new JLabel("Proximo bus:");
+        centerPanel.add(nextBusLabel);
+        fareLabel = new JLabel("Tarifa:");
+        centerPanel.add(fareLabel);
+        timeLeftLabel = new JLabel("Tiempo restante:");
+        centerPanel.add(timeLeftLabel);
         changeStopButton = new JButton("Cambiar de Parada");
         changeStopButton.setBackground(Color.decode("#ff0d0d"));
         centerPanel.add(changeStopButton);
@@ -73,16 +79,58 @@ public class UserWindow extends JFrame{
         // Hacer visible la ventana
         frame.setVisible(true);
 
-        /*
+        // ------------------ Agregar manejadores de eventos ------------------ //
+        
+        // Action listener para volver a la ventana de selección de parada
+
+        changeStopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                // Abrir la ventana de seguimiento del bus
+                userWindowController.handleChangeStop();
+                
+
+                // Cerrar la ventana actual
+                frame.setVisible(false);
+                frame.dispose();
+                
+            }
+        });
+
+        // Action listener para abrir la ventana de seguimiento del bus
+
+        busTrackingButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                // Abrir la ventana de seguimiento del bus
+                userWindowController.handleShowBusPosition();
+
+                // Cerrar la ventana actual
+                frame.setVisible(false);
+                frame.dispose();
+
+            }
+        });
+
+        
         // Agregar ActionListener al botón de selección de línea
         selectLineButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Implementar la lógica para obtener y mostrar la información de la línea seleccionada
-                String selectedLine = (String) lineComboBox.getSelectedItem();
+                String selectedLine = (String) stopComboBox.getSelectedItem();
+                
+                String[] busInfo = userWindowController.selectRoute(selectedLine);
+
                 // Actualizar la etiqueta de información del bus con los datos de la línea seleccionada
-                busInfoLabel.setText("Proximo bus: , Tarifa: , Tiempo restante: ");
+
+                nextBusLabel.setText("Proximo bus: " + busInfo[0]);
+                fareLabel.setText("Tarifa: " + busInfo[1]);
+                timeLeftLabel.setText("Tiempo restante: " + busInfo[2] + " minutos aprox.");
+                
             }
-        });*/
+        });
     }
 }

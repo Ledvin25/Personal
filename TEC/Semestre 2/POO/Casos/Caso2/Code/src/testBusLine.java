@@ -12,6 +12,9 @@ import model.Route;
 import model.Stop;
 import simulation.Simulation;
 import gui.*;
+import gui.Controllers.StopController;
+import gui.Controllers.StopControllerImpl;
+import gui.UI.NearbyStop;
 public class testBusLine {
     
     // main
@@ -95,12 +98,11 @@ public class testBusLine {
 
         NearbyStop nearbyStop = new NearbyStop(controller);
 
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                nearbyStop.setVisible(true);
-            }
-        });
+        // Iniciar simulacion
+
+        simulation.startSimulation(5);
+
+        
 
 
     }
