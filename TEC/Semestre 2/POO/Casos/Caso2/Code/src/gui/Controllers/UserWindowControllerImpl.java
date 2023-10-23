@@ -3,11 +3,11 @@ package gui.Controllers;
 import java.util.ArrayList;
 import java.util.List;
 
-import gui.UI.BusPosition;
 import gui.UI.NearbyStop;
 import gui.UI.UserWindow;
 import model.*;
 import simulation.Simulation;
+import gui.UI.Menu;
 
 public class UserWindowControllerImpl implements UserWindowController {
 
@@ -22,6 +22,11 @@ public class UserWindowControllerImpl implements UserWindowController {
 
     public void setUserWindow(UserWindow userWindow) {
         this.userWindow = userWindow;
+    }
+
+    @Override
+    public String getActualStop() {
+        return stopString;
     }
 
     @Override
@@ -78,14 +83,12 @@ public class UserWindowControllerImpl implements UserWindowController {
 
     }
 
+
+    // Obtener el tiempo de simulación
     @Override
-    public void handleShowBusPosition() {
-
-        BusPositionControllerImpl busPositionController = new BusPositionControllerImpl(simulation);
-
-        // Abrir la ventana de seguimiento del bus
-        BusPosition busPosition = new BusPosition(busPositionController);
-
+    public int getSimulationTime() {
+        // Obtener la hora actual de la simulación
+        return simulation.getSimulationTime();
     }
 
     @Override
@@ -99,8 +102,6 @@ public class UserWindowControllerImpl implements UserWindowController {
         Stop nearbyStop = null;
 
         // Array para la información del bus
-
-        String[] busInfo = new String[3];
         double mostCloseBusDistance = 0.0d;
 
         // Obtener todas las lineas de buses
@@ -121,7 +122,7 @@ public class UserWindowControllerImpl implements UserWindowController {
 
                             for (Bus bus : busLine.getBuses()) {
 
-                                if(bus.getCurrentRoute().getName() == routeName)
+                                if(bus.getCurrentRoute().getName() == routeName && bus.getCurrentRoute().getStops().contains(stop))
                                 {
                                     if(bus.getTimeToStop(stop) > 0 && (bus.getDistanceToStop(stop) < mostCloseBusDistance || mostCloseBusDistance == 0.0d)) 
                                     {
@@ -151,7 +152,9 @@ public class UserWindowControllerImpl implements UserWindowController {
 
             if(mostCloseBus == null || mostCloseRoute == null || nearbyStop == null) throw new Exception();
 
-            busInfo[0] = String.valueOf(mostCloseBus.getLicensePlate());
+            String[] busInfo = new String[4];
+
+            busInfo[0] = mostCloseBus.getLicensePlate();
             busInfo[1] = String.valueOf(mostCloseRoute.getFare());
 
             // Obtener la parte entera del tiempo restante
@@ -160,19 +163,41 @@ public class UserWindowControllerImpl implements UserWindowController {
             // Agregar el tiempo restante a la información del bus
             busInfo[2] = String.valueOf(timeLeft);
 
+            // Obtener la posición del bus
+
+            // Pasarla a porcentaje y agregarla a la información del bus
+            busInfo[3] = String.valueOf(mostCloseBus.getPosition() / nearbyStop.getPosition());
+
             return busInfo;
 
         } catch (Exception e) {
 
-            String[] error = {"No hay buses disponibles", "", ""};
+            String[] error = {"No hay buses disponibles", "", "", "400"};
 
             return error;
 
         }
+    }
 
+    // Obtener el tiempo de simulación
+    @Override
+    public String getActualHour() {
+        // Obtener la hora actual del sistema
         
-        
-        
-        
+        return String.valueOf(simulation.getStartTime());
+    }
+
+    // Salir de la ventana y volver al menu
+
+    @Override
+    public void handleExit() {
+
+        // Crear controlador de la ventana de menu
+        MenuController menuController = new MenuControllerImpl(simulation);
+
+        // Abrir la ventana de menu
+        Menu menu = new Menu(menuController);
+
+        simulation.stopSimulation();
     }
 }

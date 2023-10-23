@@ -14,17 +14,20 @@ public class BusLine extends Thread{
     @JsonIgnore
     private LocalTime endTime;
 
+    private String name;
+
     private List<Bus> buses;
     private List<Route> routes;
     private int escala_tiempo;
 
     // Constructor
 
-    public BusLine(LocalTime startTime, LocalTime endTime) {
+    public BusLine(LocalTime startTime, LocalTime endTime, String name) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.buses = new ArrayList<>();
         this.routes = new ArrayList<>();
+        this.name = name;
     }
 
     // Constructor sin parametros
@@ -56,6 +59,10 @@ public class BusLine extends Thread{
         this.escala_tiempo = escala_tiempo;
     }
 
+    public void setEnterprise(String name) {
+        this.name = name;
+    }
+
     // -------------------------------------  Getters  ------------------------------------- //
 
     public LocalTime getStartTime() {
@@ -78,15 +85,20 @@ public class BusLine extends Thread{
         return escala_tiempo;
     }
 
+    public String getEnterprise() {
+        return name;
+    }
+
     // -------------------------------------  Methods  ------------------------------------- //
 
     // changeBusRoute
-    public void changeBusRoute(int licensePlate, int route_id) {
+    public void changeBusRoute(String licensePlate, int route_id) {
         for(Bus bus : buses) {
             if(bus.getLicensePlate() == licensePlate) {
                 for(Route route : routes) {
                     if(route.getRoute() == route_id) {
                         bus.setCurrentRoute(route);
+                        return;
                     }
                 }
             }

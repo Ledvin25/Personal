@@ -3,7 +3,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.SwingUtilities;
 
 import data.*;
 import model.Bus;
@@ -15,7 +14,7 @@ import gui.*;
 import gui.Controllers.StopController;
 import gui.Controllers.StopControllerImpl;
 import gui.UI.NearbyStop;
-public class testBusLine {
+public class firsttest {
     
     // main
 
@@ -25,11 +24,11 @@ public class testBusLine {
 
         List<Stop> stops = new ArrayList<>();
         
-        BusLine busLine = new BusLine(LocalTime.of(6, 0), LocalTime.of(6, 10));
+        BusLine busLine = new BusLine(LocalTime.of(6, 0), LocalTime.of(6, 10), "Lumaca");
 
         // Agregar busLine a la lista de busLine
 
-        Simulation simulation = new Simulation();
+        Simulation simulation = new Simulation(5);
 
         simulation.addBusLine(busLine);
 
@@ -37,8 +36,8 @@ public class testBusLine {
 
         Stop stop1 = new Stop("Terminal Norte", 0.0d);
         Stop stop2 = new Stop("Parada 1", 300.0d);
-        Stop stop3 = new Stop("Parada 2", 700.0d);
-        Stop stop4 = new Stop("Terminal Sur", 1000.0d);
+        Stop stop3 = new Stop("Parada 2", 3000.0d);
+        Stop stop4 = new Stop("Terminal Sur", 6000.0d);
         stop4.setTerminal(true);
 
         stops.add(stop1);
@@ -76,12 +75,6 @@ public class testBusLine {
         busLine.addBus(bus2);
         busLine.addBus(bus3);
 
-        // Asignar rutas a los buses
-
-        busLine.changeBusRoute(1, 1);
-        busLine.changeBusRoute(2, 2);
-        busLine.changeBusRoute(3, 1);
-
         // Iniciar viajes de los buses, que el bus y 3 salgan al mismo tiempo y que el 2 salga 10 segundos despues
 
         // Imprimir las rutas de los buses
@@ -100,7 +93,7 @@ public class testBusLine {
 
         // Iniciar simulacion
 
-        simulation.startSimulation(5);
+        simulation.startSimulation();
 
         
 

@@ -2,8 +2,8 @@
   "empresas_de_buses": [
     {
       "nombre": "LUMACA",
-      "hora de inicio": "05:00",
-      "hora de fin": "22:00",
+      "hora_inicio": "05:00",
+      "hora_fin": "22:00",
       "buses": [
         { "placa": "LU-001", "capacidad": 40 },
         { "placa": "LU-002", "capacidad": 30 },
@@ -84,8 +84,8 @@
     },
     {
       "nombre": "COOPEPAR",
-      "hora de inicio": "05:00",
-      "hora de fin": "22:00",
+      "hora_inicio": "05:00",
+      "hora_fin": "22:00",
       "buses": [
         { "placa": "CO-001", "capacidad": 40 },
         { "placa": "CO-002", "capacidad": 30 },

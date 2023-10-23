@@ -6,10 +6,10 @@ public class Stop
     private double position; // Distancia a la siguiente parada en la ruta en metros
     private boolean terminal; // Indica si la parada es terminal o no
 
-    public Stop(String name, double position) {
+    public Stop(String name, double position, boolean terminal) {
         this.name = name;
         this.position = position;
-        this.terminal = false;
+        this.terminal = terminal;
     }
 
     // Constructor sin parametros

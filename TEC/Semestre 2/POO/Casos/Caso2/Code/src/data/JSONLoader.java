@@ -19,7 +19,6 @@ public class JSONLoader {
             e.printStackTrace();
             return null; 
         }
-
         
     }
 
@@ -64,7 +63,7 @@ public class JSONLoader {
                     JSONObject bus = buses.getJSONObject(j);
                     String placa = bus.getString("placa");
                     int capacidad = bus.getInt("capacidad");
-                    busesString[j] = placa + " - " + capacidad;
+                    busesString[j] = placa + ":" + capacidad;
                 }
 
                 return busesString;
@@ -99,83 +98,16 @@ public class JSONLoader {
                 {
                     JSONObject ruta = rutas.getJSONObject(j);
                     String nombreRuta = ruta.getString("nombre");
-                    rutasString[j] = nombreRuta;
+                    float tarifa = ruta.getInt("tarifa");
+                    int id = ruta.getInt("id");
+
+                    rutasString[j] = nombreRuta + ":" + tarifa + ":" + id;
                 }
 
                 return rutasString;
             }
         }
         return null;
-    }
-
-    // Metodo para obtener el id de la ruta seleccionada
-
-    public int getRutaId(String empresa, String ruta)
-    {
-        JSONObject json = Load();
-
-        // Obtener las empresas de buses
-        JSONArray empresasDeBuses = json.getJSONArray("empresas_de_buses");
-
-        // Recorrer las empresas de buses
-        for (int i = 0; i < empresasDeBuses.length(); i++) 
-        {
-            JSONObject empresaDeBus = empresasDeBuses.getJSONObject(i);
-
-            String nombreEmpresa = empresaDeBus.getString("nombre");
-
-            if (nombreEmpresa.equals(empresa)) 
-            {
-                JSONArray rutas = empresaDeBus.getJSONArray("rutas");
-                
-                for (int j = 0; j < rutas.length(); j++) 
-                {
-                    JSONObject rutaDeBus = rutas.getJSONObject(j);
-                    String nombreRuta = rutaDeBus.getString("nombre");
-                    if (nombreRuta.equals(ruta)) 
-                    {
-                        int id = rutaDeBus.getInt("id");
-                        return id;
-                    }
-                }
-            }
-        }
-        return 0;
-    }
-
-    // Metodo para obtener la tarifa de la ruta seleccionada
-
-    public int getTarifa(String empresa, String ruta)
-    {
-        JSONObject json = Load();
-
-        // Obtener las empresas de buses
-        JSONArray empresasDeBuses = json.getJSONArray("empresas_de_buses");
-
-        // Recorrer las empresas de buses
-        for (int i = 0; i < empresasDeBuses.length(); i++) 
-        {
-            JSONObject empresaDeBus = empresasDeBuses.getJSONObject(i);
-
-            String nombreEmpresa = empresaDeBus.getString("nombre");
-
-            if (nombreEmpresa.equals(empresa)) 
-            {
-                JSONArray rutas = empresaDeBus.getJSONArray("rutas");
-                
-                for (int j = 0; j < rutas.length(); j++) 
-                {
-                    JSONObject rutaDeBus = rutas.getJSONObject(j);
-                    String nombreRuta = rutaDeBus.getString("nombre");
-                    if (nombreRuta.equals(ruta)) 
-                    {
-                        int tarifa = rutaDeBus.getInt("tarifa");
-                        return tarifa;
-                    }
-                }
-            }
-        }
-        return 0;
     }
 
     // Metodo para obtener las paradas de la ruta seleccionada
@@ -213,11 +145,61 @@ public class JSONLoader {
                             int posicion = parada.getInt("posicion");
                             boolean terminal = parada.getBoolean("terminal");
 
-                            paradasString[k] = nombreParada + " - " + posicion + " - " + terminal;
+                            paradasString[k] = nombreParada + ":" + posicion + ":" + terminal;
                         }
                         return paradasString;
                     }
                 }
+            }
+        }
+        return null;
+    }
+
+    // Metodo para obtener la hora de inicio de la empresa seleccionada
+
+    public String getHoraInicio(String empresa)
+    {
+        JSONObject json = Load();
+
+        // Obtener las empresas de buses
+        JSONArray empresasDeBuses = json.getJSONArray("empresas_de_buses");
+
+        // Recorrer las empresas de buses
+        for (int i = 0; i < empresasDeBuses.length(); i++) 
+        {
+            JSONObject empresaDeBus = empresasDeBuses.getJSONObject(i);
+
+            String nombreEmpresa = empresaDeBus.getString("nombre");
+
+            if (nombreEmpresa.equals(empresa)) 
+            {
+                String horaInicio = empresaDeBus.getString("hora_inicio");
+                return horaInicio;
+            }
+        }
+        return null;
+    }
+
+    // Metodo para obtener la hora de fin de la empresa seleccionada
+
+    public String getHoraFin(String empresa)
+    {
+        JSONObject json = Load();
+
+        // Obtener las empresas de buses
+        JSONArray empresasDeBuses = json.getJSONArray("empresas_de_buses");
+
+        // Recorrer las empresas de buses
+        for (int i = 0; i < empresasDeBuses.length(); i++) 
+        {
+            JSONObject empresaDeBus = empresasDeBuses.getJSONObject(i);
+
+            String nombreEmpresa = empresaDeBus.getString("nombre");
+
+            if (nombreEmpresa.equals(empresa)) 
+            {
+                String horaFin = empresaDeBus.getString("hora_fin");
+                return horaFin;
             }
         }
         return null;

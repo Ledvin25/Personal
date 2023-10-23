@@ -3,7 +3,6 @@ package gui.UI;
 import javax.swing.*;
 
 import gui.Controllers.StopController;
-import model.Stop;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +15,7 @@ public class NearbyStop extends JFrame{
 
     public NearbyStop(StopController stopController) {
         frame = new JFrame("Selección de Parada");
-        frame.setSize(300, 550);
+        frame.setSize(700, 550);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
@@ -35,7 +34,7 @@ public class NearbyStop extends JFrame{
 
         // ComboBox para seleccionar la parada
         stopComboBox = new JComboBox<>(stopController.getStopList());
-        stopComboBox.setPreferredSize(new Dimension(120, 30)); // Tamaño del ComboBox
+        stopComboBox.setPreferredSize(new Dimension(500, 50)); // Tamaño del ComboBox
         stopComboBox.setBackground(Color.decode("#ff887d")); // Cambio de color del ComboBox
         stopComboBox.setForeground(Color.BLACK); // Cambio de color del texto del ComboBox
         gbc.gridy = 1;

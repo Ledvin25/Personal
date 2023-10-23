@@ -1,5 +1,6 @@
 package gui.Controllers;
 
-public class SCController {
+public interface SCController {
     
+    public void handleConfiguration(String simulationTime, String startTime);
 }

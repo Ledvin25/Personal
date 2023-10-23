@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Bus extends Thread{
 
     // Atibutos base
-    private int licensePlate; // Placa del bus
+    String licensePlate; // Placa del bus
     private int capacity; // Capacidad de pasajeros
     private double position; // Posición en la ruta en metros
     private Route currentRoute; // Ruta actual
@@ -27,7 +27,7 @@ public class Bus extends Thread{
     private Timer speedTimer;
 
     // Constructor
-    public Bus(int licensePlate, int capacity) {
+    public Bus(String licensePlate, int capacity) {
         this.licensePlate = licensePlate;
         this.capacity = capacity;
         this.position = 0.0d;
@@ -42,7 +42,7 @@ public class Bus extends Thread{
 
     // -------------------------------------  Setters  ------------------------------------- // 
 
-    public void setLicensePlate(int licensePlate) {
+    public void setLicensePlate(String licensePlate) {
         this.licensePlate = licensePlate;
     }
 
@@ -84,7 +84,7 @@ public class Bus extends Thread{
 
     // -------------------------------------  Getters  ------------------------------------- //
 
-    public int getLicensePlate() {
+    public String getLicensePlate() {
         return licensePlate;
     }
 
@@ -132,6 +132,12 @@ public class Bus extends Thread{
 
     // Iniciar viaje
     public void startTrip() {
+
+        if (currentRoute == null) {
+            System.out.println("No se ha asignado una ruta al bus");
+            return;
+        }
+
         isRunning = true; // Indicar que el bus está en movimiento
 
         speedTimer = new Timer();
@@ -169,7 +175,7 @@ public class Bus extends Thread{
             if(currentRoute.getStops().get(i).getName().equals(stop.getName()))
             {
                 // Retornar el tiempo en minutos
-                return (currentRoute.getStops().get(i).getPosition() - position)/(16.667);
+                return ((currentRoute.getStops().get(i).getPosition() - position)/(16.667))/60;
             }
         }
 

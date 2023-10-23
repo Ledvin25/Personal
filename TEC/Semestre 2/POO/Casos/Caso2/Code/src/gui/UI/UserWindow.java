@@ -1,5 +1,6 @@
 package gui.UI;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import gui.Controllers.StopControllerImpl;
@@ -8,20 +9,87 @@ import gui.Controllers.UserWindowController;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class UserWindow extends JFrame{
     private JFrame frame;
     private JComboBox<String> lineComboBox;
     private JButton selectLineButton;
+    private JLabel actualHourLabel;
+    private JLabel paradaActual;
     private JLabel nextBusLabel;
     private JLabel fareLabel;
     private JLabel timeLeftLabel;
     private JButton changeStopButton;
-    private JButton busTrackingButton;
+    private JButton exit;
+    private Timer HourTimer, BusTimer;
+
+    // ------------------ BusPosition ------------------ //
+
+    class BusAnimation extends JPanel {
+
+        private int busPos = 0; // Posición X del bus
+        private int maxPos = 333; // Ancho máximo del panel
+        private BufferedImage busImage;
+        private BufferedImage stopImageR;
+        private BufferedImage stopImageG;
+        private String color = "red";
+
+        {
+            try {
+                busImage = ImageIO.read(new File("src\\gui\\UI\\bus.png"));
+                stopImageR = ImageIO.read(new File("src\\gui\\UI\\stopr.png"));
+                stopImageG = ImageIO.read(new File("src\\gui\\UI\\stopg.png"));
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        public BusAnimation() {
+          
+        }
+      
+        public void updateBus(double percent) {
+        
+          busPos = (int)(percent * maxPos);
+          if (busPos > maxPos) {
+            color = "green";
+          }
+          repaint();
+          
+        }
+      
+        @Override
+        public void paintComponent(Graphics g) {
+      
+            super.paintComponent(g);
+          
+            // Dibujar línea horizontal negra en la parte inferior
+            g.setColor(Color.GRAY);
+            g.fillRect(0, getHeight()-10, getWidth(), 10);
+          
+            // Dibujar el bus
+            if (color == "green") {
+              g.drawImage(stopImageG, maxPos+11, 15, null);
+            } else {
+              g.drawImage(stopImageR, maxPos+11, 15, null);
+            }
+            g.drawImage(busImage, busPos, 20, null);
+          
+          
+        }
+      
+    }
 
     public UserWindow(UserWindowController userWindowController) {
+
+        int simulationTime = userWindowController.getSimulationTime();
+
         // Crear la ventana principal
         frame = new JFrame("Ventana de Usuario");
+        frame.setResizable(false);
         frame.setSize(500, 500);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
@@ -48,26 +116,33 @@ public class UserWindow extends JFrame{
         // Crear el panel central para la información del bus
         JPanel centerPanel = new JPanel(new GridLayout(0, 1));
         centerPanel.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 50)); // Agregar margen de 50px a los lados izquierdo y derecho
+        actualHourLabel = new JLabel("Hora actual: " + userWindowController.getActualHour());
+        centerPanel.add(actualHourLabel);
+        paradaActual = new JLabel("Parada seleccionada:" + userWindowController.getActualStop());
+        centerPanel.add(paradaActual);
         nextBusLabel = new JLabel("Proximo bus:");
         centerPanel.add(nextBusLabel);
         fareLabel = new JLabel("Tarifa:");
         centerPanel.add(fareLabel);
         timeLeftLabel = new JLabel("Tiempo restante:");
         centerPanel.add(timeLeftLabel);
-        changeStopButton = new JButton("Cambiar de Parada");
-        changeStopButton.setBackground(Color.decode("#ff0d0d"));
-        centerPanel.add(changeStopButton);
-        busTrackingButton = new JButton("Seguimiento del Bus");
-        busTrackingButton.setBackground(Color.decode("#ff6b6b"));
-        centerPanel.add(busTrackingButton);
+        BusAnimation busAnimation = new BusAnimation();
+        busAnimation.setBackground(Color.decode("#6e8696"));
+        busAnimation.setPreferredSize(new Dimension(400, 100));
+        centerPanel.add(busAnimation);
         mainPanel.add(centerPanel, BorderLayout.CENTER);
+
 
         // Crear el panel inferior para los botones adicionales
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        changeStopButton = new JButton("Cambiar de Parada");
+        changeStopButton.setBackground(Color.decode("#ff0d0d"));
+        exit = new JButton("Salir");
+        exit.setBackground(Color.decode("#ff6b6b"));
         changeStopButton.setPreferredSize(new Dimension(170, 30));
-        busTrackingButton.setPreferredSize(new Dimension(170, 30));
+        exit.setPreferredSize(new Dimension(170, 30));
         bottomPanel.add(changeStopButton);
-        bottomPanel.add(busTrackingButton);
+        bottomPanel.add(exit);
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(15, 0, 15, 0)); // Agregar espacio de 15px abajo
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
@@ -78,6 +153,39 @@ public class UserWindow extends JFrame{
 
         // Hacer visible la ventana
         frame.setVisible(true);
+
+
+        // ------------------ Timers ------------------ //
+
+        // Crear un timer para actualizar la hora actual cada segundo
+
+        HourTimer = new Timer(1000/simulationTime, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                actualHourLabel.setText("Hora actual: " + userWindowController.getActualHour());
+            }
+        });
+
+        // Crear un timer para actualizar la información del bus cada 10 segundos
+
+        BusTimer = new Timer(0, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedLine = (String) stopComboBox.getSelectedItem();
+                
+                String[] busInfo = userWindowController.selectRoute(selectedLine);
+
+                // Actualizar la etiqueta de información del bus con los datos de la línea seleccionada
+
+                nextBusLabel.setText("Proximo bus: " + busInfo[0]);
+                fareLabel.setText("Tarifa: " + busInfo[1]);
+                timeLeftLabel.setText("Tiempo restante: " + busInfo[2] + " minutos aprox.");
+                
+                busAnimation.updateBus(Double.parseDouble(busInfo[3]));
+
+                // Imprimir en consola el porcentaje de la ruta que ha recorrido el bus
+            }
+        });
 
         // ------------------ Agregar manejadores de eventos ------------------ //
         
@@ -98,39 +206,32 @@ public class UserWindow extends JFrame{
             }
         });
 
-        // Action listener para abrir la ventana de seguimiento del bus
-
-        busTrackingButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                // Abrir la ventana de seguimiento del bus
-                userWindowController.handleShowBusPosition();
-
-                // Cerrar la ventana actual
-                frame.setVisible(false);
-                frame.dispose();
-
-            }
-        });
-
-        
         // Agregar ActionListener al botón de selección de línea
         selectLineButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Implementar la lógica para obtener y mostrar la información de la línea seleccionada
-                String selectedLine = (String) stopComboBox.getSelectedItem();
-                
-                String[] busInfo = userWindowController.selectRoute(selectedLine);
-
-                // Actualizar la etiqueta de información del bus con los datos de la línea seleccionada
-
-                nextBusLabel.setText("Proximo bus: " + busInfo[0]);
-                fareLabel.setText("Tarifa: " + busInfo[1]);
-                timeLeftLabel.setText("Tiempo restante: " + busInfo[2] + " minutos aprox.");
-                
+                BusTimer.setRepeats(true);
+                BusTimer.setCoalesce(true);
+                BusTimer.setDelay(5000/simulationTime);
+                BusTimer.start();
             }
         });
+
+        // Agregar ActionListener al botón de salir
+
+        exit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                userWindowController.handleExit();
+                
+                frame.setVisible(false);
+                frame.dispose();
+            }
+        });
+
+        HourTimer.start();
+
+        
     }
+
 }
