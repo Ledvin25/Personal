@@ -84,7 +84,7 @@ public class UI extends JFrame {
                     width = 300;
                     height = 171;
                 }
-                ImageIcon image = new ImageIcon("D:\\System\\Desktop\\ejercicioBridgePattern\\src\\GUI\\meme.png");
+                ImageIcon image = new ImageIcon("src/GUI/meme.png");
                 Image scaledImage = image.getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
                 ImageIcon scaledIcon = new ImageIcon(scaledImage);
                 pantallaImagen.setIcon(scaledIcon);
