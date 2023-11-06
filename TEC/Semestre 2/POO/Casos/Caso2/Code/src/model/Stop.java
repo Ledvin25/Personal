@@ -1,7 +1,8 @@
 package model;
 
-public class Stop 
-{
+import java.io.Serializable;
+
+public class Stop implements Serializable{
     private String name;
     private double position; // Distancia a la siguiente parada en la ruta en metros
     private boolean terminal; // Indica si la parada es terminal o no

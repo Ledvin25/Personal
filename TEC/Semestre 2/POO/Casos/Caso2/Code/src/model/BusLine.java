@@ -2,23 +2,20 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 
 import java.time.LocalTime;
 
-public class BusLine extends Thread{
+public class BusLine extends Thread implements Serializable{
     
-    @JsonIgnore
     private LocalTime startTime;
-    @JsonIgnore
     private LocalTime endTime;
 
     private String name;
 
     private List<Bus> buses;
     private List<Route> routes;
-    private int escala_tiempo;
+    private transient int escala_tiempo;
 
     // Constructor
 

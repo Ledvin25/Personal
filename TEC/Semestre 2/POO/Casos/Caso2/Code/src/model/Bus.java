@@ -3,28 +3,26 @@ package model;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-public class Bus extends Thread{
+public class Bus extends Thread implements Serializable{
 
     // Atibutos base
     String licensePlate; // Placa del bus
     private int capacity; // Capacidad de pasajeros
-    private double position; // Posición en la ruta en metros
+    private transient double position; // Posición en la ruta en metros
     private Route currentRoute; // Ruta actual
-    private boolean isRunning; // Indicador de si el bus está en movimiento
+    private transient boolean isRunning; // Indicador de si el bus está en movimiento
     private int escala_tiempo = 1; // Escala de tiempo de simulación (por defecto, 1 segundo en el programa = 1 segundo en la vida real)
 
     // Atributos para el control de velocidad
     private double targetSpeed = 80.0; // Velocidad objetivo en km/h
     private double maxSpeedVariation = 15.0; // Variación máxima de velocidad en km/h
-    private double speed = 0.0; // Velocidad inicial
-    private int stop_index = 1; // Índice de la parada actual
+    private transient double speed = 0.0; // Velocidad inicial
+    private transient int stop_index = 1; // Índice de la parada actual
 
     // Temporizador para el control de velocidad
-    @JsonIgnore
-    private Timer speedTimer;
+    private transient Timer speedTimer;
 
     // Constructor
     public Bus(String licensePlate, int capacity) {
