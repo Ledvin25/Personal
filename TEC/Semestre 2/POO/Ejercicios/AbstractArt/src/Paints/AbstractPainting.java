@@ -8,30 +8,40 @@ import Painters.PainterStrategy;
 
 import java.util.ArrayList;
 import java.awt.Graphics;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class AbstractPainting extends JPanel{
-    
-    private List<PainterStrategy> shapes;
 
-    public AbstractPainting() {
-        this.shapes = new ArrayList<PainterStrategy>();
+    private int totalPaints;
+    
+    private List<PainterStrategy> painters;
+
+    public AbstractPainting(int totalPaints) {
+        this.painters = new ArrayList<PainterStrategy>();
+        this.totalPaints = totalPaints;
     }
 
     //---------------------------------------------//
 
     public Iterator getIterator() {
-        return new AbstractPaintingIterator(shapes); 
+        return new AbstractPaintingIterator(painters); 
       }
 
     public void addShape(PainterStrategy shape) {
-        this.shapes.add(shape);
+        this.painters.add(shape);
     }
 
     public void paintComponent(Graphics g)
     {
-        for (PainterStrategy shape : shapes) {
+        for(int i = 0; i < totalPaints*painters.size(); i++){
+            for (PainterStrategy painter : painters) {
 
-            shape.draw(g);
+                painter.draw(g);
+                painter.setLastShape(painter);
+                painter.notifyObservers();
+            }
         }
+        System.out.println("Finzalido");
     }
 }

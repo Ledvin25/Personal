@@ -2,13 +2,38 @@ package Painters;
 
 import java.awt.Graphics;
 import java.util.List;
-import java.awt.Color;
+import java.util.ArrayList;
 
-public interface PainterStrategy {
+public abstract class PainterStrategy implements Observer{
     
-    public void draw(Graphics g);
+    protected PainterStrategy lastShape;
+    private List<Observer> observers;
 
-    public List<Integer> getShapeInfo();
+    public PainterStrategy() {
+        this.observers = new ArrayList<Observer>();
+    }
 
-    public Color getColor();
+    public void setLastShape(PainterStrategy lastShape) {
+        this.lastShape = lastShape;
+        notifyObservers();
+    }
+
+    public abstract void draw(Graphics g);
+
+    public abstract int[] getShapeInfo();
+
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update(lastShape);
+        }
+    }
+
 }
