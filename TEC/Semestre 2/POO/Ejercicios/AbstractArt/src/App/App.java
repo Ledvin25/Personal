@@ -5,6 +5,10 @@ import java.awt.*;
 
 import javax.swing.JFrame;
 
+import Painters.LineaPainter;
+import Painters.LunarPainter;
+import Painters.PoligonoPainter;
+
 public class App {
     public static void main(String[] args) {
         
@@ -16,17 +20,17 @@ public class App {
 
         // Crear un objeto de tipo Line
 
-        Linea line = new Linea(0, 0, 100, 100, 3, Color.RED);
+        LineaPainter line = new LineaPainter(0, 0, 100, 100, 3, Color.RED);
 
         // Crear un objeto de tipo Lunar
 
-        Lunar lunar = new Lunar(100, 100, 100, Color.BLUE);
+        LunarPainter lunar = new LunarPainter(100, 100, 100, Color.BLUE);
 
         // Crear un objeto de tipo Polygon
 
         int[] xPoints = { 100, 200, 300 };
         int[] yPoints = { 100, 200, 100 };
-        Poligono polygon = new Poligono(xPoints, yPoints, Color.GREEN);
+        PoligonoPainter polygon = new PoligonoPainter(xPoints, yPoints, Color.GREEN);
 
         // Agregar los objetos a la lista de shapes del objeto de tipo AbstractPainting
 

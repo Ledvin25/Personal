@@ -4,15 +4,17 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import Painters.PainterStrategy;
+
 import java.util.ArrayList;
 import java.awt.Graphics;
 
 public class AbstractPainting extends JPanel{
     
-    private List<ShapeStrategy> shapes;
+    private List<PainterStrategy> shapes;
 
     public AbstractPainting() {
-        this.shapes = new ArrayList<ShapeStrategy>();
+        this.shapes = new ArrayList<PainterStrategy>();
     }
 
     //---------------------------------------------//
@@ -21,13 +23,13 @@ public class AbstractPainting extends JPanel{
         return new AbstractPaintingIterator(shapes); 
       }
 
-    public void addShape(ShapeStrategy shape) {
+    public void addShape(PainterStrategy shape) {
         this.shapes.add(shape);
     }
 
     public void paintComponent(Graphics g)
     {
-        for (ShapeStrategy shape : shapes) {
+        for (PainterStrategy shape : shapes) {
 
             shape.draw(g);
         }

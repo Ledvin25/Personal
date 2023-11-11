@@ -1,26 +1,43 @@
 package Painters;
 
-import Paints.*;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.util.List;
+import java.util.ArrayList;
 
-class LunarPainter extends Painter {
-    @Override
-    public void paint(Graphics g) {
-        if (lastShape instanceof Lunar) {
-            // Obtener el radio del último círculo dibujado
-            int lastRadius = ((Lunar) lastShape).getRadius();
-
-            // Definir el número de círculos concéntricos a dibujar
-            int numCircles = 5;
-
-            // Dibujar círculos concéntricos
-            for (int i = 1; i <= numCircles; i++) {
-                int currentRadius = lastRadius + i * 20; // Ajusta el factor multiplicativo según tus necesidades
-                g.drawOval(lastShape.getX(), lastShape.getY(), currentRadius, currentRadius);
-            }
-        } else {
-            // Si la última forma no es un círculo, dibuja un círculo por defecto
-            g.drawOval(50, 50, 30, 30);
-        }
+public class LunarPainter implements PainterStrategy{
+    
+    private int x;
+    private int y; 
+    private int radius;
+    private Color color;
+  
+    public LunarPainter(int x, int y, int radius, Color color) {
+      this.x = x;
+      this.y = y;
+      this.radius = radius;
+      this.color = color;
     }
+
+    public List<Integer> getShapeInfo() {
+      List<Integer> shapeInfo = new ArrayList<Integer>();
+      shapeInfo.add(x);
+      shapeInfo.add(y);
+      shapeInfo.add(radius);
+      return shapeInfo;
+    }
+
+    public Color getColor() {
+      return color;
+    }
+
+    public void draw(Graphics g) {
+        // Establecer color
+        g.setColor(color);
+    
+        // Dibujar círculo 
+        g.fillOval(x, y, radius, radius);
+    
+    }
+
 }

@@ -1,6 +1,8 @@
 package Paints;
 
+import Painters.PainterStrategy;
+
 public interface Iterator {
     boolean hasNext();
-    ShapeStrategy next(); 
+    PainterStrategy next(); 
 }

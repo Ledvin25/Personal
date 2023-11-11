@@ -2,12 +2,14 @@ package Paints;
 
 import java.util.List;
 
+import Painters.PainterStrategy;
+
 public class AbstractPaintingIterator implements Iterator {
 
-  private List<ShapeStrategy> shapes;
+  private List<PainterStrategy> shapes;
   private int position;
 
-  public AbstractPaintingIterator(List<ShapeStrategy> shapes) {
+  public AbstractPaintingIterator(List<PainterStrategy> shapes) {
     this.shapes = shapes;
   }
 
@@ -15,7 +17,7 @@ public class AbstractPaintingIterator implements Iterator {
     return position < shapes.size();
   }
 
-  public ShapeStrategy next() {
+  public PainterStrategy next() {
     return shapes.get(position++); 
   }
 
