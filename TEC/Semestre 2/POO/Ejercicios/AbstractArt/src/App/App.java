@@ -26,9 +26,9 @@ public class App {
         PoligonoPainterFactory poligonoFactory = new PoligonoPainterFactory();
 
         // Crear pintores
-        PainterStrategy lineaPainter = lineaFactory.createPainter();
-        PainterStrategy lunarPainter = lunarFactory.createPainter();
-        PainterStrategy poligonoPainter = poligonoFactory.createPainter();
+        PainterStrategy lineaPainter = lineaFactory.createPainter(0,0,255,1);
+        PainterStrategy lunarPainter = lunarFactory.createPainter(0,0,255,1);
+        PainterStrategy poligonoPainter = poligonoFactory.createPainter(0,0,255,1);
 
         // Agregar observadores
         lineaPainter.addObserver(lunarPainter);
@@ -49,6 +49,7 @@ public class App {
         JFrame frame = new JFrame("Abstract Painting");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
+        frame.setResizable(false);
         frame.setVisible(true);
 
         

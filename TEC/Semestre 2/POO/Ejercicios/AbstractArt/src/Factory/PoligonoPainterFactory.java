@@ -10,7 +10,7 @@ public class PoligonoPainterFactory implements PainterFactory {
     private static final Random random = new Random();
 
     @Override
-    public PainterStrategy createPainter() {
+    public PainterStrategy createPainter(int red, int blue, int green, int priority) {
         // Genera valores aleatorios para inicializar el PoligonoPainter
         int numPoints = random.nextInt(5) + 3;  // Ajusta según el rango deseado (mínimo 3 puntos)
         int[] xPoints = generateRandomPoints(500, numPoints);

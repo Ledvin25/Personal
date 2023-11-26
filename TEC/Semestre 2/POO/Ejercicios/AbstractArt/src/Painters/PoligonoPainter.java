@@ -8,6 +8,8 @@ import java.util.Random;
 
 public class PoligonoPainter extends PainterStrategy{
 
+  private static final Random random = new Random();
+
   private int[] xPoints;
   private int[] yPoints;
   private int numPoints;
@@ -43,14 +45,14 @@ public class PoligonoPainter extends PainterStrategy{
                 xPoints[i] = getRandomDifferentCoordinate(lastShapeInfo[0]);
                 yPoints[i] = getRandomDifferentCoordinate(lastShapeInfo[1]);
             }
-            color = getRandomColor();
+            color = generateRandomColor();
         } else if (lastShape instanceof LunarPainter) {
             // Si es un lunar, pinta en otra zona donde no estaba el lunar
             for (int i = 0; i < numPoints; i++) {
                 xPoints[i] = getRandomDifferentCoordinate(lastShapeInfo[0]);
                 yPoints[i] = getRandomDifferentCoordinate(lastShapeInfo[1]);
             }
-            color = getRandomColor();
+            color = generateRandomColor();
         } else if (lastShape instanceof LineaPainter) {
             // Si es una línea, pinta en otra zona donde no estaba esa línea
             // Cambia la lógica según tus necesidades
@@ -58,7 +60,7 @@ public class PoligonoPainter extends PainterStrategy{
                 xPoints[i] = getRandomDifferentCoordinate(lastShapeInfo[0]);
                 yPoints[i] = getRandomDifferentCoordinate(lastShapeInfo[1]);
             }
-            color = getRandomColor();
+            color = generateRandomColor();
         }
       }
 
@@ -73,10 +75,18 @@ public class PoligonoPainter extends PainterStrategy{
     this.lastShape = lastShape;
   }
 
-  private Color getRandomColor() {
-        Random random = new Random();
-        return new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256));
-    }
+  private Color generateRandomColor() {
+
+    int baseRed = color.getRed();
+    int baseGreen = color.getGreen();
+    int baseBlue = color.getBlue();
+
+    int red = Math.max(0, Math.min(255, baseRed + random.nextInt(101) - 50));
+    int green = Math.max(0, Math.min(255, baseGreen + random.nextInt(101) - 50));
+    int blue = Math.max(0, Math.min(255, baseBlue + random.nextInt(101) - 50));
+    
+    return new Color(red, green, blue);
+  }
 
     private int getRandomDifferentCoordinate(int coordinate) {
         Random random = new Random();

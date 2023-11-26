@@ -9,6 +9,8 @@ import java.util.Random;
 
 public class LunarPainter extends PainterStrategy{
 
+    private static final Random random = new Random();
+
     private int x;
     private int y; 
     private int radius;
@@ -42,17 +44,17 @@ public class LunarPainter extends PainterStrategy{
             // Si es un polígono, pinta en cualquier lugar que no sea donde está el polígono
             x = getRandomDifferentCoordinate(lastShapeInfo[0]);
             y = getRandomDifferentCoordinate(lastShapeInfo[1]);
-            color = getRandomColor();
+            color = generateRandomColor();
         } else if (lastShape instanceof LunarPainter) {
             // Si es un lunar, pinta en cualquier lugar que no sea donde estaba el lunar
             x = getRandomDifferentCoordinate(lastShapeInfo[0]);
             y = getRandomDifferentCoordinate(lastShapeInfo[1]);
-            color = getRandomColor();
+            color = generateRandomColor();
         } else if (lastShape instanceof LineaPainter) {
             // Si es una línea, pinta en otra zona donde no estaba esa línea
             x = getRandomDifferentCoordinate(lastShapeInfo[0]);
             y = getRandomDifferentCoordinate(lastShapeInfo[1]);
-            color = getRandomColor();
+            color = generateRandomColor();
         }
       }
       // Establecer color
@@ -67,9 +69,17 @@ public class LunarPainter extends PainterStrategy{
         this.lastShape = lastShape;
     }
 
-    private Color getRandomColor() {
-        Random random = new Random();
-        return new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256));
+    private Color generateRandomColor() {
+
+      int baseRed = color.getRed();
+      int baseGreen = color.getGreen();
+      int baseBlue = color.getBlue();
+
+      int red = Math.max(0, Math.min(255, baseRed + random.nextInt(101) - 50));
+      int green = Math.max(0, Math.min(255, baseGreen + random.nextInt(101) - 50));
+      int blue = Math.max(0, Math.min(255, baseBlue + random.nextInt(101) - 50));
+      
+      return new Color(red, green, blue);
     }
 
     // Método para obtener una coordenada diferente random

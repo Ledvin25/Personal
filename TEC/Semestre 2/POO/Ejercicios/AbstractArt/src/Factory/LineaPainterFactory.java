@@ -7,7 +7,7 @@ import java.util.Random;
 public class LineaPainterFactory implements PainterFactory{
     private static final Random random = new Random();
 
-    public PainterStrategy createPainter() {
+    public PainterStrategy createPainter(int red, int blue, int green, int priority) {
         // Genera valores aleatorios para inicializar el LineaPainter
         int x1 = random.nextInt(500);  // Ajusta según el rango deseado
         int x2 = random.nextInt(500);
